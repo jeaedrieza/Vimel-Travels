@@ -368,6 +368,7 @@ p {
   border: none;
   cursor: pointer;
   padding: 6px;
+  margin-left: auto;  
 }
 
 .nav-hamburger span {
