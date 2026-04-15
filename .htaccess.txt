@@ -1,0 +1,44 @@
+# Vimel Travels — Root .htaccess
+# Place this file in: /vimel-travels/.htaccess
+# Enables clean URLs and routes all /api/* requests to backend.php
+
+RewriteEngine On
+
+# ── Security: block direct access to sensitive files ──
+<FilesMatch "\.(env|log|sql|md)$">
+    Require all denied
+</FilesMatch>
+
+# ── Block directory listing ──
+Options -Indexes
+
+# ── Force HTTPS in production (uncomment when you have SSL) ──
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ── API routing: send all /api/* requests to backend.php ──
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/(.*)$ backend.php [QSA,L]
+
+# ── Frontend: serve index.html for any non-file, non-api route ──
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteRule ^(.*)$ index.html [QSA,L]
+
+# ── Cache static assets ──
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+</IfModule>
+
+# ── GZIP compression ──
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json
+</IfModule>

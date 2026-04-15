@@ -1,0 +1,14 @@
+# Ignore OS generated files
+Thumbs.db
+.DS_Store
+
+# Ignore private server configs
+config.php
+.env
+
+# Ignore XAMPP/Local server logs
+*.log
+error_log
+
+# Ignore node_modules (if you ever use npm)
+node_modules/

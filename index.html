@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vimel Travels — Signature Journey's, Timeless Memories</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+<div class="nav-container">
+<a href="#" class="nav-logo"><img src="vimel-logo.png" alt="Vimel Travels" class="logo-img"></a>
+<ul class="nav-links" id="navLinks">
+<li><a href="#recommendations">Destinations</a></li>
+<li><a href="#countries">Countries</a></li>
+<li><a href="#vehicles">Vehicles</a></li>
+<li><a href="#hotels">Hotels</a></li>
+<li><a href="#blog">Blog</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+<div class="nav-auth">
+<button class="btn btn-ghost" onclick="openModal('loginModal')">Log In</button>
+<button class="btn btn-primary" onclick="openModal('registerModal')">Sign Up</button>
+</div>
+<div class="nav-profile" id="navProfile" style="display:none;">
+  <button class="profile-avatar-btn" id="profileAvatarBtn" onclick="toggleProfileDropdown()" aria-label="Profile menu" aria-expanded="false" aria-haspopup="true">
+    <span class="profile-avatar-circle" id="navAvatarCircle">U</span>
+    <i class="fas fa-chevron-down profile-chevron" id="profileChevron"></i>
+  </button>
+
+  <div class="profile-dropdown" id="profileDropdown" role="menu">
+    <div class="profile-dropdown-header">
+      <div class="profile-dropdown-avatar" id="dropdownAvatarCircle">U</div>
+      <div class="profile-dropdown-info">
+        <span class="profile-dropdown-name" id="dropdownName">Traveler</span>
+        <span class="profile-dropdown-email" id="dropdownEmail">user@email.com</span>
+      </div>
+    </div>
+    <div class="profile-dropdown-divider"></div>
+    <ul class="profile-dropdown-list">
+      <li role="menuitem"><button onclick="openProfileModal('myProfile')"><span class="profile-dd-icon">👤</span> My Profile</button></li>
+      <li role="menuitem"><button onclick="openProfileModal('myBookings')"><span class="profile-dd-icon">📋</span> My Bookings</button></li>
+      <li role="menuitem"><button onclick="openProfileModal('accountSettings')"><span class="profile-dd-icon">⚙️</span> Account Settings</button></li>
+      <li role="menuitem"><button onclick="openProfileModal('passwordSettings')"><span class="profile-dd-icon">🔒</span> Password Settings</button></li>
+      <li role="menuitem"><button onclick="openProfileModal('paymentMethods')"><span class="profile-dd-icon">💳</span> Payment Methods</button></li>
+      <li role="menuitem"><button onclick="openProfileModal('travelPreferences')"><span class="profile-dd-icon">🌍</span> Travel Preferences</button></li>
+    </ul>
+    <div class="profile-dropdown-divider"></div>
+    <button class="profile-logout-btn" onclick="handleLogout()"><span class="profile-dd-icon">🚪</span> Logout</button>
+  </div>
+</div>
+<button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu-header">
+<img src="vimel-logo.png" alt="Vimel Travels" class="logo-img">
+<button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
+</div>
+<ul class="mobile-nav-links">
+<li><a href="#recommendations" onclick="closeMobileMenu()">Destinations</a></li>
+<li><a href="#countries" onclick="closeMobileMenu()">Countries</a></li>
+<li><a href="#vehicles" onclick="closeMobileMenu()">Vehicles</a></li>
+<li><a href="#hotels" onclick="closeMobileMenu()">Hotels</a></li>
+<li><a href="#blog" onclick="closeMobileMenu()">Blog</a></li>
+<li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+</ul>
+<div class="mobile-auth">
+<button class="btn btn-ghost btn-block" onclick="openModal('loginModal'); closeMobileMenu();">Log In</button>
+<button class="btn btn-primary btn-block" onclick="openModal('registerModal'); closeMobileMenu();">Sign Up</button>
+</div>
+<div class="mobile-profile-section" id="mobileProfileSection" style="display:none;">
+  <div class="mobile-profile-header">
+    <div class="profile-avatar-circle-lg" id="mobileAvatarCircle">U</div>
+    <div>
+      <p class="mobile-profile-name" id="mobileProfileName">Traveler</p>
+      <p class="mobile-profile-email" id="mobileProfileEmail">user@email.com</p>
+    </div>
+  </div>
+  <ul class="mobile-profile-links">
+    <li><button onclick="openProfileModal('myProfile'); closeMobileMenu();">👤 My Profile</button></li>
+    <li><button onclick="openProfileModal('myBookings'); closeMobileMenu();">📋 My Bookings</button></li>
+    <li><button onclick="openProfileModal('accountSettings'); closeMobileMenu();">⚙️ Account Settings</button></li>
+    <li><button onclick="openProfileModal('passwordSettings'); closeMobileMenu();">🔒 Password Settings</button></li>
+    <li><button onclick="openProfileModal('paymentMethods'); closeMobileMenu();">💳 Payment Methods</button></li>
+    <li><button onclick="openProfileModal('travelPreferences'); closeMobileMenu();">🌍 Travel Preferences</button></li>
+    <li class="mobile-logout-item"><button onclick="handleLogout(); closeMobileMenu();">🚪 Logout</button></li>
+  </ul>
+</div>
+</div>
+<div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+
+<section class="hero" id="hero">
+<div class="hero-masonry" id="heroMasonry">
+<div class="masonry-item mi-1" data-speed="0.3"><img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=600" alt="Maldives"><div class="masonry-overlay"><span>Maldives</span></div></div>
+<div class="masonry-item mi-2" data-speed="0.5"><img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600" alt="Santorini"><div class="masonry-overlay"><span>Santorini</span></div></div>
+<div class="masonry-item mi-3" data-speed="0.2"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600" alt="Bali"><div class="masonry-overlay"><span>Bali</span></div></div>
+<div class="masonry-item mi-4" data-speed="0.4"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600" alt="Paris"><div class="masonry-overlay"><span>Paris</span></div></div>
+<div class="masonry-item mi-5" data-speed="0.6"><img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600" alt="Japan"><div class="masonry-overlay"><span>Japan</span></div></div>
+<div class="masonry-item mi-6" data-speed="0.35"><img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600" alt="Dubai"><div class="masonry-overlay"><span>Dubai</span></div></div>
+<div class="masonry-item mi-7" data-speed="0.45"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600" alt="Switzerland"><div class="masonry-overlay"><span>Switzerland</span></div></div>
+<div class="masonry-item mi-8" data-speed="0.25"><img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=600" alt="Thailand"><div class="masonry-overlay"><span>Thailand</span></div></div>
+</div>
+<div class="hero-content">
+<h1 class="hero-title">Your Dream Destination<br><span class="gradient-text">Awaits You</span></h1>
+<p class="hero-tagline">Do you want to see your dream country? Or see the places that you have seen in movies, series, drama and have fun, make memories — <strong>Book now here in Vimel Travels!</strong></p>
+<div class="hero-search">
+<div class="search-box">
+<i class="fas fa-search search-icon"></i>
+<input type="text" id="searchInput" placeholder="Where do you want to go?" autocomplete="off">
+<div class="search-suggestions" id="searchSuggestions"></div>
+</div>
+<button class="btn btn-accent btn-search">Explore</button>
+</div>
+<div class="hero-stats">
+<div class="stat"><span class="stat-num">500+</span><span class="stat-label">Destinations</span></div>
+<div class="stat"><span class="stat-num">50K+</span><span class="stat-label">Happy Travelers</span></div>
+<div class="stat"><span class="stat-num">24/7</span><span class="stat-label">Support</span></div>
+</div>
+</div>
+</section>
+
+<section class="section" id="recommendations">
+<div class="container">
+<div class="section-header">
+<span class="section-tag">Top Picks</span>
+<h2 class="section-title">Recommended For You</h2>
+<p class="section-desc">Handpicked destinations loved by travelers worldwide</p>
+</div>
+<div class="scroll-row" id="recommendationsRow"></div>
+<div class="scroll-controls">
+<button class="scroll-btn scroll-left" data-target="recommendationsRow"><i class="fas fa-chevron-left"></i></button>
+<button class="scroll-btn scroll-right" data-target="recommendationsRow"><i class="fas fa-chevron-right"></i></button>
+</div>
+</div>
+</section>
+
+<section class="section section-alt" id="countries">
+<div class="container">
+<div class="section-header">
+<span class="section-tag">Explore</span>
+<h2 class="section-title">Browse by Country</h2>
+<p class="section-desc">Discover international wonders or explore your own backyard</p>
+</div>
+<div class="toggle-tabs">
+<button class="toggle-tab active" data-filter="international">🌍 International</button>
+<button class="toggle-tab" data-filter="local">📍 Local Destinations</button>
+</div>
+<div class="country-grid" id="countryGrid"></div>
+</div>
+</section>
+
+<section class="section" id="vehicles">
+<div class="container">
+<div class="section-header">
+<span class="section-tag">Safe Rides</span>
+<h2 class="section-title">Book a Verified Vehicle</h2>
+<p class="section-desc">Every driver is ID-verified and rated — no scams, just safe travels</p>
+</div>
+<div class="filter-bar">
+<select class="filter-select" id="vehicleTypeFilter">
+<option value="all">All Vehicles</option>
+<option value="sedan">Sedan</option>
+<option value="suv">SUV</option>
+<option value="van">Van</option>
+<option value="luxury">Luxury</option>
+</select>
+<select class="filter-select" id="vehicleSortFilter">
+<option value="rating">Highest Rated</option>
+<option value="price-low">Price: Low to High</option>
+<option value="price-high">Price: High to Low</option>
+</select>
+</div>
+<div class="driver-grid" id="driverGrid"></div>
+</div>
+</section>
+
+<section class="section section-alt" id="hotels">
+<div class="container">
+<div class="section-header">
+<span class="section-tag">Stay</span>
+<h2 class="section-title">Book Your Perfect Stay</h2>
+<p class="section-desc">Chat directly with hotels, see real ratings, and book with confidence</p>
+</div>
+<div class="view-toggle">
+<button class="view-btn active" data-view="grid"><i class="fas fa-th-large"></i> Grid</button>
+<button class="view-btn" data-view="map"><i class="fas fa-map-marked-alt"></i> Map View</button>
+</div>
+<div class="hotel-grid" id="hotelGrid"></div>
+<div class="hotel-map" id="hotelMap" style="display:none;">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30000000!2d115.0!3d5.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNcKwMDAnMDAuMCJOIDExNcKwMDAnMDAuMCJF!5e0!3m2!1sen!2sph!4v1700000000000!5m2!1sen!2sph" width="100%" height="400" style="border:0; border-radius:16px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</div>
+</section>
+
+<section class="section" id="howItWorks">
+<div class="container">
+<div class="section-header">
+<span class="section-tag">Simple</span>
+<h2 class="section-title">How It Works</h2>
+<p class="section-desc">Three easy steps to your next adventure</p>
+</div>
+<div class="steps-row">
+<div class="step-card reveal"><div class="step-icon"><i class="fas fa-search"></i></div><div class="step-number">01</div><h3>Search</h3><p>Browse destinations, vehicles, and hotels all in one place</p></div>
+<div class="step-connector"><i class="fas fa-arrow-right"></i></div>
+<div class="step-card reveal"><div class="step-icon"><i class="fas fa-calendar-check"></i></div><div class="step-number">02</div><h3>Book</h3><p>Chat with providers, compare ratings, and lock in the best price</p></div>
+<div class="step-connector"><i class="fas fa-arrow-right"></i></div>
+<div class="step-card reveal"><div class="step-icon"><i class="fas fa-plane-departure"></i></div><div class="step-number">03</div><h3>Travel</h3><p>Download your certified e-ticket and enjoy your journey</p></div>
+</div>
+</div>
+</section>
+
+<section class="section section-alt" id="about">
+<div class="container">
+<div class="about-grid">
+<div class="about-content reveal">
+<span class="section-tag">About Us</span>
+<h2 class="section-title">Why Vimel Travels?</h2>
+<p class="about-text">At Vimel Travels, we believe every journey should be a signature experience. We're not just another booking platform — we're your trusted travel companion. With verified drivers, real-time hotel communication, and tamper-proof e-tickets, we've built a travel ecosystem where safety meets adventure.</p>
+<p class="about-text">Whether you're chasing sunsets in Santorini or exploring hidden local gems, Vimel Travels ensures every trip is memorable, affordable, and scam-free.</p>
+<div class="about-stats">
+<div class="about-stat"><i class="fas fa-globe-americas"></i><span class="about-stat-num">500+</span><span class="about-stat-label">Destinations</span></div>
+<div class="about-stat"><i class="fas fa-users"></i><span class="about-stat-num">50,000+</span><span class="about-stat-label">Happy Travelers</span></div>
+<div class="about-stat"><i class="fas fa-shield-alt"></i><span class="about-stat-num">100%</span><span class="about-stat-label">Verified Providers</span></div>
+<div class="about-stat"><i class="fas fa-headset"></i><span class="about-stat-num">24/7</span><span class="about-stat-label">Live Support</span></div>
+</div>
+</div>
+<div class="about-image reveal">
+<img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600" alt="Travel Adventure">
+<div class="about-badge"><i class="fas fa-award"></i><span>Trusted Since 2024</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="blog">
+<div class="container">
+<div class="section-header">
+<span class="section-tag">Stories</span>
+<h2 class="section-title">Travel Blog</h2>
+<p class="section-desc">Tips, guides, and stories from fellow travelers</p>
+</div>
+<div class="blog-grid" id="blogGrid"></div>
+</div>
+</section>
+
+<section class="section section-alt" id="contact">
+<div class="container">
+<div class="section-header">
+<span class="section-tag">Reach Out</span>
+<h2 class="section-title">Contact Us</h2>
+<p class="section-desc">We'd love to hear from you</p>
+</div>
+<div class="contact-grid">
+<form class="contact-form reveal" id="contactForm">
+<div class="form-group"><label for="contactName">Full Name</label><input type="text" id="contactName" placeholder="Juan Dela Cruz" required></div>
+<div class="form-group"><label for="contactEmail">Email Address</label><input type="email" id="contactEmail" placeholder="juan@email.com" required></div>
+<div class="form-group"><label for="contactSubject">Subject</label>
+<select id="contactSubject"><option value="">Select a topic</option><option value="booking">Booking Inquiry</option><option value="support">Customer Support</option><option value="partnership">Partnership</option><option value="feedback">Feedback</option></select>
+</div>
+<div class="form-group"><label for="contactMessage">Message</label><textarea id="contactMessage" rows="5" placeholder="Tell us how we can help..." required></textarea></div>
+<button type="submit" class="btn btn-accent btn-block">Send Message <i class="fas fa-paper-plane"></i></button>
+</form>
+<div class="contact-info reveal">
+<div class="contact-card">
+<div class="contact-item"><i class="fas fa-envelope"></i><div><h4>Email</h4><p>vimeltravels@gmail.com</p></div></div>
+<div class="contact-item"><i class="fas fa-phone"></i><div><h4>Phone</h4><p>+63 912 345 6789</p></div></div>
+<div class="contact-item"><i class="fas fa-map-marker-alt"></i><div><h4>Office</h4><p>Vimel Travels HQ, Quezon Province, Philippines</p></div></div>
+<div class="contact-item"><i class="fas fa-clock"></i><div><h4>Hours</h4><p>24/7 — We never sleep so you can</p></div></div>
+</div>
+<div class="contact-map">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247467.40927788498!2d121.7!3d14.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d7a9b2e0e1c5%3A0x2e7e4e7b6f6f9c0!2sQuezon%2C%20Philippines!5e0!3m2!1sen!2sph!4v1700000000000!5m2!1sen!2sph" width="100%" height="250" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<img src="vimel-logo.png" alt="Vimel Travels" class="footer-logo">
+<p>Signature Journey's, Timeless Memories. Your trusted travel companion for safe, verified, and unforgettable adventures worldwide.</p>
+<div class="footer-socials">
+<a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+<a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+<a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+<a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+<a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+</div>
+</div>
+<div class="footer-links"><h4>Quick Links</h4><ul><li><a href="#recommendations">Destinations</a></li><li><a href="#countries">Countries</a></li><li><a href="#vehicles">Book Vehicle</a></li><li><a href="#hotels">Book Hotel</a></li><li><a href="#blog">Blog</a></li></ul></div>
+<div class="footer-links"><h4>Company</h4><ul><li><a href="#about">About Us</a></li><li><a href="#contact">Contact</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li><li><a href="#">Partners</a></li></ul></div>
+<div class="footer-links"><h4>Support</h4><ul><li><a href="#">Help Center</a></li><li><a href="#">Safety</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Verify Ticket</a></li></ul></div>
+<div class="footer-newsletter">
+<h4>Stay Updated</h4>
+<p>Get the latest travel deals and tips straight to your inbox.</p>
+<form class="newsletter-form" id="newsletterForm"><input type="email" placeholder="Your email address" required><button type="submit" class="btn btn-accent"><i class="fas fa-arrow-right"></i></button></form>
+<div class="trust-badges"><span><i class="fas fa-shield-alt"></i> Secure Booking</span><span><i class="fas fa-lock"></i> SSL Encrypted</span><span><i class="fas fa-check-circle"></i> Verified Platform</span></div>
+</div>
+</div>
+<div class="footer-bottom">
+<p>&copy; 2024 Vimel Travels. All rights reserved. Signature Journey's, Timeless Memories.</p>
+<div class="footer-bottom-links"><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Cookies</a></div>
+</div>
+</div>
+</footer>
+
+<div class="modal-overlay" id="loginModal">
+<div class="modal">
+<button class="modal-close" onclick="closeModal('loginModal')"><i class="fas fa-times"></i></button>
+<div class="modal-header"><img src="vimel-logo.png" alt="Vimel Travels" class="modal-logo"><h2>Welcome Back</h2><p>Log in to continue your journey</p></div>
+<form id="loginForm" onsubmit="handleLogin(event)">
+<div class="form-group"><label for="loginEmail">Email</label><input type="email" id="loginEmail" placeholder="you@email.com" required></div>
+<div class="form-group"><label for="loginPassword">Password</label><div class="password-field"><input type="password" id="loginPassword" placeholder="••••••••" required><button type="button" class="toggle-pass" onclick="togglePassword('loginPassword')"><i class="fas fa-eye"></i></button></div></div>
+<div class="form-row"><label class="checkbox-label"><input type="checkbox"> Remember me</label><a href="#" class="form-link">Forgot password?</a></div>
+<button type="submit" class="btn btn-accent btn-block">Log In</button>
+<div class="form-divider"><span>or continue with</span></div>
+<div class="social-auth"><button type="button" class="btn btn-social"><i class="fab fa-google"></i> Google</button><button type="button" class="btn btn-social"><i class="fab fa-facebook-f"></i> Facebook</button></div>
+<p class="form-footer">Don't have an account? <a href="#" onclick="switchModal('loginModal','registerModal')">Sign Up</a></p>
+</form>
+</div>
+</div>
+
+<div class="modal-overlay" id="registerModal">
+<div class="modal">
+<button class="modal-close" onclick="closeModal('registerModal')"><i class="fas fa-times"></i></button>
+<div class="modal-header"><img src="vimel-logo.png" alt="Vimel Travels" class="modal-logo"><h2>Create Account</h2><p>Start your journey with Vimel Travels</p></div>
+<form id="registerForm" onsubmit="handleRegister(event)">
+<div class="form-row-2col"><div class="form-group"><label for="regFirstName">First Name</label><input type="text" id="regFirstName" placeholder="Juan" required></div><div class="form-group"><label for="regLastName">Last Name</label><input type="text" id="regLastName" placeholder="Dela Cruz" required></div></div>
+<div class="form-group"><label for="regEmail">Email</label><input type="email" id="regEmail" placeholder="you@email.com" required></div>
+<div class="form-group"><label for="regPhone">Phone Number</label><input type="tel" id="regPhone" placeholder="+63 9XX XXX XXXX"></div>
+<div class="form-group"><label for="regPassword">Password</label><div class="password-field"><input type="password" id="regPassword" placeholder="••••••••" required><button type="button" class="toggle-pass" onclick="togglePassword('regPassword')"><i class="fas fa-eye"></i></button></div><div class="password-strength" id="passwordStrength"></div></div>
+<div class="form-group"><label for="regConfirmPassword">Confirm Password</label><input type="password" id="regConfirmPassword" placeholder="••••••••" required></div>
+<label class="checkbox-label"><input type="checkbox" required> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+<button type="submit" class="btn btn-accent btn-block">Create Account</button>
+<div class="form-divider"><span>or continue with</span></div>
+<div class="social-auth"><button type="button" class="btn btn-social"><i class="fab fa-google"></i> Google</button><button type="button" class="btn btn-social"><i class="fab fa-facebook-f"></i> Facebook</button></div>
+<p class="form-footer">Already have an account? <a href="#" onclick="switchModal('registerModal','loginModal')">Log In</a></p>
+</form>
+</div>
+</div>
+
+<div class="chat-widget" id="chatWidget">
+<button class="chat-fab" id="chatFab" onclick="toggleChat()"><i class="fas fa-comments"></i><span class="chat-badge">1</span></button>
+<div class="chat-panel" id="chatPanel">
+<div class="chat-header">
+<div class="chat-header-info"><div class="chat-avatar"><i class="fas fa-headset"></i></div><div><h4>Vimel Support</h4><span class="chat-status">● Online</span></div></div>
+<div class="chat-header-actions"><button class="chat-translate-btn" onclick="toggleTranslate()" title="Auto Translate"><i class="fas fa-language"></i></button><button class="chat-minimize" onclick="toggleChat()"><i class="fas fa-minus"></i></button></div>
+</div>
+<div class="chat-translate-bar" id="translateBar" style="display:none;">
+<select id="translateFrom"><option value="en">English</option><option value="es">Spanish</option><option value="fr">French</option><option value="ja">Japanese</option><option value="ko">Korean</option><option value="zh">Chinese</option><option value="tl">Filipino</option></select>
+<i class="fas fa-arrow-right"></i>
+<select id="translateTo"><option value="tl">Filipino</option><option value="en">English</option><option value="es">Spanish</option><option value="fr">French</option><option value="ja">Japanese</option><option value="ko">Korean</option><option value="zh">Chinese</option></select>
+</div>
+<div class="chat-messages" id="chatMessages"><div class="chat-msg bot"><div class="msg-bubble"><p>Welcome to Vimel Travels! 🌊 How can I help you today?</p><span class="msg-time">Just now</span></div></div></div>
+<form class="chat-input-form" id="chatForm"><input type="text" id="chatInput" placeholder="Type a message..." autocomplete="off"><button type="submit" class="chat-send"><i class="fas fa-paper-plane"></i></button></form>
+</div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<div class="modal-overlay" id="ticketModal">
+<div class="modal modal-lg">
+<button class="modal-close" onclick="closeModal('ticketModal')"><i class="fas fa-times"></i></button>
+<div class="ticket-preview" id="ticketPreview">
+<div class="ticket">
+<div class="ticket-header"><img src="vimel-logo.png" alt="Vimel Travels" class="ticket-logo"><div class="ticket-badge">APPROVED • LEGIT • CERTIFIED COPY</div></div>
+<div class="ticket-watermark">VIMEL TRAVELS</div>
+<div class="ticket-body">
+<div class="ticket-route"><div class="ticket-city"><span class="city-code">MN</span><span class="city-name">Manila</span></div><div class="ticket-flight-line"><i class="fas fa-plane"></i></div><div class="ticket-city"><span class="city-code">TYO</span><span class="city-name">Tokyo</span></div></div>
+<div class="ticket-details"><div class="ticket-detail"><span>Passenger</span><strong id="ticketPassenger">Juan Dela Cruz</strong></div><div class="ticket-detail"><span>Date</span><strong id="ticketDate">April 15, 2026</strong></div><div class="ticket-detail"><span>Flight</span><strong id="ticketFlight">VM-2847</strong></div><div class="ticket-detail"><span>Seat</span><strong id="ticketSeat">12A</strong></div><div class="ticket-detail"><span>Gate</span><strong id="ticketGate">G7</strong></div><div class="ticket-detail"><span>Booking Ref</span><strong id="ticketRef">VT-20260415-XK9M</strong></div></div>
+<div class="ticket-qr"><div class="qr-placeholder"><i class="fas fa-qrcode"></i></div><span>Scan to verify</span></div>
+</div>
+<div class="ticket-footer"><div class="ticket-barcode">|||| ||| |||| || ||| |||| ||| || |||| ||| ||||</div><p>This is an officially certified e-ticket by Vimel Travels. Verify at vimeltravels.com/verify</p></div>
+</div>
+</div>
+<div class="ticket-actions"><button class="btn btn-accent" onclick="downloadTicket()"><i class="fas fa-download"></i> Download PDF</button><button class="btn btn-ghost" onclick="printTicket()"><i class="fas fa-print"></i> Print Ticket</button></div>
+</div>
+</div>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+<div class="modal-overlay" id="bookingModal">
+<div class="modal modal-lg">
+<!-- Close Button -->
+<button class="modal-close" onclick="closeModal('bookingModal')">
+  <i class="fas fa-times"></i>
+</button>
+
+<!-- Modal Header: Item Preview Card -->
+<div class="booking-preview-card">
+  <div class="booking-preview-img-wrap">
+    <img id="bookingItemImage" src="" alt="" class="booking-preview-img">
+  </div>
+  <div class="booking-preview-info">
+    <div class="booking-preview-meta">
+      <span class="booking-type-badge" id="bookingTypeBadge">Destination</span>
+      <span class="booking-preview-rating">
+        <i class="fas fa-star"></i>
+        <span id="bookingItemRating">4.9</span>
+      </span>
+    </div>
+    <h2 class="booking-preview-name" id="bookingItemName">Destination Name</h2>
+    <p class="booking-preview-location">
+      <i class="fas fa-map-marker-alt"></i>
+      <span id="bookingItemLocation">Location</span>
+    </p>
+    <p class="booking-preview-price">
+      <span id="bookingItemPriceDisplay">$420</span>
+      <span class="booking-price-unit" id="bookingPriceUnit">/ person</span>
+    </p>
+  </div>
+</div>
+
+<!-- Booking Form Body -->
+<div class="booking-form-body">
+
+  <!-- Date Section -->
+  <div class="booking-section">
+    <h4 class="booking-section-title">
+      <i class="fas fa-calendar-alt"></i> Travel Dates
+    </h4>
+    <!-- CHECK-IN DATE -->
+<div class="custom-date-group">
+  <label>Check-in</label>
+  <div class="custom-date-picker" id="checkInPicker">
+    <div class="date-display" onclick="toggleDatePicker('checkInPicker')">
+      <i class="fas fa-calendar-alt"></i>
+      <span id="checkInDisplay">Select date</span>
+      <i class="fas fa-chevron-down date-arrow"></i>
+    </div>
+    <div class="date-dropdown">
+      <div class="date-scroll-row">
+        <div class="date-scroll-col">
+          <label>Month</label>
+          <select class="date-select date-month" onchange="updateDateDisplay('checkInPicker')">
+            <option value="">--</option>
+            <option value="01">January</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+        </div>
+        <div class="date-scroll-col">
+          <label>Day</label>
+          <select class="date-select date-day" onchange="updateDateDisplay('checkInPicker')">
+            <option value="">--</option>
+          </select>
+        </div>
+        <div class="date-scroll-col">
+          <label>Year</label>
+          <select class="date-select date-year" onchange="updateDateDisplay('checkInPicker')">
+            <option value="">--</option>
+          </select>
+        </div>
+      </div>
+      <button class="date-done-btn" onclick="closeDatePicker('checkInPicker')">Done</button>
+    </div>
+  </div>
+  <input type="hidden" id="bookingCheckIn">
+  <span class="booking-date-error" id="checkInError"></span>
+</div>
+
+<!-- ARROW -->
+<div class="booking-date-arrow"><i class="fas fa-arrow-right"></i></div>
+
+<!-- CHECK-OUT DATE -->
+<div class="custom-date-group">
+  <label>Check-out</label>
+  <div class="custom-date-picker" id="checkOutPicker">
+    <div class="date-display" onclick="toggleDatePicker('checkOutPicker')">
+      <i class="fas fa-calendar-alt"></i>
+      <span id="checkOutDisplay">Select date</span>
+      <i class="fas fa-chevron-down date-arrow"></i>
+    </div>
+    <div class="date-dropdown">
+      <div class="date-scroll-row">
+        <div class="date-scroll-col">
+          <label>Month</label>
+          <select class="date-select date-month" onchange="updateDateDisplay('checkOutPicker')">
+            <option value="">--</option>
+            <option value="01">January</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+        </div>
+        <div class="date-scroll-col">
+          <label>Day</label>
+          <select class="date-select date-day" onchange="updateDateDisplay('checkOutPicker')">
+            <option value="">--</option>
+          </select>
+        </div>
+        <div class="date-scroll-col">
+          <label>Year</label>
+          <select class="date-select date-year" onchange="updateDateDisplay('checkOutPicker')">
+            <option value="">--</option>
+          </select>
+        </div>
+      </div>
+      <button class="date-done-btn" onclick="closeDatePicker('checkOutPicker')">Done</button>
+    </div>
+  </div>
+  <input type="hidden" id="bookingCheckOut">
+  <span class="booking-date-error" id="checkOutError"></span>
+
+  <!-- Travelers Section -->
+  <div class="booking-section">
+    <h4 class="booking-section-title">
+      <i class="fas fa-users"></i> Travelers
+    </h4>
+    <div class="booking-travelers-row">
+      <div class="booking-traveler-item">
+        <div class="booking-traveler-label">
+          <span class="booking-traveler-type">Adults</span>
+          <span class="booking-traveler-sub">Age 13+</span>
+        </div>
+        <div class="booking-counter">
+          <button class="booking-counter-btn" onclick="adjustTraveler('adults', -1)" aria-label="Decrease adults">
+            <i class="fas fa-minus"></i>
+          </button>
+          <span class="booking-counter-value" id="adultsCount">1</span>
+          <button class="booking-counter-btn" onclick="adjustTraveler('adults', 1)" aria-label="Increase adults">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="booking-traveler-item">
+        <div class="booking-traveler-label">
+          <span class="booking-traveler-type">Children</span>
+          <span class="booking-traveler-sub">Age 2–12</span>
+        </div>
+        <div class="booking-counter">
+          <button class="booking-counter-btn" onclick="adjustTraveler('children', -1)" aria-label="Decrease children">
+            <i class="fas fa-minus"></i>
+          </button>
+          <span class="booking-counter-value" id="childrenCount">0</span>
+          <button class="booking-counter-btn" onclick="adjustTraveler('children', 1)" aria-label="Increase children">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Special Requests -->
+  <div class="booking-section">
+    <h4 class="booking-section-title">
+      <i class="fas fa-comment-dots"></i> Special Requests
+    </h4>
+    <div class="form-group">
+      <textarea
+        id="bookingSpecialRequests"
+        class="booking-textarea"
+        rows="3"
+        placeholder="Dietary needs, accessibility requirements, room preferences, anniversary surprises..."
+        maxlength="500"
+      ></textarea>
+      <span class="booking-char-count" id="charCount">0 / 500</span>
+    </div>
+  </div>
+
+  <!-- Price Summary -->
+  <div class="booking-section booking-price-summary">
+    <h4 class="booking-section-title">
+      <i class="fas fa-receipt"></i> Price Summary
+    </h4>
+    <div class="booking-price-rows">
+      <div class="booking-price-row">
+        <span id="priceBaseLabel">Base price</span>
+        <span id="priceBaseValue">—</span>
+      </div>
+      <div class="booking-price-row">
+        <span id="priceDurationLabel">Duration</span>
+        <span id="priceDurationValue">—</span>
+      </div>
+      <div class="booking-price-row">
+        <span>Travelers</span>
+        <span id="priceTravelersValue">1 adult</span>
+      </div>
+      <div class="booking-price-row booking-price-total">
+        <span>Total Estimate</span>
+        <span id="priceTotalValue">—</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment Method -->
+  <div class="booking-section">
+    <h4 class="booking-section-title">
+      <i class="fas fa-credit-card"></i> Payment Method
+    </h4>
+    <div class="booking-payment-grid">
+      <label class="booking-payment-option">
+        <input type="radio" name="bookingPayment" value="credit_card" checked>
+        <span class="booking-payment-card">
+          <i class="fas fa-credit-card"></i>
+          <span>Credit Card</span>
+        </span>
+      </label>
+      <label class="booking-payment-option">
+        <input type="radio" name="bookingPayment" value="gcash">
+        <span class="booking-payment-card">
+          <i class="fas fa-mobile-alt"></i>
+          <span>GCash</span>
+        </span>
+      </label>
+      <label class="booking-payment-option">
+        <input type="radio" name="bookingPayment" value="paymaya">
+        <span class="booking-payment-card">
+          <i class="fas fa-wallet"></i>
+          <span>PayMaya</span>
+        </span>
+      </label>
+      <label class="booking-payment-option">
+        <input type="radio" name="bookingPayment" value="bank_transfer">
+        <span class="booking-payment-card">
+          <i class="fas fa-university"></i>
+          <span>Bank Transfer</span>
+        </span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Confirm Button -->
+  <div class="booking-footer">
+    <button class="btn btn-ghost booking-cancel-btn" onclick="closeModal('bookingModal')">
+      Cancel
+    </button>
+    <button class="btn btn-accent booking-confirm-btn" onclick="confirmBooking()">
+      <i class="fas fa-check-circle"></i> Confirm Booking
+    </button>
+  </div>
+
+</div><!-- /.booking-form-body -->
+</div>
+</div>
+
+<div class="modal-overlay" id="profileModal">
+  <div class="modal profile-modal-lg">
+    <button class="modal-close" onclick="closeModal('profileModal')" aria-label="Close profile"><i class="fas fa-times"></i></button>
+
+    <div class="profile-modal-body">
+
+      <!-- Sidebar -->
+      <aside class="profile-sidebar">
+        <div class="profile-sidebar-avatar">
+          <div class="profile-avatar-xl" id="sidebarAvatarCircle">U</div>
+          <div class="profile-sidebar-user-info">
+            <p class="profile-sidebar-name" id="sidebarName">Traveler</p>
+            <p class="profile-sidebar-email" id="sidebarEmail">user@email.com</p>
+          </div>
+        </div>
+        <nav class="profile-sidebar-nav" aria-label="Profile navigation">
+          <button class="profile-sidebar-item active" data-tab="myProfile" onclick="switchProfileTab('myProfile')">
+            <span>👤</span> My Profile
+          </button>
+          <button class="profile-sidebar-item" data-tab="myBookings" onclick="switchProfileTab('myBookings')">
+            <span>📋</span> My Bookings
+          </button>
+          <button class="profile-sidebar-item" data-tab="accountSettings" onclick="switchProfileTab('accountSettings')">
+            <span>⚙️</span> Account Settings
+          </button>
+          <button class="profile-sidebar-item" data-tab="passwordSettings" onclick="switchProfileTab('passwordSettings')">
+            <span>🔒</span> Password Settings
+          </button>
+          <button class="profile-sidebar-item" data-tab="paymentMethods" onclick="switchProfileTab('paymentMethods')">
+            <span>💳</span> Payment Methods
+          </button>
+          <button class="profile-sidebar-item" data-tab="travelPreferences" onclick="switchProfileTab('travelPreferences')">
+            <span>🌍</span> Travel Preferences
+          </button>
+          <div class="profile-sidebar-divider"></div>
+          <button class="profile-sidebar-item profile-sidebar-logout" onclick="handleLogout()">
+            <span>🚪</span> Logout
+          </button>
+        </nav>
+      </aside>
+
+      <!-- Content Area -->
+      <main class="profile-content">
+
+        <!-- TAB: My Profile -->
+        <section class="profile-tab-panel active" id="tab-myProfile">
+          <div class="profile-tab-header">
+            <h2>My Profile</h2>
+            <p>Your personal information at a glance</p>
+          </div>
+          <div class="profile-info-card">
+            <div class="profile-info-avatar-wrap">
+              <div class="profile-avatar-display" id="profileDisplayAvatar">U</div>
+              <div>
+                <h3 id="profileDisplayName">Traveler</h3>
+                <p id="profileDisplayEmail" class="profile-text-muted">user@email.com</p>
+                <p id="profileDisplayPhone" class="profile-text-muted"><i class="fas fa-phone"></i> Not set</p>
+              </div>
+            </div>
+            <button class="btn btn-accent" onclick="switchProfileTab('accountSettings')">
+              <i class="fas fa-edit"></i> Edit Profile
+            </button>
+          </div>
+          <div class="profile-stats-row">
+            <div class="profile-stat-card">
+              <span class="profile-stat-icon">📋</span>
+              <span class="profile-stat-num" id="profileTotalBookings">4</span>
+              <span class="profile-stat-label">Bookings</span>
+            </div>
+            <div class="profile-stat-card">
+              <span class="profile-stat-icon">🌍</span>
+              <span class="profile-stat-num">12</span>
+              <span class="profile-stat-label">Countries</span>
+            </div>
+            <div class="profile-stat-card">
+              <span class="profile-stat-icon">⭐</span>
+              <span class="profile-stat-num">4.9</span>
+              <span class="profile-stat-label">Avg Rating</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB: My Bookings -->
+        <section class="profile-tab-panel" id="tab-myBookings">
+          <div class="profile-tab-header">
+            <h2>My Bookings</h2>
+            <p>All your travel bookings in one place</p>
+          </div>
+          <div class="profile-bookings-list" id="profileBookingsList">
+            <!-- Rendered by JS -->
+          </div>
+        </section>
+
+        <!-- TAB: Account Settings -->
+        <section class="profile-tab-panel" id="tab-accountSettings">
+          <div class="profile-tab-header">
+            <h2>Account Settings</h2>
+            <p>Update your personal information</p>
+          </div>
+          <form class="profile-form" id="accountSettingsForm" onsubmit="handleAccountUpdate(event)">
+            <div class="profile-form-row">
+              <div class="form-group">
+                <label for="profileFirstName">First Name</label>
+                <input type="text" id="profileFirstName" placeholder="Juan" required>
+              </div>
+              <div class="form-group">
+                <label for="profileLastName">Last Name</label>
+                <input type="text" id="profileLastName" placeholder="Dela Cruz" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="profileEmail">Email Address</label>
+              <input type="email" id="profileEmail" placeholder="you@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="profilePhone">Phone Number</label>
+              <input type="tel" id="profilePhone" placeholder="+63 9XX XXX XXXX">
+            </div>
+            <div class="form-group">
+              <label for="profileBio">About Me</label>
+              <textarea id="profileBio" rows="3" placeholder="Tell us a bit about your travel style..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-accent"><i class="fas fa-save"></i> Save Changes</button>
+          </form>
+        </section>
+
+        <!-- TAB: Password Settings -->
+        <section class="profile-tab-panel" id="tab-passwordSettings">
+          <div class="profile-tab-header">
+            <h2>Password Settings</h2>
+            <p>Keep your account secure with a strong password</p>
+          </div>
+          <form class="profile-form" id="passwordSettingsForm" onsubmit="handlePasswordChange(event)">
+            <div class="form-group">
+              <label for="currentPassword">Current Password</label>
+              <div class="password-field">
+                <input type="password" id="currentPassword" placeholder="••••••••" required>
+                <button type="button" class="toggle-pass" onclick="togglePassword('currentPassword')"><i class="fas fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="newPassword">New Password</label>
+              <div class="password-field">
+                <input type="password" id="newPassword" placeholder="••••••••" required>
+                <button type="button" class="toggle-pass" onclick="togglePassword('newPassword')"><i class="fas fa-eye"></i></button>
+              </div>
+              <div class="profile-password-strength" id="profilePasswordStrength"></div>
+            </div>
+            <div class="form-group">
+              <label for="confirmNewPassword">Confirm New Password</label>
+              <div class="password-field">
+                <input type="password" id="confirmNewPassword" placeholder="••••••••" required>
+                <button type="button" class="toggle-pass" onclick="togglePassword('confirmNewPassword')"><i class="fas fa-eye"></i></button>
+              </div>
+            </div>
+            <ul class="profile-password-rules">
+              <li id="rule-length"><i class="fas fa-circle"></i> At least 8 characters</li>
+              <li id="rule-upper"><i class="fas fa-circle"></i> One uppercase letter</li>
+              <li id="rule-number"><i class="fas fa-circle"></i> One number</li>
+              <li id="rule-special"><i class="fas fa-circle"></i> One special character</li>
+            </ul>
+            <button type="submit" class="btn btn-accent"><i class="fas fa-lock"></i> Update Password</button>
+          </form>
+        </section>
+
+        <!-- TAB: Payment Methods -->
+        <section class="profile-tab-panel" id="tab-paymentMethods">
+          <div class="profile-tab-header">
+            <h2>Payment Methods</h2>
+            <p>Manage your saved payment options</p>
+          </div>
+          <div class="profile-payment-list">
+            <div class="profile-payment-card">
+              <div class="profile-payment-card-left">
+                <div class="profile-card-chip"><i class="fab fa-cc-visa"></i></div>
+                <div>
+                  <p class="profile-card-name">Visa Classic</p>
+                  <p class="profile-card-number">•••• •••• •••• 1234</p>
+                  <p class="profile-card-expiry">Expires 08 / 28</p>
+                </div>
+              </div>
+              <div class="profile-payment-card-right">
+                <span class="profile-card-badge default">Default</span>
+                <button class="profile-card-remove" onclick="showToast('Card removed.', 'info')"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>
+            <div class="profile-payment-card">
+              <div class="profile-payment-card-left">
+                <div class="profile-card-chip gcash"><i class="fas fa-mobile-alt"></i></div>
+                <div>
+                  <p class="profile-card-name">GCash Wallet</p>
+                  <p class="profile-card-number">+63 912 ••• 6789</p>
+                  <p class="profile-card-expiry">Linked Account</p>
+                </div>
+              </div>
+              <div class="profile-payment-card-right">
+                <span class="profile-card-badge gcash-badge">GCash</span>
+                <button class="profile-card-remove" onclick="showToast('GCash unlinked.', 'info')"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>
+            <div class="profile-payment-card">
+              <div class="profile-payment-card-left">
+                <div class="profile-card-chip mastercard"><i class="fab fa-cc-mastercard"></i></div>
+                <div>
+                  <p class="profile-card-name">Mastercard Gold</p>
+                  <p class="profile-card-number">•••• •••• •••• 5678</p>
+                  <p class="profile-card-expiry">Expires 03 / 27</p>
+                </div>
+              </div>
+              <div class="profile-payment-card-right">
+                <button class="btn btn-ghost btn-sm" onclick="showToast('Set as default payment.', 'success')">Set Default</button>
+                <button class="profile-card-remove" onclick="showToast('Card removed.', 'info')"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-accent profile-add-payment-btn" onclick="showToast('Add payment coming soon! 💳', 'info')">
+            <i class="fas fa-plus"></i> Add New Payment Method
+          </button>
+        </section>
+
+        <!-- TAB: Travel Preferences -->
+        <section class="profile-tab-panel" id="tab-travelPreferences">
+          <div class="profile-tab-header">
+            <h2>Travel Preferences</h2>
+            <p>Customize your Vimel Travels experience</p>
+          </div>
+          <div class="profile-prefs-list">
+
+            <div class="profile-pref-item">
+              <div class="profile-pref-info">
+                <h4>Newsletter Subscription</h4>
+                <p>Receive our weekly travel inspiration emails</p>
+              </div>
+              <label class="profile-toggle-switch">
+                <input type="checkbox" id="prefNewsletter" checked>
+                <span class="profile-toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="profile-pref-item">
+              <div class="profile-pref-info">
+                <h4>Deal Alerts</h4>
+                <p>Get notified when prices drop on your saved destinations</p>
+              </div>
+              <label class="profile-toggle-switch">
+                <input type="checkbox" id="prefDealAlerts" checked>
+                <span class="profile-toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="profile-pref-item">
+              <div class="profile-pref-info">
+                <h4>SMS Booking Reminders</h4>
+                <p>Receive SMS reminders 24 hours before your trip</p>
+              </div>
+              <label class="profile-toggle-switch">
+                <input type="checkbox" id="prefSMS">
+                <span class="profile-toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="profile-pref-item">
+              <div class="profile-pref-info">
+                <h4>Two-Factor Authentication</h4>
+                <p>Add an extra layer of security to your account</p>
+              </div>
+              <label class="profile-toggle-switch">
+                <input type="checkbox" id="prefTwoFA">
+                <span class="profile-toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="profile-pref-item profile-pref-select-item">
+              <div class="profile-pref-info">
+                <h4>Preferred Currency</h4>
+                <p>Display prices in your preferred currency</p>
+              </div>
+              <select class="profile-pref-select" id="prefCurrency">
+                <option value="PHP">🇵🇭 PHP — Philippine Peso</option>
+                <option value="USD">🇺🇸 USD — US Dollar</option>
+                <option value="EUR">🇪🇺 EUR — Euro</option>
+                <option value="JPY">🇯🇵 JPY — Japanese Yen</option>
+                <option value="SGD">🇸🇬 SGD — Singapore Dollar</option>
+                <option value="AUD">🇦🇺 AUD — Australian Dollar</option>
+                <option value="GBP">🇬🇧 GBP — British Pound</option>
+              </select>
+            </div>
+
+            <div class="profile-pref-item profile-pref-select-item">
+              <div class="profile-pref-info">
+                <h4>Preferred Language</h4>
+                <p>Choose your interface language</p>
+              </div>
+              <select class="profile-pref-select" id="prefLanguage">
+                <option value="en">🇺🇸 English</option>
+                <option value="tl">🇵🇭 Filipino</option>
+                <option value="es">🇪🇸 Español</option>
+                <option value="fr">🇫🇷 Français</option>
+                <option value="ja">🇯🇵 日本語</option>
+                <option value="ko">🇰🇷 한국어</option>
+                <option value="zh">🇨🇳 中文</option>
+              </select>
+            </div>
+
+          </div>
+          <button class="btn btn-accent" onclick="handleSavePreferences()">
+            <i class="fas fa-save"></i> Save Preferences
+          </button>
+        </section>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script src="api-connector.js"></script>
+</body>
+</html>
