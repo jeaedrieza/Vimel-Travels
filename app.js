@@ -1088,7 +1088,7 @@ function initContactForm() {
   if (!form) return;
 
   // PASTE YOUR GOOGLE APPS SCRIPT URL HERE ↓↓↓
-  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxygMtsYdD0A86Ej2hE-9BtPxz31vh3u3lWL5Cc7pIbHNMq99VoZv2GZ0wqm0G0Dfg2/exec';
+  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw_8OfsN0SiFX99VNQ9Clmmg6-gncCx7PnB8gZIXsUeJ7BD-vzFYBtyxTx7e2lFvUyG/exec';
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
