@@ -863,7 +863,7 @@ function renderBlogPosts() {
         </div>
         <h3 class="blog-title">${post.title}</h3>
         <p class="blog-excerpt">${post.excerpt}</p>
-        <a href="javascript:void(0)" onclick="openBlogPost(${post.id})" class="blog-read-more">Read More
+        <a href="javascript:void(0)" onclick="openBlogPost(${post.id})" class="blog-read-more">Read More<i class="fas fa-arrow-right"></i></a>
       </div>
     </article>
   `).join('');
@@ -2276,31 +2276,6 @@ var blogFullContent = {
   8: '<p>Three of the Philippines\' most beloved islands — but which one is right for you? Let\'s break it down.</p><h3>Palawan: The Lagoon Explorer</h3><p>Best for: Couples, photographers, and nature lovers. El Nido\'s lagoons and Coron\'s shipwrecks are unmatched. It\'s the most "wow" scenery of the three.</p><h3>Siargao: The Surf Adventurer</h3><p>Best for: Surfers, digital nomads, and free spirits. Cloud 9 waves, palm tree rope swings, and a laid-back island lifestyle that\'s hard to leave.</p><h3>Cebu: The All-Rounder</h3><p>Best for: Families, adventure seekers, and first-timers. Whale sharks in Oslob, Kawasan Falls canyoneering, and Mactan beach resorts offer variety.</p><h3>Quick Comparison</h3><ul><li><strong>Budget:</strong> Siargao < Cebu < Palawan</li><li><strong>Nightlife:</strong> Siargao wins (General Luna)</li><li><strong>Scenery:</strong> Palawan wins (lagoons)</li><li><strong>Activities:</strong> Cebu wins (diversity)</li></ul><p>Can\'t decide? Do all three! A 2-week Philippines island-hopping itinerary is the trip of a lifetime.</p>'
 };
 
-window.openBlogPost = function(postId) {
-  var post = blogPosts.find(function(p) { return p.id === postId; });
-  if (!post) return;
-  
-  var content = blogFullContent[postId] || '<p>' + post.excerpt + '</p><p><em>Full article coming soon...</em></p>';
-  
-  var modalContent = document.getElementById('blogModalContent');
-  if (!modalContent) return;
-  
-  modalContent.innerHTML = 
-    '<img src="' + post.image + '" alt="' + post.title + '" class="blog-modal-img">' +
-    '<span class="blog-modal-category">' + post.category + '</span>' +
-    '<h2 class="blog-modal-title">' + post.title + '</h2>' +
-    '<div class="blog-modal-meta">' +
-      '<span><i class="fas fa-calendar-alt"></i> ' + post.date + '</span>' +
-      '<span><i class="fas fa-clock"></i> ' + post.readTime + '</span>' +
-    '</div>' +
-    '<div class="blog-modal-body">' + content + '</div>' +
-    '<div class="blog-modal-share">' +
-      '<button onclick="showToast(\'Link copied!\',\'success\')"><i class="fas fa-link"></i> Copy Link</button>' +
-      '<button onclick="showToast(\'Shared!\',\'success\')"><i class="fas fa-share-alt"></i> Share</button>' +
-    '</div>';
-  
-  openModal('blogModal');
-};
 
 window.handleHeroSearch = function() {
   var input = document.getElementById('searchInput');
@@ -2329,6 +2304,32 @@ window.handleHeroSearch = function() {
 };
 
 /* ========================================================================INITIALISATION — DOMContentLoaded======================================================================== */
+
+window.openBlogPost = function(postId) {
+  var post = blogPosts.find(function(p) { return p.id === postId; });
+  if (!post) return;
+  
+  var content = blogFullContent[postId] || '<p>' + post.excerpt + '</p><p><em>Full article coming soon...</em></p>';
+  
+  var modalContent = document.getElementById('blogModalContent');
+  if (!modalContent) return;
+  
+  modalContent.innerHTML = 
+    '<img src="' + post.image + '" alt="' + post.title + '" class="blog-modal-img">' +
+    '<span class="blog-modal-category">' + post.category + '</span>' +
+    '<h2 class="blog-modal-title">' + post.title + '</h2>' +
+    '<div class="blog-modal-meta">' +
+      '<span><i class="fas fa-calendar-alt"></i> ' + post.date + '</span>' +
+      '<span><i class="fas fa-clock"></i> ' + post.readTime + '</span>' +
+    '</div>' +
+    '<div class="blog-modal-body">' + content + '</div>' +
+    '<div class="blog-modal-share">' +
+      '<button onclick="showToast(\'Link copied!\',\'success\')"><i class="fas fa-link"></i> Copy Link</button>' +
+      '<button onclick="showToast(\'Shared!\',\'success\')"><i class="fas fa-share-alt"></i> Share</button>' +
+    '</div>';
+  
+  openModal('blogModal');
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   renderAllData();
