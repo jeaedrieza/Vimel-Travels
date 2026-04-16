@@ -186,8 +186,7 @@ function renderDestinations() {
         </div>
         <h3 class="dest-name">${dest.name}</h3>
         <p class="dest-desc">${dest.description}</p>
-        <button class="btn btn-accent btn-sm dest-book-btn" onclick="exploreCountry('${c.name}')">
-          Explore
+        <button class="btn btn-accent btn-sm dest-book-btn" onclick="openBookingModal('destination', ${dest.id})">
           Book Now <i class="fas fa-arrow-right"></i>
         </button>
       </div>
@@ -210,7 +209,7 @@ function renderCountries(filterType = 'international') {
       </div>
       <div class="country-body">
         <h3 class="country-name">${c.name}</h3>
-        <button class="btn btn-ghost btn-sm" onclick="openModal('loginModal')">
+        <button class="btn btn-ghost btn-sm" onclick="exploreCountry('${c.name}')">
           Explore <i class="fas fa-arrow-right"></i>
         </button>
       </div>
@@ -1617,6 +1616,80 @@ document.addEventListener('click', function(e) {
     if (!picker.contains(e.target)) { picker.classList.remove('open'); }
   });
 });
+
+window.exploreCountry = function(countryName) {
+  var destSection = document.getElementById('recommendations');
+  if (destSection) destSection.scrollIntoView({ behavior: 'smooth' });
+  var container = document.getElementById('recommendationsRow');
+  if (!container) return;
+  var filtered = destinations.filter(function(d) { return d.country.toLowerCase() === countryName.toLowerCase(); });
+  if (filtered.length === 0) { showToast('Showing all destinations for ' + countryName, 'info'); filtered = destinations; }
+  container.innerHTML = filtered.map(function(dest) {
+    return '<div class="dest-card reveal" data-id="' + dest.id + '"><div class="dest-img-wrap"><img src="' + dest.image + '" alt="' + dest.name + '" loading="lazy" class="dest-img" onerror="handleImgError(this)"><div class="dest-tags">' + dest.tags.map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('') + '</div><div class="dest-price-badge">from $' + dest.price.toLocaleString() + '</div></div><div class="dest-body"><div class="dest-meta"><span class="dest-location"><i class="fas fa-map-marker-alt"></i> ' + dest.country + '</span><span class="dest-rating">' + renderStars(dest.rating) + ' ' + dest.rating + '</span></div><h3 class="dest-name">' + dest.name + '</h3><p class="dest-desc">' + dest.description + '</p><button class="btn btn-accent btn-sm dest-book-btn" onclick="openBookingModal(\'destination\', ' + dest.id + ')">Book Now <i class="fas fa-arrow-right"></i></button></div></div>';
+  }).join('');
+  initScrollReveal();
+  showToast('Showing destinations in ' + countryName, 'info');
+};
+
+window.handleImgError = function(img) { img.onerror = null; img.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&auto=format&fit=crop'; };
+
+function initImageFallbacks() { document.querySelectorAll('img').forEach(function(img) { if (!img.hasAttribute('onerror')) { img.onerror = function() { handleImgError(this); }; } }); }
+
+window.toggleSOS = function() { var p = document.getElementById('sosPanel'); if (p) p.classList.toggle('open'); };
+
+window.shareEmergencyLocation = function() {
+  if (!navigator.geolocation) { showToast('Geolocation not supported.', 'error'); return; }
+  navigator.geolocation.getCurrentPosition(function(pos) {
+    var lat = pos.coords.latitude.toFixed(6);
+    var lng = pos.coords.longitude.toFixed(6);
+    navigator.clipboard.writeText('https://www.google.com/maps?q=' + lat + ',' + lng);
+    showToast('Location copied! Lat:' + lat + ', Lng:' + lng, 'success');
+  }, function() { showToast('Could not detect location.', 'error'); });
+};
+
+window.detectIncidentLocation = function() {
+  var el = document.getElementById('incidentLocation');
+  if (!navigator.geolocation || !el) return;
+  el.value = 'Detecting...';
+  navigator.geolocation.getCurrentPosition(function(p) {
+    el.value = 'Lat ' + p.coords.latitude.toFixed(6) + ', Lng ' + p.coords.longitude.toFixed(6);
+  }, function() { el.value = 'Could not detect'; });
+};
+
+window.submitIncidentReport = function(event) {
+  event.preventDefault();
+  var t = document.getElementById('incidentType').value;
+  var d = document.getElementById('incidentDesc').value.trim();
+  var p = document.getElementById('incidentPhone').value.trim();
+  if (!t || !d || !p) { showToast('Please fill in all required fields.', 'error'); return; }
+  var sp = document.getElementById('sosPanel'); if (sp) sp.classList.remove('open');
+  closeModal('incidentModal');
+  showToast('Incident report submitted! Safety team will contact you within 5 minutes.', 'success');
+};
+
+var vimelMap = null;
+var mapMarkers = [];
+var locationCoords = {'Palawan':[9.8349,118.7384],'Boracay':[11.9674,121.9248],'Siargao':[9.8482,126.0458],'Cebu':[10.3157,123.8854],'Bohol':[9.85,124.015],'Batanes':[20.4487,121.9702],'Coron':[12.0075,120.204],'La Union':[16.6159,120.321],'Siquijor':[9.1985,123.595],'Davao':[7.1907,125.4553],'Bangkok':[13.7563,100.5018],'Phuket':[7.8804,98.3923],'Chiang Mai':[18.7883,98.9853],'Krabi':[8.0863,98.9063],'Koh Samui':[9.512,100.0137],'Ha Long Bay':[20.9101,107.1839],'Hanoi':[21.0278,105.8342],'Ho Chi Minh City':[10.8231,106.6297],'Da Nang':[16.0544,108.2022],'Hoi An':[15.8801,108.338],'Bali':[-8.3405,115.092],'Raja Ampat':[-1.0863,130.878],'Yogyakarta':[-7.7956,110.3695],'Komodo Island':[-8.55,119.4833],'Lombok':[-8.65,116.3249],'Kuala Lumpur':[3.139,101.6869],'Langkawi':[6.35,99.8],'Penang':[5.4164,100.3327],'Siem Reap':[13.3671,103.8448],'Phnom Penh':[11.5564,104.9282],'Singapore':[1.3521,103.8198],'Bagan':[21.1717,94.8585],'Luang Prabang':[19.8856,102.1347],'Tokyo':[35.6762,139.6503],'Kyoto':[35.0116,135.7681],'Osaka':[34.6937,135.5023],'Seoul':[37.5665,126.978],'Jeju Island':[33.489,126.4983],'Maldives':[3.2028,73.2207],'Santorini':[36.3932,25.4615],'Paris':[48.8566,2.3522],'Swiss Alps':[46.8182,8.2275],'Rome':[41.9028,12.4964],'Barcelona':[41.3874,2.1686],'London':[51.5074,-0.1278],'Istanbul':[41.0082,28.9784],'Cappadocia':[38.6431,34.8289],'Dubai':[25.2048,55.2708],'New York City':[40.7128,-74.006],'Sydney':[-33.8688,151.2093]};
+
+function initVimelMap() {
+  var mapEl = document.getElementById('vimelMap');
+  if (!mapEl || typeof L === 'undefined') return;
+  vimelMap = L.map('vimelMap').setView([13.0, 110.0], 4);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'OpenStreetMap',maxZoom:18}).addTo(vimelMap);
+  var blueIcon = L.divIcon({className:'',html:'<div style="background:#1E6FD9;width:14px;height:14px;border-radius:50%;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>'});
+  var redIcon = L.divIcon({className:'',html:'<div style="background:#E74C3C;width:14px;height:14px;border-radius:50%;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>'});
+  var greenIcon = L.divIcon({className:'',html:'<div style="background:#27AE60;width:14px;height:14px;border-radius:50%;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>'});
+  destinations.forEach(function(dest){var c=locationCoords[dest.name];if(!c)return;var m=L.marker(c,{icon:blueIcon}).addTo(vimelMap);m.bindPopup('<b>'+dest.name+'</b><br>'+dest.country+'<br>from $'+dest.price);m.vimelType='destination';mapMarkers.push(m);});
+  hotels.forEach(function(h){var n=h.location.split(',')[0].trim();var c=locationCoords[n];if(!c){for(var k in locationCoords){if(h.location.toLowerCase().includes(k.toLowerCase())){c=[locationCoords[k][0]+0.02,locationCoords[k][1]+0.02];break;}}}if(!c)return;var m=L.marker(c,{icon:redIcon}).addTo(vimelMap);m.bindPopup('<b>'+h.name+'</b><br>'+h.location+'<br>₱'+h.pricePerNight.toLocaleString()+'/night');m.vimelType='hotel';mapMarkers.push(m);});
+  var mb=[14.5995,120.9842];drivers.forEach(function(d){var c=[mb[0]+(Math.random()-0.5)*0.1,mb[1]+(Math.random()-0.5)*0.1];var m=L.marker(c,{icon:greenIcon}).addTo(vimelMap);m.bindPopup('<b>'+d.name+'</b><br>'+d.vehicle+'<br>₱'+d.price.toLocaleString()+'/day');m.vimelType='driver';mapMarkers.push(m);});
+}
+
+window.filterMapMarkers = function(type) {
+  if (!vimelMap) return;
+  document.querySelectorAll('.map-filter-btn').forEach(function(b){b.classList.toggle('active',b.dataset.filter===type);});
+  mapMarkers.forEach(function(m){if(type==='all'||m.vimelType===type){m.addTo(vimelMap);}else{vimelMap.removeLayer(m);}});
+};
+
 /* ========================================================================INITIALISATION — DOMContentLoaded======================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1638,5 +1711,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPasswordStrengthMeter();
   initHeroParallax();
   initLazyImages();
+  initVimelMap();
+  initImageFallbacks();
   console.log('%c✈ Vimel Travels — app.js loaded successfully', 'color:#1E6FD9;font-weight:bold;font-size:14px;');
 });
