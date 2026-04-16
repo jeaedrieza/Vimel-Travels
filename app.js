@@ -2305,33 +2305,8 @@ window.handleHeroSearch = function() {
 
 /* ========================================================================INITIALISATION — DOMContentLoaded======================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', ();
   renderAllData();
-  window.openBlogPost = function(postId) {
-  var post = blogPosts.find(function(p) { return p.id === postId; });
-  if (!post) return;
-  
-  var content = blogFullContent[postId] || '<p>' + post.excerpt + '</p><p><em>Full article coming soon...</em></p>';
-  
-  var modalContent = document.getElementById('blogModalContent');
-  if (!modalContent) return;
-  
-  modalContent.innerHTML = 
-    '<img src="' + post.image + '" alt="' + post.title + '" class="blog-modal-img">' +
-    '<span class="blog-modal-category">' + post.category + '</span>' +
-    '<h2 class="blog-modal-title">' + post.title + '</h2>' +
-    '<div class="blog-modal-meta">' +
-      '<span><i class="fas fa-calendar-alt"></i> ' + post.date + '</span>' +
-      '<span><i class="fas fa-clock"></i> ' + post.readTime + '</span>' +
-    '</div>' +
-    '<div class="blog-modal-body">' + content + '</div>' +
-    '<div class="blog-modal-share">' +
-      '<button onclick="showToast(\'Link copied!\',\'success\')"><i class="fas fa-link"></i> Copy Link</button>' +
-      '<button onclick="showToast(\'Shared!\',\'success\')"><i class="fas fa-share-alt"></i> Share</button>' +
-    '</div>';
-  
-  openModal('blogModal');
-  };
   initCustomDatePickers();
   initNavbar();
   initMobileMenu();
