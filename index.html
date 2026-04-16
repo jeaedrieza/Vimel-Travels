@@ -314,7 +314,8 @@
 
 <div class="modal-overlay" id="loginModal">
 <div class="modal">
-<button class="modal-close" onclick="closeModal('loginModal')"><i class="fas fa-times"></i></button>
+<button class="btn btn-ghost btn-sm" onclick="exploreCountry('${c.name}')">
+          Explore <i class="fas fa-arrow-right"></i></button>
 <div class="modal-header"><img src="vimel-logo.png" alt="Vimel Travels" class="modal-logo"><h2>Welcome Back</h2><p>Log in to continue your journey</p></div>
 <form id="loginForm" onsubmit="handleLogin(event)">
 <div class="form-group"><label for="loginEmail">Email</label><input type="email" id="loginEmail" placeholder="you@email.com" required></div>
