@@ -10,7 +10,7 @@ const API_BASE = '/api';  // Adjust if hosted in a subfolder: '/vimel-travels/ap
 let csrfToken = '';
 
 // Track auth state
-let currentUser = null;
+
 
 
 /* ==========================================================================

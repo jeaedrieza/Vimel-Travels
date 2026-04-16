@@ -981,34 +981,14 @@
     </div>
   </div>
 </div>
+<!-- Blog Modal -->
+<div class="modal-overlay" id="blogModal">
+  <div class="modal-container" style="max-width:700px;max-height:85vh;overflow-y:auto;padding:32px;border-radius:16px;background:white;position:relative;">
+    <button class="modal-close" onclick="closeModal('blogModal')" style="position:absolute;top:16px;right:16px;background:rgba(0,0,0,0.5);color:white;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;z-index:10;">&times;</button>
+    <div id="blogModalContent"></div>
+  </div>
+</div>
 <script src="app.js"></script>
-<script>
-window.openBlogPost = function(id) {
-  var posts = {
-    1: {t:'10 Hidden Gems in the Philippines',c:'<p>Beyond Boracay lie dozens of undiscovered islands.</p><h3>1. Kalanggaman Island</h3><p>Stunning sandbar, camp under stars.</p><h3>2. Caramoan</h3><p>Survivor filming location with hidden lagoons.</p><h3>3. Palaui Island</h3><p>CNN top 10 most beautiful beach.</p><h3>4. Siquijor</h3><p>Mystical island with waterfalls.</p><h3>5. Batanes</h3><p>Scotland of Asia with rolling hills.</p>'},
-    2: {t:'Travel Japan on a Budget',c:'<p>Japan is affordable with the right strategies.</p><h3>Transport</h3><p>Rail Pass 7-day $260 unlimited Shinkansen.</p><h3>Budget Stays</h3><p>Capsule hotels $25-40/night.</p><h3>Cheap Eats</h3><p>Convenience stores $3-5 meals. Ramen $7-9.</p>'},
-    3: {t:'Santorini vs Mykonos',c:'<p>Both spectacular but very different.</p><h3>Santorini</h3><p>Romance, caldera views, blue domes, Oia sunsets.</p><h3>Mykonos</h3><p>Beach clubs, DJs, vibrant nightlife.</p><p>Do both — short ferry apart!</p>'},
-    4: {t:'Solo Travel Safety',c:'<p>Solo travel is rewarding but needs safety.</p><h3>Verified Drivers</h3><p>Background checks and ID verification.</p><h3>SOS Button</h3><p>One tap to emergency services with GPS.</p>'},
-    5: {t:'30 Days Southeast Asia',c:'<h3>Week 1: Thailand</h3><p>Bangkok, Chiang Mai, Koh Tao.</p><h3>Week 2: Cambodia</h3><p>Angkor Wat, Phnom Penh, Koh Rong.</p><h3>Week 3: Vietnam</h3><p>HCMC, Hoi An, Ha Long Bay.</p><h3>Week 4: Laos & Philippines</h3><p>Luang Prabang, Siargao or Palawan.</p>'},
-    6: {t:'Romantic Destinations',c:'<h3>1. Bali</h3><p>Private villas, sunset temples.</p><h3>2. Palawan</h3><p>Private lagoons, stargazing.</p><h3>3. Koh Samui</h3><p>Luxury resorts, couples spa.</p><h3>4. Hoi An</h3><p>Lantern-lit streets, riverside dining.</p>'},
-    7: {t:'Vietnam Street Food Guide',c:'<h3>Hanoi</h3><p>Pho $1.50, Bun Cha $2, Egg Coffee $1.</p><h3>Hoi An</h3><p>Cao Lau $1.50, Banh Mi $0.75.</p><h3>Ho Chi Minh</h3><p>Banh Xeo $2, Com Tam $1.50.</p>'},
-    8: {t:'Palawan vs Siargao vs Cebu',c:'<h3>Palawan</h3><p>Lagoons and shipwrecks. Most scenic.</p><h3>Siargao</h3><p>Cloud 9 surf, laid-back vibes.</p><h3>Cebu</h3><p>Whale sharks, Kawasan Falls, all-rounder.</p>'}
-  };
-  var p = posts[id];
-  if (!p) return;
-  var mc = document.getElementById('blogModalContent');
-  if (!mc) { alert(p.t); return; }
-  mc.innerHTML = '<h2 style="font-size:1.5rem;font-weight:800;margin-bottom:16px;">' + p.t + '</h2><div style="font-size:0.95rem;line-height:1.8;">' + p.c + '</div>';
-  openModal('blogModal');
-};
-</script>
-  var p = posts[id];
-  if (!p) return;
-  var mc = document.getElementById('blogModalContent');
-  if (!mc) { alert(p.t); return; }
-  mc.innerHTML = '<h2 style="font-size:1.5rem;font-weight:800;margin-bottom:16px;">' + p.t + '</h2><div style="font-size:0.95rem;line-height:1.8;">' + p.c + '</div>';
-  openModal('blogModal');
-};
 <script src="api-connector.js"></script>
 </body>
 </html>

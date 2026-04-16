@@ -2288,6 +2288,27 @@ window.handleHeroSearch = function() {
 
 document.addEventListener('DOMContentLoaded', () => {
   renderAllData();
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('.blog-read-more');
+    if (!link) return;
+    e.preventDefault();
+    var idMatch = link.getAttribute('onclick');
+    if (!idMatch) return;
+    var id = parseInt(idMatch.replace(/\D/g, ''));
+    var post = null;
+    for (var i = 0; i < blogPosts.length; i++) {
+      if (blogPosts[i].id === id) { post = blogPosts[i]; break; }
+    }
+    if (!post) return;
+    var fc = {1:'The Philippines has 7000+ islands. Kalanggaman Island has stunning sandbars. Caramoan is a Survivor location. Palaui Island is CNN top 10 beach. Siquijor is mystical. Batanes is the Scotland of Asia.',2:'Japan Rail Pass $260 for 7 days unlimited Shinkansen. Capsule hotels $25-40. Convenience stores $3-5 meals. Ramen $7-9. Many temples free.',3:'Santorini for romance and caldera sunsets. Mykonos for beach clubs and nightlife. Both a short ferry apart!',4:'Verified drivers with background checks. SOS button with GPS. Incident reports within 5 minutes.',5:'Week 1 Thailand. Week 2 Cambodia. Week 3 Vietnam. Week 4 Laos and Philippines. Budget $1500-2500.',6:'Bali private villas. Palawan lagoons. Koh Samui luxury resorts. Hoi An lantern streets.',7:'Hanoi Pho $1.50, Bun Cha $2. Hoi An Banh Mi $0.75. HCMC Banh Xeo $2, Com Tam $1.50.',8:'Palawan for lagoons. Siargao for surfing. Cebu for whale sharks and falls.'};
+    var content = fc[id] || post.excerpt;
+    var overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
+    overlay.innerHTML = '<div style="background:white;max-width:700px;width:100%;max-height:85vh;overflow-y:auto;border-radius:16px;padding:32px;position:relative;"><button style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,0.5);color:white;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:20px;" id="closeBlogPop">&times;</button><img src="' + post.image + '" style="width:100%;height:280px;object-fit:cover;border-radius:12px;margin-bottom:16px;"><span style="display:inline-block;padding:4px 14px;border-radius:50px;background:#1E6FD9;color:white;font-size:0.78rem;font-weight:600;margin-bottom:10px;">' + post.category + '</span><h2 style="font-size:1.4rem;font-weight:800;margin-bottom:6px;">' + post.title + '</h2><div style="display:flex;gap:16px;color:gray;font-size:0.82rem;margin-bottom:16px;"><span>' + post.date + '</span><span>' + post.readTime + '</span></div><p style="font-size:0.95rem;line-height:1.8;color:#333;">' + content + '</p></div>';
+    document.body.appendChild(overlay);
+    document.getElementById('closeBlogPop').onclick = function() { overlay.remove(); };
+    overlay.onclick = function(ev) { if (ev.target === overlay) overlay.remove(); };
+  });
   initCustomDatePickers();
   initNavbar();
   initMobileMenu();
@@ -2310,3 +2331,4 @@ document.addEventListener('DOMContentLoaded', () => {
   assignUniqueImages();
   console.log('%c✈ Vimel Travels — app.js loaded successfully', 'color:#1E6FD9;font-weight:bold;font-size:14px;');
 });
+
