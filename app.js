@@ -661,7 +661,7 @@ const countries = [
 ];
 
 const hotels = [
-  { id:1, name:'Vimel Ocean Suites', image:'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop', rating:4.9, pricePerNight:4500, amenities:['Pool','Spa','WiFi','Restaurant','Gym'], location:'Boracay, Philippines' },
+  { id:1, name:'Ocean Suites', image:'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop', rating:4.9, pricePerNight:4500, amenities:['Pool','Spa','WiFi','Restaurant','Gym'], location:'Boracay, Philippines' },
   { id:2, name:'Palawan Treehouse Inn', image:'https://images.unsplash.com/photo-1517840901100-8179e982acb7?w=600&auto=format&fit=crop', rating:4.8, pricePerNight:1800, amenities:['WiFi','Kayak','Snorkel Gear','Breakfast'], location:'El Nido, Palawan' },
   { id:3, name:'The Manila Grand', image:'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&auto=format&fit=crop', rating:4.6, pricePerNight:2800, amenities:['WiFi','Restaurant','Business Center','Gym','Parking'], location:'Manila, Philippines' },
   { id:4, name:'Siargao Surf Lodge', image:'https://images.unsplash.com/photo-1540541338287-41700207dee6?w=600&auto=format&fit=crop', rating:4.7, pricePerNight:1500, amenities:['WiFi','Surf Boards','Breakfast','Pool'], location:'General Luna, Siargao' },
