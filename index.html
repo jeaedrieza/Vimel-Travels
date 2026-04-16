@@ -982,7 +982,7 @@
   </div>
 </div>
 <script src="app.js"></script>
-<script
+<script>
 window.openBlogPost = function(id) {
   var posts = {
     1: {t:'10 Hidden Gems in the Philippines',c:'<p>Beyond Boracay lie dozens of undiscovered islands.</p><h3>1. Kalanggaman Island</h3><p>Stunning sandbar, camp under stars.</p><h3>2. Caramoan</h3><p>Survivor filming location with hidden lagoons.</p><h3>3. Palaui Island</h3><p>CNN top 10 most beautiful beach.</p><h3>4. Siquijor</h3><p>Mystical island with waterfalls.</p><h3>5. Batanes</h3><p>Scotland of Asia with rolling hills.</p>'},
@@ -994,6 +994,13 @@ window.openBlogPost = function(id) {
     7: {t:'Vietnam Street Food Guide',c:'<h3>Hanoi</h3><p>Pho $1.50, Bun Cha $2, Egg Coffee $1.</p><h3>Hoi An</h3><p>Cao Lau $1.50, Banh Mi $0.75.</p><h3>Ho Chi Minh</h3><p>Banh Xeo $2, Com Tam $1.50.</p>'},
     8: {t:'Palawan vs Siargao vs Cebu',c:'<h3>Palawan</h3><p>Lagoons and shipwrecks. Most scenic.</p><h3>Siargao</h3><p>Cloud 9 surf, laid-back vibes.</p><h3>Cebu</h3><p>Whale sharks, Kawasan Falls, all-rounder.</p>'}
   };
+  var p = posts[id];
+  if (!p) return;
+  var mc = document.getElementById('blogModalContent');
+  if (!mc) { alert(p.t); return; }
+  mc.innerHTML = '<h2 style="font-size:1.5rem;font-weight:800;margin-bottom:16px;">' + p.t + '</h2><div style="font-size:0.95rem;line-height:1.8;">' + p.c + '</div>';
+  openModal('blogModal');
+};
 </script>
   var p = posts[id];
   if (!p) return;
