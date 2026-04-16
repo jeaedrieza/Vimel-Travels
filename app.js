@@ -2305,7 +2305,9 @@ window.handleHeroSearch = function() {
 
 /* ========================================================================INITIALISATION — DOMContentLoaded======================================================================== */
 
-window.openBlogPost = function(postId) {
+document.addEventListener('DOMContentLoaded', () => {
+  renderAllData();
+  window.openBlogPost = function(postId) {
   var post = blogPosts.find(function(p) { return p.id === postId; });
   if (!post) return;
   
@@ -2329,10 +2331,7 @@ window.openBlogPost = function(postId) {
     '</div>';
   
   openModal('blogModal');
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-  renderAllData();
+  };
   initCustomDatePickers();
   initNavbar();
   initMobileMenu();
