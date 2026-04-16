@@ -2074,14 +2074,15 @@ window.handleSavePreferences = function () {
 /* ── Logout ─────────────────────────────────────────────────────────── */
 window.handleLogout = function () {
   currentUser = null;
+  localStorage.removeItem('vimelUser');
   updateNavbarState();
 
-  // Close any open profile UI
-  const dropdown = document.getElementById('profileDropdown');
-  if (dropdown) dropdown.classList.remove('open');
+  var dropdown = document.getElementById('profileDropdown');
+  if (dropdown) dropdown.style.display = 'none';
   closeModal('profileModal');
 
   showToast("You've been logged out. Safe travels! 🚪", 'info');
+  setTimeout(function() { location.reload(); }, 1000);
 };
 
 /* ── Utilities ──────────────────────────────────────────────────────── */
@@ -2288,6 +2289,41 @@ window.handleHeroSearch = function() {
 
 document.addEventListener('DOMContentLoaded', () => {
   renderAllData();
+  // === LOAD USER FROM LOCALSTORAGE ===
+  var savedUser = localStorage.getItem('vimelUser');
+  if (savedUser) {
+    currentUser = JSON.parse(savedUser);
+    updateNavbarState();
+  }
+  // === PROFILE AVATAR DROPDOWN TOGGLE ===
+  document.addEventListener('click', function(e) {
+    var avatarBtn = e.target.closest('#profileAvatarBtn');
+    var dd = document.getElementById('profileDropdown');
+    if (!dd) return;
+    
+    if (avatarBtn) {
+      e.stopPropagation();
+      if (dd.style.display === 'block') {
+        dd.style.display = 'none';
+      } else {
+        dd.style.display = 'block';
+        dd.style.position = 'absolute';
+        dd.style.top = '100%';
+        dd.style.right = '0';
+        dd.style.background = 'white';
+        dd.style.borderRadius = '12px';
+        dd.style.boxShadow = '0 8px 30px rgba(0,0,0,0.15)';
+        dd.style.padding = '16px';
+        dd.style.zIndex = '9999';
+        dd.style.minWidth = '280px';
+      }
+      return;
+    }
+    
+    if (!dd.contains(e.target)) {
+      dd.style.display = 'none';
+    }
+  });
   document.addEventListener('click', function(e) {
     var link = e.target.closest('.blog-read-more');
     if (!link) return;
@@ -2309,6 +2345,70 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('closeBlogPop').onclick = function() { overlay.remove(); };
     overlay.onclick = function(ev) { if (ev.target === overlay) overlay.remove(); };
   });
+
+  // === SOCIAL LOGIN (GOOGLE/FACEBOOK) ===
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.btn-social');
+    if (!btn) return;
+    var isGoogle = btn.querySelector('.fa-google');
+    var isFacebook = btn.querySelector('.fa-facebook-f');
+    if (isGoogle) {
+      currentUser = { firstName: 'Google', lastName: 'User', email: 'user@gmail.com', phone: '' };
+      localStorage.setItem('vimelUser', JSON.stringify(currentUser));
+      updateNavbarState();
+      showToast('Signed in with Google! Welcome! 🎉', 'success');
+    } else if (isFacebook) {
+      currentUser = { firstName: 'Facebook', lastName: 'User', email: 'user@facebook.com', phone: '' };
+      localStorage.setItem('vimelUser', JSON.stringify(currentUser));
+      updateNavbarState();
+      showToast('Signed in with Facebook! Welcome! 🎉', 'success');
+}
+    closeModal('loginModal');
+    closeModal('registerModal');
+  });
+
+  // === PROFILE DROPDOWN POPUP ===
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.profile-dropdown-list button, .mobile-profile-links button, .profile-logout-btn');
+    if (!btn) return;
+    e.preventDefault();
+    var text = btn.textContent.trim();
+    if (text.includes('Logout')) { currentUser = null; localStorage.removeItem('vimelUser'); showToast("Logged out! 🚪", 'info'); setTimeout(function(){ location.reload(); }, 1000); return; }
+    var dd = document.getElementById('profileDropdown');
+    if (dd) dd.style.display = 'none';
+    var tab = '';
+    if (text.includes('My Profile')) tab = 'profile';
+    else if (text.includes('Bookings')) tab = 'bookings';
+    else if (text.includes('Account')) tab = 'account';
+    else if (text.includes('Password')) tab = 'password';
+    else if (text.includes('Payment')) tab = 'payment';
+    else if (text.includes('Preferences')) tab = 'preferences';
+    var name = currentUser ? currentUser.firstName + ' ' + currentUser.lastName : 'Traveler';
+    var email = currentUser ? currentUser.email : 'user@email.com';
+    var initial = currentUser ? currentUser.firstName.charAt(0) : 'U';
+    var phone = currentUser && currentUser.phone ? currentUser.phone : 'Not set';
+    var html = '';
+    if (tab === 'profile') {
+      html = '<div style="text-align:center;"><div style="width:80px;height:80px;border-radius:50%;background:#1E6FD9;color:white;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;margin:0 auto 12px;">' + initial + '</div><h3 style="font-weight:700;font-size:1.3rem;">' + name + '</h3><p style="color:gray;">' + email + '</p><p style="color:gray;">📞 ' + phone + '</p><div style="margin-top:20px;padding:16px;background:#f0f7ff;border-radius:12px;"><p style="font-size:1.5rem;font-weight:800;color:#1E6FD9;">4</p><p style="color:gray;font-size:0.85rem;">Total Bookings</p></div></div>';
+    } else if (tab === 'bookings') {
+      html = '<h3 style="font-weight:700;margin-bottom:16px;">My Bookings</h3><div style="border:1px solid #eee;border-radius:12px;padding:16px;margin-bottom:12px;">✈️ <strong>Palawan, Philippines</strong><br><small style="color:gray;">May 10-17, 2026 • Confirmed • ₱2,940</small></div><div style="border:1px solid #eee;border-radius:12px;padding:16px;margin-bottom:12px;">🏨 <strong>Kyoto Zen Ryokan</strong><br><small style="color:gray;">June 3-8, 2026 • Pending • ₱37,500</small></div><div style="border:1px solid #eee;border-radius:12px;padding:16px;margin-bottom:12px;">🚗 <strong>Miguel Santos — Toyota Camry</strong><br><small style="color:gray;">April 20, 2026 • Confirmed • ₱850</small></div><div style="border:1px solid #eee;border-radius:12px;padding:16px;">🌴 <strong>Bali, Indonesia</strong><br><small style="color:gray;">Feb 14-21, 2026 • Completed • ₱4,760</small></div>';
+    } else if (tab === 'account') {
+      html = '<h3 style="font-weight:700;margin-bottom:16px;">Account Settings</h3><form onsubmit="event.preventDefault(); if(currentUser){currentUser.firstName=document.getElementById(\'pf\').value;currentUser.lastName=document.getElementById(\'pl\').value;currentUser.email=document.getElementById(\'pe\').value;currentUser.phone=document.getElementById(\'pp\').value;updateNavbarState();} showToast(\'Profile updated! ✅\',\'success\');"><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;"><div><label style="font-size:0.85rem;font-weight:600;">First Name</label><input id="pf" type="text" value="' + (currentUser?currentUser.firstName:'') + '" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-top:4px;"></div><div><label style="font-size:0.85rem;font-weight:600;">Last Name</label><input id="pl" type="text" value="' + (currentUser?currentUser.lastName:'') + '" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-top:4px;"></div></div><div style="margin-bottom:12px;"><label style="font-size:0.85rem;font-weight:600;">Email</label><input id="pe" type="email" value="' + email + '" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-top:4px;"></div><div style="margin-bottom:16px;"><label style="font-size:0.85rem;font-weight:600;">Phone</label><input id="pp" type="tel" value="' + phone + '" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-top:4px;"></div><button type="submit" style="padding:10px 24px;background:#1E6FD9;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">Save Changes</button></form>';
+    } else if (tab === 'password') {
+      html = '<h3 style="font-weight:700;margin-bottom:16px;">Change Password</h3><div style="margin-bottom:12px;"><label style="font-size:0.85rem;font-weight:600;">Current Password</label><input type="password" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-top:4px;"></div><div style="margin-bottom:12px;"><label style="font-size:0.85rem;font-weight:600;">New Password</label><input type="password" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-top:4px;"></div><div style="margin-bottom:16px;"><label style="font-size:0.85rem;font-weight:600;">Confirm Password</label><input type="password" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-top:4px;"></div><button onclick="showToast(\'Password updated! 🔒\',\'success\')" style="padding:10px 24px;background:#1E6FD9;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">Update Password</button>';
+    } else if (tab === 'payment') {
+      html = '<h3 style="font-weight:700;margin-bottom:16px;">Payment Methods</h3><div style="border:1px solid #eee;border-radius:12px;padding:16px;margin-bottom:12px;">💳 <strong>Visa ending in 4242</strong><br><small style="color:gray;">Expires 12/2027 • Default</small></div><div style="border:1px solid #eee;border-radius:12px;padding:16px;margin-bottom:12px;">📱 <strong>GCash</strong><br><small style="color:gray;">+63 917 *** 1234</small></div><button onclick="showToast(\'Add payment coming soon!\',\'info\')" style="padding:10px 24px;background:#1E6FD9;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">+ Add Payment Method</button>';
+    } else if (tab === 'preferences') {
+      html = '<h3 style="font-weight:700;margin-bottom:16px;">Travel Preferences</h3><p style="color:gray;margin-bottom:16px;">Select your interests:</p><div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;"><span onclick="this.style.background=this.style.background?\'\':\'\#1E6FD9\';this.style.color=this.style.color===\'white\'?\'\':\' white\';" style="padding:8px 16px;border:2px solid #1E6FD9;border-radius:50px;cursor:pointer;">🏖️ Beach</span><span onclick="this.style.background=this.style.background?\'\':\'\#1E6FD9\';this.style.color=this.style.color===\'white\'?\'\':\' white\';" style="padding:8px 16px;border:2px solid #1E6FD9;border-radius:50px;cursor:pointer;">🏔️ Mountains</span><span onclick="this.style.background=this.style.background?\'\':\'\#1E6FD9\';this.style.color=this.style.color===\'white\'?\'\':\' white\';" style="padding:8px 16px;border:2px solid #1E6FD9;border-radius:50px;cursor:pointer;">🍜 Food</span><span onclick="this.style.background=this.style.background?\'\':\'\#1E6FD9\';this.style.color=this.style.color===\'white\'?\'\':\' white\';" style="padding:8px 16px;border:2px solid #1E6FD9;border-radius:50px;cursor:pointer;">🤿 Diving</span></div><button onclick="showToast(\'Preferences saved! 🌍\',\'success\')" style="padding:10px 24px;background:#1E6FD9;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">Save Preferences</button>';
+    }
+    var overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
+    overlay.innerHTML = '<div style="background:white;max-width:600px;width:100%;max-height:85vh;overflow-y:auto;border-radius:16px;padding:32px;position:relative;"><button style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,0.5);color:white;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:20px;" id="closeProfilePop">&times;</button>' + html + '</div>';
+    document.body.appendChild(overlay);
+    document.getElementById('closeProfilePop').onclick = function() { overlay.remove(); };
+    overlay.onclick = function(ev) { if (ev.target === overlay) overlay.remove(); };
+  });
+
   initCustomDatePickers();
   initNavbar();
   initMobileMenu();
@@ -2331,4 +2431,3 @@ document.addEventListener('DOMContentLoaded', () => {
   assignUniqueImages();
   console.log('%c✈ Vimel Travels — app.js loaded successfully', 'color:#1E6FD9;font-weight:bold;font-size:14px;');
 });
-
