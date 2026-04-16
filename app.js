@@ -186,7 +186,8 @@ function renderDestinations() {
         </div>
         <h3 class="dest-name">${dest.name}</h3>
         <p class="dest-desc">${dest.description}</p>
-        <button class="btn btn-accent btn-sm dest-book-btn" onclick="openModal('loginModal')">
+        <button class="btn btn-accent btn-sm dest-book-btn" onclick="exploreCountry('${c.name}')">
+          Explore
           Book Now <i class="fas fa-arrow-right"></i>
         </button>
       </div>
