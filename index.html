@@ -112,10 +112,10 @@
 <div class="hero-search">
 <div class="search-box">
 <i class="fas fa-search search-icon"></i>
-<input type="text" id="searchInput" placeholder="Where do you want to go?" autocomplete="off">
+<input type="text" id="searchInput" placeholder="Where do you want to go?" autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();handleHeroSearch();}">
 <div class="search-suggestions" id="searchSuggestions"></div>
 </div>
-<button class="btn btn-accent btn-search">Explore</button>
+<button class="btn btn-accent btn-search" onclick="handleHeroSearch()">Explore</button>
 </div>
 <div class="hero-stats">
 <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Destinations</span></div>
@@ -970,6 +970,14 @@
         </section>
 
       </main>
+    </div>
+  </div>
+</div>
+  
+<div class="modal-overlay" id="blogModal">
+  <div class="modal modal-lg">
+    <button class="modal-close" onclick="closeModal('blogModal')"><i class="fas fa-times"></i></button>
+    <div id="blogModalContent">
     </div>
   </div>
 </div>

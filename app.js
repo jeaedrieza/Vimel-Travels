@@ -271,6 +271,121 @@ const destinations = [
   {id:300,name:'Blue Mountains',country:'Australia',image:'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600',rating:4.6,price:900,description:'Three Sisters, Scenic Railway, eucalyptus haze, and bush walks.',tags:['Nature','Adventure','UNESCO']},
 ];
 
+const _imagePool = {
+  Beach: [
+    'photo-1507525428034-b723cf961d3e','photo-1506929562872-bb421503ef21','photo-1520454974749-611b7248ffdb',
+    'photo-1509233725247-49e657c54213','photo-1473116763249-2faaef81ccda','photo-1519046904884-53103b34b206',
+    'photo-1505228395891-9a51e7e86bf6','photo-1468413253725-0d5181091126','photo-1414609245224-afa02bfb3fda',
+    'photo-1531297484001-80022131f5a1','photo-1544550581-5f7ceaf7f992','photo-1528360983277-13d401cdc186',
+    'photo-1537956965359-7573183d1f57','photo-1559628233-100c798642d4','photo-1540541338287-41700207dee6'
+  ],
+  City: [
+    'photo-1480714378408-67cf0d13bc1b','photo-1514565131-fce0801e5785','photo-1477959858617-67f85cf4f1df',
+    'photo-1449824913935-59a10b8d2000','photo-1517760444937-f6397edcbbcd','photo-1534430480872-3498386e7856',
+    'photo-1444723121867-7a241cacace9','photo-1496442226666-8d4d0e62e6e9','photo-1502602898657-3e91760cbb34',
+    'photo-1513635269975-59663e0ac1ad','photo-1522083165195-3424ed129620','photo-1508009603885-50cf7c579365',
+    'photo-1517154421773-0529f29ea451','photo-1525625293386-3f8f99389edd','photo-1518548419970-58e3b4079ab2'
+  ],
+  Nature: [
+    'photo-1470071459604-3b5ec3a7fe05','photo-1441974231531-c6227db76b6e','photo-1472214103451-9374bd1c798e',
+    'photo-1465056836900-8f1e940b3fc8','photo-1482938289607-e9573fc25ebb','photo-1501854140801-50d01698950b',
+    'photo-1433086966358-54859d0ed716','photo-1469474968028-56623f02e42e','photo-1418065460487-3e41a6c84dc5',
+    'photo-1476514525535-07fb3b4ae5f1','photo-1528127269322-539152f5ae74','photo-1555217851-6141535bd771',
+    'photo-1588528402605-1f9b76b1d51c','photo-1504233529578-6d46baba6d34','photo-1531366936337-7c912a4589a7'
+  ],
+  Culture: [
+    'photo-1493976040374-85c8e12f0c0e','photo-1545569341-9eb8b30979d9','photo-1552832230-c0197dd311b5',
+    'photo-1569263979104-865ab7cd8d13','photo-1524231757912-21f4fe3a7200','photo-1596402184320-417e7178b2cd',
+    'photo-1583422409516-2895a77efded','photo-1570077188670-e3a8d69ac5ff','photo-1524492412937-b28074a5d7da',
+    'photo-1612862862126-865765df2ded','photo-1569154941061-e231b4725ef1','photo-1583417319070-4a69db38a482',
+    'photo-1585208798174-6cedd86e019a','photo-1560969184-10fe8719e047','photo-1534351590666-13e3e96b5017'
+  ],
+  Adventure: [
+    'photo-1551632811-561732d1e306','photo-1530789253388-582c481c54b0','photo-1504280390367-361c6d9f38f4',
+    'photo-1486915309851-b0cc1f8a0084','photo-1519681393784-d120267933ba','photo-1454496522488-7a8e488e8606',
+    'photo-1464822759023-fed622ff2c3b','photo-1533130061792-64b345e4a833','photo-1527004013197-933c4bb611b3',
+    'photo-1570789210967-2cac24834d46','photo-1641128324972-af3212f0f6bd','photo-1544735716-392fe2489ffa',
+    'photo-1526392060635-9d6019884377','photo-1507699622108-4be3abd695ad','photo-1547471080-7cc2caa01a7e'
+  ],
+  Island: [
+    'photo-1559628233-100c798642d4','photo-1518509562904-e7ef99cdcc86','photo-1553603227-2358aabe821e',
+    'photo-1516690561799-46d8f74f9abf','photo-1537996194471-e657df975ab4','photo-1609946860441-a51ffcf16d76',
+    'photo-1506929562872-bb421503ef21','photo-1544550581-5f7ceaf7f992','photo-1528360983277-13d401cdc186',
+    'photo-1540541338287-41700207dee6','photo-1470004914212-05527e49370b','photo-1519021228607-ef780f43d4bb'
+  ],
+  Food: [
+    'photo-1504674900247-0877df9cc836','photo-1414235077428-338989a2e8c0','photo-1555939594-58d7cb561ad1',
+    'photo-1567620905732-2d1ec7ab7445','photo-1540189549336-e6e99c3679fe','photo-1476224203421-9ac39bcb3327',
+    'photo-1498654896293-37aacf113fd9','photo-1509030450996-dd1a26dda07a','photo-1536697246787-1f7ae568714d',
+    'photo-1559592413-7cec4d0cbb28','photo-1596422846543-75c6fc197f07','photo-1590559899731-a382839e5549'
+  ],
+  History: [
+    'photo-1552832230-c0197dd311b5','photo-1569263979104-865ab7cd8d13','photo-1539650116574-8efeb43e2750',
+    'photo-1579606032821-4e6161c81571','photo-1555990538-1a0f4b2d0c89','photo-1541849546-216549ae216d',
+    'photo-1508804185872-d7badad00f7d','photo-1524231757912-21f4fe3a7200','photo-1596402184320-417e7178b2cd',
+    'photo-1489749798305-4fea3ae63d43','photo-1518659526054-190340b32735','photo-1483729558449-99ef09a8c325'
+  ],
+  Luxury: [
+    'photo-1566073771259-6a8506099945','photo-1542314831-068cd1dbfeeb','photo-1520250497591-112f2f40a3f4',
+    'photo-1551882547-ff40c63fe5fa','photo-1578683010236-d716f9a3f461','photo-1517840901100-8179e982acb7',
+    'photo-1564501049412-61c2a3083791','photo-1445019980597-93fa8acb246c','photo-1571003123894-1f0594d2b5d9',
+    'photo-1582719508461-905c673771fd','photo-1596394516093-501ba68a0ba6','photo-1512453979798-5ea266f8880c'
+  ],
+  Desert: [
+    'photo-1509316785289-025f5b846b35','photo-1473580044384-7ba9967e16a0','photo-1542401886-65d6c61db217',
+    'photo-1518548419970-58e3b4079ab2','photo-1489749798305-4fea3ae63d43','photo-1579606032821-4e6161c81571'
+  ],
+  Winter: [
+    'photo-1476514525535-07fb3b4ae5f1','photo-1504233529578-6d46baba6d34','photo-1531366936337-7c912a4589a7',
+    'photo-1516550893923-42d28e5677af','photo-1559511260-66a68e7c9a43','photo-1545569341-9eb8b30979d9'
+  ],
+  Diving: [
+    'photo-1516690561799-46d8f74f9abf','photo-1544550581-5f7ceaf7f992','photo-1553603227-2358aabe821e',
+    'photo-1559628233-100c798642d4','photo-1540541338287-41700207dee6','photo-1518509562904-e7ef99cdcc86'
+  ],
+  Wildlife: [
+    'photo-1547471080-7cc2caa01a7e','photo-1570789210967-2cac24834d46','photo-1580060839134-75a5edca2e99',
+    'photo-1516690561799-46d8f74f9abf','photo-1519021228607-ef780f43d4bb','photo-1544735716-392fe2489ffa'
+  ]
+};
+
+// Fallback pool for tags not in the list
+const _fallbackImages = [
+  'photo-1488646953014-85cb44e25828','photo-1502602898657-3e91760cbb34','photo-1552733407-5d5c46c3bb3b',
+  'photo-1537996194471-e657df975ab4','photo-1506973035872-a4ec16b8e8d9','photo-1483729558449-99ef09a8c325',
+  'photo-1533050487297-09b450131914','photo-1589909202802-8f4aadce1849','photo-1559511260-66a68e7c9a43',
+  'photo-1507699622108-4be3abd695ad','photo-1470004914212-05527e49370b','photo-1508804185872-d7badad00f7d'
+];
+
+function assignUniqueImages() {
+  var usedImages = {};
+  destinations.forEach(function(dest) {
+    var assigned = false;
+    // Try each tag to find a unique image
+    for (var i = 0; i < dest.tags.length; i++) {
+      var tag = dest.tags[i];
+      var pool = _imagePool[tag];
+      if (!pool) continue;
+      // Pick based on destination ID to keep consistent
+      var index = (dest.id * 7 + i * 13) % pool.length;
+      var photoId = pool[index];
+      var url = 'https://images.unsplash.com/' + photoId + '?w=600&auto=format&fit=crop';
+      // Try to avoid duplicates nearby
+      if (!usedImages[photoId] || usedImages[photoId] < 3) {
+        dest.image = url;
+        usedImages[photoId] = (usedImages[photoId] || 0) + 1;
+        assigned = true;
+        break;
+      }
+    }
+    // Fallback if no unique found
+    if (!assigned) {
+      var fbIndex = dest.id % _fallbackImages.length;
+      dest.image = 'https://images.unsplash.com/' + _fallbackImages[fbIndex] + '?w=600&auto=format&fit=crop';
+    }
+  });
+}
+
 const countries = [
   // International
   {name:'Thailand',flag:'🇹🇭',image:'https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=600',destinationCount:15,type:'international'},
@@ -748,7 +863,7 @@ function renderBlogPosts() {
         </div>
         <h3 class="blog-title">${post.title}</h3>
         <p class="blog-excerpt">${post.excerpt}</p>
-        <a href="#" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+        <a href="javascript:void(0)" onclick="openBlogPost(${post.id})" class="blog-read-more">Read More
       </div>
     </article>
   `).join('');
@@ -2143,6 +2258,76 @@ window.filterMapMarkers = function(type) {
   mapMarkers.forEach(function(m){if(type==='all'||m.vimelType===type){m.addTo(vimelMap);}else{vimelMap.removeLayer(m);}});
 };
 
+var blogFullContent = {
+  1: '<p>The Philippines is home to over 7,000 islands, and while Boracay and Palawan steal the spotlight, there are dozens of incredible destinations that most travelers never discover.</p><h3>1. Kalanggaman Island, Leyte</h3><p>This tiny island features one of the most stunning sandbars in the world. With no permanent structures, you camp under the stars on pristine white sand surrounded by crystal-clear water.</p><h3>2. Caramoan, Camarines Sur</h3><p>Famous as a Survivor filming location, Caramoan\'s limestone cliffs, hidden lagoons, and untouched beaches make it a true hidden paradise.</p><h3>3. Palaui Island, Cagayan</h3><p>Voted one of CNN\'s most beautiful beaches, this remote island features the iconic Cape Engaño lighthouse and raw, unspoiled beauty.</p><h3>4. Siquijor</h3><p>Known as the mystical island, Siquijor enchants visitors with its centuries-old balete trees, crystal-clear waterfalls, and healing traditions.</p><h3>5. Batanes</h3><p>Often called the "Scotland of Asia," Batanes offers rolling green hills, dramatic cliffs, and stone houses that look like they belong in another century.</p><p>Each of these destinations offers something unique — from bioluminescent plankton to ancient rice terraces. The Philippines is far more than just Boracay.</p>',
+  
+  2: '<p>Japan has a reputation for being expensive, but with the right strategies, you can experience this incredible country without emptying your wallet.</p><h3>Transportation Hacks</h3><p>The Japan Rail Pass is your best friend. A 7-day pass costs around $260 and gives you unlimited rides on most JR trains, including the Shinkansen bullet train.</p><h3>Budget Accommodation</h3><ul><li><strong>Capsule Hotels:</strong> $25-40/night for a unique Japanese experience</li><li><strong>Hostels:</strong> $15-30/night in major cities</li><li><strong>Business Hotels:</strong> $50-70/night for private rooms</li></ul><h3>Eating Cheap</h3><p>Convenience stores like 7-Eleven and Lawson serve restaurant-quality meals for $3-5. Ramen shops average $7-9, and conveyor belt sushi starts at $1 per plate.</p><h3>Free Activities</h3><p>Many temples and shrines are free to enter. Walking through neighborhoods like Shibuya, Harajuku, and Gion costs nothing and is endlessly entertaining.</p><p>With careful planning, a 2-week Japan trip can cost as little as $1,500-2,000 including flights from Southeast Asia.</p>',
+  
+  3: '<p>Both Santorini and Mykonos are iconic Greek islands, but they offer very different experiences. Here\'s how to choose the right one for your trip.</p><h3>Santorini: The Romantic One</h3><p>Santorini is all about dramatic caldera views, blue-domed churches, and unforgettable sunsets in Oia. It\'s perfect for couples, honeymooners, and photographers.</p><h3>Mykonos: The Party One</h3><p>Mykonos is the social butterfly — legendary beach clubs, world-famous DJs, and vibrant nightlife. It\'s ideal for groups of friends and those seeking energy.</p><h3>Price Comparison</h3><ul><li><strong>Hotels:</strong> Both are expensive, but Mykonos edges higher in peak season</li><li><strong>Food:</strong> Santorini offers more romantic dining; Mykonos has trendier restaurants</li><li><strong>Activities:</strong> Santorini wins for culture; Mykonos wins for nightlife</li></ul><h3>Our Verdict</h3><p>Visit Santorini if you want romance, photography, and volcanic wine. Choose Mykonos if you want beach clubs, cocktails, and dancing until sunrise. Better yet — do both with a short ferry ride between them!</p>',
+  
+  4: '<p>Solo travel is one of the most rewarding experiences in life — but it comes with legitimate safety concerns. Here\'s how Vimel Travels has your back.</p><h3>Verified Driver System</h3><p>Every driver on our platform undergoes a thorough background check, ID verification, and vehicle inspection. You\'ll see their rating, number of trips, and verification badge before booking.</p><h3>Real-Time Trip Tracking</h3><p>Share your live location with family and friends during any booked trip. They can follow your journey in real-time on our map.</p><h3>SOS Emergency Button</h3><p>Our in-app SOS button connects you instantly to local emergency services and our 24/7 safety team. One tap sends your GPS location to responders.</p><h3>Incident Reporting</h3><p>If anything goes wrong, our incident report system ensures your case is documented and investigated. We respond within 5 minutes to all safety reports.</p><p>At Vimel Travels, we believe everyone deserves to explore the world without fear. Your adventure starts here — safely.</p>',
+  
+  5: '<p>30 days, 5 countries, one epic adventure. Here\'s the ultimate Southeast Asia backpacking route that covers the best of the region.</p><h3>Week 1: Thailand (Days 1-7)</h3><p>Start in Bangkok for temples and street food. Take an overnight train to Chiang Mai for elephant sanctuaries and night markets. End with island time in Koh Tao for diving.</p><h3>Week 2: Cambodia (Days 8-13)</h3><p>Fly to Siem Reap for Angkor Wat sunrise. Take a bus to Phnom Penh for history at the Killing Fields. Head to Koh Rong for island vibes.</p><h3>Week 3: Vietnam (Days 14-21)</h3><p>Start in Ho Chi Minh City for Cu Chi Tunnels. Train to Hoi An for lanterns and tailoring. Bus to Ha Long Bay for an overnight cruise.</p><h3>Week 4: Laos & Philippines (Days 22-30)</h3><p>Fly to Luang Prabang for monks\' alms and Kuang Si Falls. End your trip in the Philippines — Siargao for surfing or Palawan for island hopping.</p><h3>Budget</h3><p>Total cost: $1,500-2,500 including flights, accommodation, food, and activities. Southeast Asia remains the best value backpacking region in the world.</p>',
+  
+  6: '<p>Looking to rekindle the romance? Southeast Asia offers some of the most breathtaking couple destinations on Earth.</p><h3>1. Bali, Indonesia</h3><p>Ubud rice terraces, private villa pools, sunset temples, and candlelit dinners overlooking the jungle. Bali was made for lovers.</p><h3>2. Palawan, Philippines</h3><p>Private lagoon tours in El Nido, stargazing on empty beaches, and overwater cottages in Coron. Pure paradise for two.</p><h3>3. Koh Samui, Thailand</h3><p>Luxury beach resorts, couples\' spa treatments, and Ang Thong Marine Park day trips. Thai hospitality at its romantic best.</p><h3>4. Hoi An, Vietnam</h3><p>Lantern-lit streets, cooking classes for two, tailor-made matching outfits, and riverside dining under the stars.</p><h3>5. Luang Prabang, Laos</h3><p>Mekong sunset cruises, waterfall picnics, and morning alms ceremonies — slow romance in the most peaceful town in Asia.</p>',
+  
+  7: '<p>Vietnam\'s street food is legendary — and incredibly affordable. Here\'s what to eat in every major city, all for under $10/day.</p><h3>Hanoi</h3><ul><li><strong>Pho:</strong> The original breakfast soup — $1.50 per bowl</li><li><strong>Bun Cha:</strong> Grilled pork with noodles — Obama\'s famous meal — $2</li><li><strong>Egg Coffee:</strong> Creamy whipped egg on strong coffee — $1</li></ul><h3>Hoi An</h3><ul><li><strong>Cao Lầu:</strong> Thick noodles with pork — only found here — $1.50</li><li><strong>Banh Mi:</strong> The world\'s best sandwich — $0.75</li><li><strong>White Rose Dumplings:</strong> Delicate shrimp in rice paper — $1.50</li></ul><h3>Ho Chi Minh City</h3><ul><li><strong>Banh Xeo:</strong> Crispy Vietnamese crepe — $2</li><li><strong>Com Tam:</strong> Broken rice with grilled pork — $1.50</li><li><strong>Che:</strong> Sweet dessert soup — $0.50</li></ul><p>Pro tip: The best food is always at the busiest street stalls. If locals are queuing, join them!</p>',
+  
+  8: '<p>Three of the Philippines\' most beloved islands — but which one is right for you? Let\'s break it down.</p><h3>Palawan: The Lagoon Explorer</h3><p>Best for: Couples, photographers, and nature lovers. El Nido\'s lagoons and Coron\'s shipwrecks are unmatched. It\'s the most "wow" scenery of the three.</p><h3>Siargao: The Surf Adventurer</h3><p>Best for: Surfers, digital nomads, and free spirits. Cloud 9 waves, palm tree rope swings, and a laid-back island lifestyle that\'s hard to leave.</p><h3>Cebu: The All-Rounder</h3><p>Best for: Families, adventure seekers, and first-timers. Whale sharks in Oslob, Kawasan Falls canyoneering, and Mactan beach resorts offer variety.</p><h3>Quick Comparison</h3><ul><li><strong>Budget:</strong> Siargao < Cebu < Palawan</li><li><strong>Nightlife:</strong> Siargao wins (General Luna)</li><li><strong>Scenery:</strong> Palawan wins (lagoons)</li><li><strong>Activities:</strong> Cebu wins (diversity)</li></ul><p>Can\'t decide? Do all three! A 2-week Philippines island-hopping itinerary is the trip of a lifetime.</p>'
+};
+
+window.openBlogPost = function(postId) {
+  var post = blogPosts.find(function(p) { return p.id === postId; });
+  if (!post) return;
+  
+  var content = blogFullContent[postId] || '<p>' + post.excerpt + '</p><p><em>Full article coming soon...</em></p>';
+  
+  var modalContent = document.getElementById('blogModalContent');
+  if (!modalContent) return;
+  
+  modalContent.innerHTML = 
+    '<img src="' + post.image + '" alt="' + post.title + '" class="blog-modal-img">' +
+    '<span class="blog-modal-category">' + post.category + '</span>' +
+    '<h2 class="blog-modal-title">' + post.title + '</h2>' +
+    '<div class="blog-modal-meta">' +
+      '<span><i class="fas fa-calendar-alt"></i> ' + post.date + '</span>' +
+      '<span><i class="fas fa-clock"></i> ' + post.readTime + '</span>' +
+    '</div>' +
+    '<div class="blog-modal-body">' + content + '</div>' +
+    '<div class="blog-modal-share">' +
+      '<button onclick="showToast(\'Link copied!\',\'success\')"><i class="fas fa-link"></i> Copy Link</button>' +
+      '<button onclick="showToast(\'Shared!\',\'success\')"><i class="fas fa-share-alt"></i> Share</button>' +
+    '</div>';
+  
+  openModal('blogModal');
+};
+
+window.handleHeroSearch = function() {
+  var input = document.getElementById('searchInput');
+  if (!input) return;
+  var query = input.value.trim().toLowerCase();
+  if (!query) { showToast('Please enter a destination to search.', 'info'); return; }
+  var filtered = destinations.filter(function(d) {
+    return d.name.toLowerCase().includes(query) || 
+           d.country.toLowerCase().includes(query) ||
+           d.tags.some(function(t) { return t.toLowerCase().includes(query); });
+  });
+  var destSection = document.getElementById('recommendations');
+  if (destSection) destSection.scrollIntoView({ behavior: 'smooth' });
+  var container = document.getElementById('recommendationsRow');
+  if (!container) return;
+  if (filtered.length === 0) {
+    showToast('No destinations found for "' + query + '". Showing all.', 'info');
+    renderDestinations();
+  } else {
+    container.innerHTML = filtered.map(function(dest) {
+      return '<div class="dest-card reveal" data-id="' + dest.id + '"><div class="dest-img-wrap"><img src="' + dest.image + '" alt="' + dest.name + '" loading="lazy" class="dest-img" onerror="handleImgError(this)"><div class="dest-tags">' + dest.tags.map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('') + '</div><div class="dest-price-badge">from $' + dest.price.toLocaleString() + '</div></div><div class="dest-body"><div class="dest-meta"><span class="dest-location"><i class="fas fa-map-marker-alt"></i> ' + dest.country + '</span><span class="dest-rating">' + renderStars(dest.rating) + ' ' + dest.rating + '</span></div><h3 class="dest-name">' + dest.name + '</h3><p class="dest-desc">' + dest.description + '</p><button class="btn btn-accent btn-sm dest-book-btn" onclick="openBookingModal(\'destination\', ' + dest.id + ')">Book Now <i class="fas fa-arrow-right"></i></button></div></div>';
+    }).join('');
+    showToast('Found ' + filtered.length + ' destination' + (filtered.length > 1 ? 's' : '') + ' for "' + query + '"', 'success');
+    initScrollReveal();
+  }
+};
+
 /* ========================================================================INITIALISATION — DOMContentLoaded======================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -2166,5 +2351,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initLazyImages();
   initVimelMap();
   initImageFallbacks();
+  assignUniqueImages();
   console.log('%c✈ Vimel Travels — app.js loaded successfully', 'color:#1E6FD9;font-weight:bold;font-size:14px;');
 });
