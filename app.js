@@ -2305,7 +2305,7 @@ window.handleHeroSearch = function() {
 
 /* ========================================================================INITIALISATION — DOMContentLoaded======================================================================== */
 
-document.addEventListener('DOMContentLoaded', ();
+document.addEventListener('DOMContentLoaded', () => {
   renderAllData();
   initCustomDatePickers();
   initNavbar();
