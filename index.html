@@ -282,9 +282,9 @@
     <label for="contactMessage" style="font-size:0.85rem;font-weight:600;display:block;margin-bottom:6px;">Message</label>
     <textarea id="contactMessage" rows="5" placeholder="Tell us how we can help..." required style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:0.9rem;resize:vertical;"></textarea>
   </div>
-  <button type="submit" class="btn btn-accent btn-block" style="padding:14px;background:#1E6FD9;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:1rem;">
+  <button type="button" onclick="sendContactForm()" class="btn btn-accent btn-block" style="padding:14px;background:#1E6FD9;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:1rem;">
     Send Message <i class="fas fa-paper-plane"></i>
-  </button>
+</button>
 </form>
 <div class="contact-info reveal">
 <div class="contact-card">
@@ -1101,5 +1101,29 @@
 </div>
 <script src="app.js"></script>
 <script src="api-connector.js"></script>
+<script>
+function sendContactForm() {
+  var name = document.getElementById('contactName').value.trim();
+  var email = document.getElementById('contactEmail').value.trim();
+  var subject = document.getElementById('contactSubject').value.trim();
+  var message = document.getElementById('contactMessage').value.trim();
+
+  if (!name || !email || !message) {
+    showToast('Please fill in all required fields.', 'error');
+    return;
+  }
+
+  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyg1fnbgF7AsgIKSqr3FOGqh-A08W1V35aO9XU049zrrYHIVzpgCe3G4Y_9AMM1K5-V/exec';
+  var url = SCRIPT_URL + '?type=contact&name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&subject=' + encodeURIComponent(subject) + '&message=' + encodeURIComponent(message);
+
+  var w = window.open(url, '_blank', 'width=1,height=1,left=-100,top=-100');
+
+  setTimeout(function() {
+    try { if (w) w.close(); } catch(err) {}
+    showToast('Thanks, ' + name + '! Message sent!', 'success');
+    document.getElementById('contactForm').reset();
+  }, 4000);
+}
+</script>
 </body>
 </html>

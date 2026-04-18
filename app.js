@@ -1084,56 +1084,33 @@ function initBackToTop() {
 }
 
 function initContactForm() {
-  var form = document.getElementById('contactForm');
+  // handled by event delegation
+}
+
+function initNewsletterForm() {
+  var form = document.getElementById('newsletterForm');
   if (!form) return;
 
-  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwPunijHTQCUtEeC-xM1GpGjtaIUYyy-v0-l7tT3pME2EyCR7MjVVbw3j_7Xp7dQ10o/exec';
+  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyg1fnbgF7AsgIKSqr3FOGqh-A08W1V35aO9XU049zrrYHIVzpgCe3G4Y_9AMM1K5-V/exec';
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
+    var emailInput = form.querySelector('input[type="email"]');
+    var email = emailInput ? emailInput.value.trim() : '';
 
-    var name = document.getElementById('contactName') ? document.getElementById('contactName').value.trim() : '';
-    var email = document.getElementById('contactEmail') ? document.getElementById('contactEmail').value.trim() : '';
-    var subject = document.getElementById('contactSubject') ? document.getElementById('contactSubject').value.trim() : 'General Inquiry';
-    var message = document.getElementById('contactMessage') ? document.getElementById('contactMessage').value.trim() : '';
-
-    if (!name || !email || !message) {
-      showToast('Please fill in all required fields.', 'error');
+    if (!email) {
+      showToast('Please enter a valid email address.', 'error');
       return;
     }
 
-    var submitBtn = form.querySelector('button[type="submit"]');
-    var originalText = submitBtn ? submitBtn.innerHTML : '';
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    }
-
-    var url = SCRIPT_URL + '?name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&subject=' + encodeURIComponent(subject) + '&message=' + encodeURIComponent(message);
-
+    var url = SCRIPT_URL + '?type=newsletter&email=' + encodeURIComponent(email);
     var w = window.open(url, '_blank', 'width=1,height=1,left=-100,top=-100');
 
     setTimeout(function() {
       try { if (w) w.close(); } catch(err) {}
-      showToast('Thanks, ' + name + '! Your message has been sent.', 'success');
+      showToast('You are subscribed! Get ready for amazing travel deals! 🌍', 'success');
       form.reset();
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalText;
-      }
     }, 4000);
-  });
-}
-
-function initNewsletterForm() {
-  const form = document.getElementById('newsletterForm');
-  if (!form) return;
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const email = form.querySelector('input[type="email"]')?.value.trim();
-    if (!email || !isValidEmail(email)) { showToast('Please enter a valid email address.', 'error'); return; }
-    showToast("You're subscribed! Get ready for amazing travel deals. 🌍", 'success');
-    form.reset();
   });
 }
 
@@ -2391,6 +2368,35 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.onclick = function(ev) { if (ev.target === overlay) overlay.remove(); };
   });
 
+    // === CONTACT FORM SEND ===
+  document.addEventListener('submit', function(e) {
+    var form = e.target.closest('#contactForm');
+    if (!form) return;
+    e.preventDefault();
+
+    var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyg1fnbgF7AsgIKSqr3FOGqh-A08W1V35aO9XU049zrrYHIVzpgCe3G4Y_9AMM1K5-V/exec';
+
+    var name = document.getElementById('contactName') ? document.getElementById('contactName').value.trim() : '';
+    var email = document.getElementById('contactEmail') ? document.getElementById('contactEmail').value.trim() : '';
+    var subject = document.getElementById('contactSubject') ? document.getElementById('contactSubject').value.trim() : 'General Inquiry';
+    var message = document.getElementById('contactMessage') ? document.getElementById('contactMessage').value.trim() : '';
+
+    if (!name || !email || !message) {
+      showToast('Please fill in all required fields.', 'error');
+      return;
+    }
+
+    var url = SCRIPT_URL + '?type=contact&name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&subject=' + encodeURIComponent(subject) + '&message=' + encodeURIComponent(message);
+
+    var w = window.open(url, '_blank', 'width=1,height=1,left=-100,top=-100');
+
+    setTimeout(function() {
+      try { if (w) w.close(); } catch(err) {}
+      showToast('Thanks, ' + name + '! Your message has been sent.', 'success');
+      form.reset();
+    }, 4000);
+  });
+  
   initCustomDatePickers();
   initNavbar();
   initMobileMenu();
@@ -2403,7 +2409,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initChatWidget();
   initScrollReveal();
   initBackToTop();
-  initContactForm();
   initNewsletterForm();
   initPasswordStrengthMeter();
   initHeroParallax();
