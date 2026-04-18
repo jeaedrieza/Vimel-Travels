@@ -1087,59 +1087,41 @@ function initContactForm() {
   var form = document.getElementById('contactForm');
   if (!form) return;
 
-  // PASTE YOUR GOOGLE APPS SCRIPT URL HERE ↓↓↓
-  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz3JIkD8ZoQ4XL5Pyp_mXLV_PQ5hJdDfITMlWTZ_fcGgnjCylt83Zv9S7KT-d1kXWcY/exec';
+  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwPunijHTQCUtEeC-xM1GpGjtaIUYyy-v0-l7tT3pME2EyCR7MjVVbw3j_7Xp7dQ10o/exec';
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-var name    = document.getElementById('contactName')  ? document.getElementById('contactName').value.trim()  : '';
-var email   = document.getElementById('contactEmail') ? document.getElementById('contactEmail').value.trim() : '';
-var subject = document.getElementById('contactSubject') ? document.getElementById('contactSubject').value.trim() : 'General Inquiry';
-var message = document.getElementById('contactMessage') ? document.getElementById('contactMessage').value.trim() : '';
+    var name = document.getElementById('contactName') ? document.getElementById('contactName').value.trim() : '';
+    var email = document.getElementById('contactEmail') ? document.getElementById('contactEmail').value.trim() : '';
+    var subject = document.getElementById('contactSubject') ? document.getElementById('contactSubject').value.trim() : 'General Inquiry';
+    var message = document.getElementById('contactMessage') ? document.getElementById('contactMessage').value.trim() : '';
 
-if (!name || !email || !message) {
-  showToast('Please fill in all required fields.', 'error');
-  return;
-}
-if (!isValidEmail(email)) {
-  showToast('Please enter a valid email address.', 'error');
-  return;
-}
+    if (!name || !email || !message) {
+      showToast('Please fill in all required fields.', 'error');
+      return;
+    }
 
-var submitBtn = form.querySelector('button[type="submit"]');
-var originalText = submitBtn ? submitBtn.innerHTML : '';
-if (submitBtn) {
-  submitBtn.disabled = true;
-  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-}
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var originalText = submitBtn ? submitBtn.innerHTML : '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    }
 
-fetch(SCRIPT_URL, {
-  method: 'POST',
-  mode: 'no-cors',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    name:    name,
-    email:   email,
-    subject: subject,
-    message: message
-  })
-})
-.then(function() {
-  showToast('Thanks, ' + name + '! Your message has been sent. We will reply within 24 hours. ✈️', 'success');
-  form.reset();
-})
-.catch(function(error) {
-  showToast('Oops! Something went wrong. Please try again.', 'error');
-  console.error('Contact form error:', error);
-})
-.finally(function() {
-  if (submitBtn) {
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = originalText;
-  }
-});
+    var url = SCRIPT_URL + '?name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&subject=' + encodeURIComponent(subject) + '&message=' + encodeURIComponent(message);
 
+    var w = window.open(url, '_blank', 'width=1,height=1,left=-100,top=-100');
+
+    setTimeout(function() {
+      try { if (w) w.close(); } catch(err) {}
+      showToast('Thanks, ' + name + '! Your message has been sent.', 'success');
+      form.reset();
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+    }, 4000);
   });
 }
 
