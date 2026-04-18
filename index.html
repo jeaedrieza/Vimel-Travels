@@ -11,6 +11,16 @@
 </head>
 <body>
 
+<!-- Loading Screen -->
+<div id="loadingScreen" class="loading-screen">
+  <div class="loading-content">
+    <img src="vimel-logo.png" alt="Vimel Travels" class="loading-logo">
+    <div class="loading-bar-container">
+      <div class="loading-bar" id="loadingBar"></div>
+    </div>
+    <p class="loading-text">Preparing your adventure<span class="loading-dots">...</span></p>
+  </div>
+</div>
 <nav class="navbar" id="navbar">
 <div class="nav-container">
 <a href="#" class="nav-logo"><img src="vimel-logo.png" alt="Vimel Travels" class="logo-img"></a>
@@ -53,6 +63,7 @@
     <button class="profile-logout-btn" onclick="handleLogout()"><span class="profile-dd-icon">🚪</span> Logout</button>
   </div>
 </div>
+<button class="dark-mode-toggle" id="darkModeToggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
 <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </div>
 </nav>
@@ -1181,6 +1192,54 @@ var vimelBot = {
     });
   }
 };
+</script>
+<script>
+(function() {
+  var toggle = document.getElementById('darkModeToggle');
+  var icon = toggle ? toggle.querySelector('i') : null;
+  
+  if (localStorage.getItem('vimelDarkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+    if (icon) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+  }
+  
+  if (toggle) {
+    toggle.addEventListener('click', function() {
+      document.body.classList.toggle('dark-mode');
+      var isDark = document.body.classList.contains('dark-mode');
+      localStorage.setItem('vimelDarkMode', isDark);
+      if (icon) {
+        icon.classList.toggle('fa-moon', !isDark);
+        icon.classList.toggle('fa-sun', isDark);
+      }
+    });
+  }
+})();
+</script>
+<script>
+(function() {
+  var loadingScreen = document.getElementById('loadingScreen');
+  var loadingBar = document.getElementById('loadingBar');
+  var progress = 0;
+
+  var interval = setInterval(function() {
+    progress += Math.random() * 15 + 5;
+    if (progress > 90) progress = 90;
+    if (loadingBar) loadingBar.style.width = progress + '%';
+  }, 200);
+
+  window.addEventListener('load', function() {
+    clearInterval(interval);
+    if (loadingBar) loadingBar.style.width = '100%';
+    
+    setTimeout(function() {
+      if (loadingScreen) loadingScreen.classList.add('hidden');
+      setTimeout(function() {
+        if (loadingScreen) loadingScreen.remove();
+      }, 500);
+    }, 400);
+  });
+})();
 </script>
 </body>
 </html>
