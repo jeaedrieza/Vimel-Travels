@@ -5143,3 +5143,68 @@ a, button, input, select, textarea,
   border-color: var(--primary);
   color: var(--primary);
 }
+
+/* === MOBILE RESPONSIVENESS FIXES === */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .contact-form {
+    padding: 20px !important;
+  }
+  
+  .contact-form div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero h1, .hero-content h1 {
+    font-size: 1.8rem !important;
+  }
+
+  .section-title, .section-header h2 {
+    font-size: 1.4rem !important;
+  }
+
+  .card, .destination-card, .hotel-card, .vehicle-card, .blog-card {
+    width: 100% !important;
+    margin: 0 auto 16px !important;
+  }
+
+  .scroll-container, .cards-container {
+    flex-wrap: wrap !important;
+    overflow-x: hidden !important;
+    gap: 16px !important;
+    padding: 0 16px !important;
+  }
+
+  .footer-grid, .footer-content {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+  }
+
+  .newsletter-form, .stay-updated form {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  .newsletter-form input, .stay-updated input {
+    width: 100% !important;
+  }
+
+  body {
+    overflow-x: hidden !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1, .hero-content h1 {
+    font-size: 1.4rem !important;
+  }
+
+  .modal-container {
+    width: 95% !important;
+    padding: 20px !important;
+    margin: 10px !important;
+  }
+}
