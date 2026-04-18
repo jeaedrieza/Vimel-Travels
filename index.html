@@ -1126,27 +1126,58 @@ function sendContactForm() {
 }
 </script>
 <script>
-var GEMINI_KEY = 'AIzaSyD9bHYe3MYrzlxSG0zzplY0a-WK9yLhBlY';
+var GEMINI_KEY = 'AIzaSyDYSyNO9F4H8ghEiPTqfa1bkQBEWS80kTc';
+
+var keywordReplies = {
+  getReply: function(msg) {
+    msg = msg.toLowerCase();
+    if (/^(hi|hello|hey|kumusta|musta|magandang)/.test(msg)) return "Hello! Welcome to Vimel Travels! 🌍✈️ How can I help you today?\n\nAsk me about:\n🏝️ Destinations\n💰 Prices\n🏨 Hotels\n🚗 Transport\n📋 Bookings";
+    if (msg.includes('palawan') || msg.includes('el nido')) return "🏝️ PALAWAN — Last Frontier!\n\n• El Nido lagoon tours: ₱1,500-2,500\n• Coron island hopping: ₱2,000-3,000\n• Underground River: ₱1,200\n• Best time: Nov-May\n💰 Budget: ₱3,000-8,000/day";
+    if (msg.includes('boracay')) return "🏖️ BORACAY — White Beach Paradise!\n\n• 4km powdery white sand\n• Parasailing: ₱2,500\n• Island Hopping: ₱2,000\n• Helmet Diving: ₱800\n💰 Budget: ₱3,000-10,000/day";
+    if (msg.includes('siargao') || msg.includes('surf')) return "🏄 SIARGAO — Surfing Capital!\n\n• Cloud 9 world-class waves\n• Sugba Lagoon SUP & kayaking\n• Naked, Daku & Guyam Islands\n💰 Budget: ₱2,000-5,000/day";
+    if (msg.includes('cebu') || msg.includes('whale')) return "🐋 CEBU — Adventure Paradise!\n\n• Oslob Whale Sharks: ₱1,000\n• Kawasan Falls Canyoneering: ₱1,500\n• Moalboal Sardine Run\n💰 Budget: ₱2,500-6,000/day";
+    if (msg.includes('batanes')) return "🏔️ BATANES — Scotland of Asia!\n\n• Basco Lighthouse\n• Sabtang Island Stone Houses\n• Marlboro Country Hills\n💰 Budget: ₱5,000-12,000/day";
+    if (msg.includes('bohol')) return "🍫 BOHOL — Nature's Wonderland!\n\n• Chocolate Hills\n• Philippine Tarsier\n• Loboc River Cruise: ₱800\n💰 Budget: ₱2,000-5,000/day";
+    if (msg.includes('destination') || msg.includes('where') || msg.includes('punta') || msg.includes('saan') || msg.includes('recommend')) return "🌍 TOP DESTINATIONS:\n\n🏝️ Palawan — Lagoons & beaches\n🏖️ Boracay — White sand paradise\n🏄 Siargao — Surfing & chill\n🐋 Cebu — Whale sharks\n🏔️ Batanes — Rolling hills\n🍫 Bohol — Chocolate Hills\n\nType any name for details! 😊";
+    if (msg.includes('book') || msg.includes('reserve') || msg.includes('paano')) return "📋 HOW TO BOOK:\n\n1️⃣ Choose destination\n2️⃣ Select dates\n3️⃣ Pick hotel & transport\n4️⃣ Click Book Now\n5️⃣ Pay via GCash/Card\n6️⃣ Receive confirmation!\n\n✅ Free cancellation up to 48hrs!";
+    if (msg.includes('cancel') || msg.includes('refund')) return "❌ CANCELLATION:\n\n• 48+ hours: FREE, 100% refund\n• 24-48 hours: 80% refund\n• Less than 24hrs: 50% refund\n\nGo to My Profile → My Bookings → Cancel";
+    if (msg.includes('price') || msg.includes('cost') || msg.includes('budget') || msg.includes('magkano') || msg.includes('how much') || msg.includes('mura')) return "💰 BUDGET GUIDE:\n\n🎒 Backpacker: ₱1,500-3,000/day\n👫 Mid-range: ₱3,000-6,000/day\n💎 Luxury: ₱8,000-20,000/day\n\n💡 TIP: Book 2-3 months ahead for best deals!";
+    if (msg.includes('hotel') || msg.includes('room') || msg.includes('stay') || msg.includes('resort')) return "🏨 HOTELS:\n\n🎒 Budget: ₱500-1,500/night\n🏠 Mid-range: ₱1,500-5,000/night\n💎 Luxury: ₱5,000-20,000/night\n\n✅ All verified & reviewed!";
+    if (msg.includes('transport') || msg.includes('ride') || msg.includes('car') || msg.includes('driver')) return "🚗 TRANSPORT:\n\n🚐 Airport Transfer: ₱500-2,500\n🚗 Private Car: ₱2,000-5,000/day\n🚌 Van Rental: ₱3,500-7,000/day\n🏍️ Motorbike: ₱350-500/day\n\n🛡️ All drivers verified!";
+    if (msg.includes('safe') || msg.includes('emergency') || msg.includes('sos')) return "🛡️ SAFETY:\n\n✅ Background-checked drivers\n🆘 SOS button with GPS\n📞 24/7 emergency hotline\n⚡ Response within 5 minutes\n🏥 Travel insurance available";
+    if (msg.includes('pay') || msg.includes('gcash') || msg.includes('card') || msg.includes('maya')) return "💳 PAYMENT:\n\n• GCash ✅\n• Maya ✅\n• Visa/Mastercard ✅\n• Bank Transfer ✅\n• Cash on arrival ✅\n\n🔒 All secure & encrypted!";
+    if (msg.includes('weather') || msg.includes('best time') || msg.includes('season')) return "🌤️ BEST SEASONS:\n\n☀️ Dry (Nov-May): Best for beaches!\n🌧️ Wet (Jun-Oct): Fewer tourists, cheaper\n\n💡 Off-peak = 30-50% savings!";
+    if (msg.includes('food') || msg.includes('eat') || msg.includes('kain') || msg.includes('restaurant')) return "🍜 FOOD GUIDE:\n\n• Adobo — National dish\n• Sinigang — Sour soup\n• Lechon — Roast pig\n• Halo-halo — Dessert\n\n💰 Street food: ₱50-150\n💰 Restaurant: ₱150-400";
+    if (msg.includes('promo') || msg.includes('discount') || msg.includes('sale') || msg.includes('deal')) return "🔥 PROMOS:\n\n🏖️ Palawan: 20% OFF\n✈️ Early Bird: 30% off (book 3 months ahead)\n👫 Group: 5+ travelers get 15% off\n💑 Couples: Free sunset cruise!";
+    if (msg.includes('contact') || msg.includes('email') || msg.includes('phone') || msg.includes('call')) return "📞 CONTACT:\n\n📧 vimeltravels@gmail.com\n📱 +63 917 123 4567\n💬 Chat: You're here! 😊\n🕐 24/7 support";
+    if (msg.includes('thank') || msg.includes('salamat')) return "You're welcome! 😊 Safe travels! ✈️🌍";
+    if (msg.includes('love') || msg.includes('joke') || msg.includes('bored')) return "😄 Why don't mountains get cold?\n...They wear snow caps! 🏔️😂\n\n7,641 islands to explore! Where to? 🌴";
+    return "I'd love to help! 😊 Ask me about:\n\n🏝️ Destinations — type any island\n💰 Prices — 'how much' or 'budget'\n🏨 Hotels\n🚗 Transport\n📋 Bookings\n🌤️ Weather\n🍜 Food\n💳 Payments\n\nOr email vimeltravels@gmail.com! 📧";
+  }
+};
 
 var vimelBot = {
   getReply: function(msg, callback) {
     var systemPrompt = "You are Vimel, a friendly AI travel assistant for Vimel Travels, a Philippine travel website. Help with destinations, bookings, hotels, transport, prices. Keep replies short, 2-4 sentences max. Use emojis. Reply in the same language the user uses.";
 
     fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_KEY, {
-    method: 'POST',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         system_instruction: { parts: [{ text: systemPrompt }] },
-        contents: [{ parts: [{ text: msg }] }] 
+        contents: [{ parts: [{ text: msg }] }]
       })
     })
-    .then(function(res) { return res.json(); })
+    .then(function(res) {
+      if (!res.ok) throw new Error('API error');
+      return res.json();
+    })
     .then(function(data) {
       var reply = data.candidates[0].content.parts[0].text;
       callback(reply);
     })
     .catch(function() {
-      callback("Sorry, I am having trouble right now. Please try again or contact vimeltravels@gmail.com!");
+      callback(keywordReplies.getReply(msg));
     });
   }
 };
