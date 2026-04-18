@@ -1050,7 +1050,12 @@ function initChatWidget() {
     if (!text) return;
     appendChatMessage(text, 'user');
     chatInput.value = '';
-    setTimeout(() => { appendChatMessage(botResponses[botResponseIndex++ % botResponses.length], 'bot'); }, 900);
+   appendChatMessage('Typing...', 'bot');
+vimelBot.getReply(text, function(reply) {
+  var msgs = document.getElementById('chatMessages');
+  if (msgs) msgs.removeChild(msgs.lastChild);
+  appendChatMessage(reply, 'bot');
+});
   });
 }
 
