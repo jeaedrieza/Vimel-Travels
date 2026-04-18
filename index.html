@@ -1241,5 +1241,162 @@ var vimelBot = {
   });
 })();
 </script>
+<script>
+(function() {
+  var animationMap = [
+    { selector: '.section-header', anim: 'scroll-fade-up' },
+    { selector: '.section-tag', anim: 'scroll-fade-up' },
+    { selector: '.dest-card', anim: 'scroll-fade-up' },
+    { selector: '.hotel-card', anim: 'scroll-fade-up' },
+    { selector: '.driver-card', anim: 'scroll-fade-up' },
+    { selector: '.blog-card', anim: 'scroll-fade-up' },
+    { selector: '.country-card', anim: 'scroll-zoom-in' },
+    { selector: '.step-card', anim: 'scroll-fade-up' },
+    { selector: '.about-content', anim: 'scroll-fade-left' },
+    { selector: '.about-image', anim: 'scroll-fade-right' },
+    { selector: '.contact-card', anim: 'scroll-fade-right' },
+    { selector: '.footer-brand', anim: 'scroll-fade-up' },
+    { selector: '.footer-links', anim: 'scroll-fade-up' },
+    { selector: '.footer-newsletter', anim: 'scroll-fade-up' }
+  ];
+
+  animationMap.forEach(function(item) {
+    var elements = document.querySelectorAll(item.selector);
+    elements.forEach(function(el, index) {
+      if (!el.classList.contains('scroll-fade-up') && !el.classList.contains('scroll-fade-left') && !el.classList.contains('scroll-fade-right') && !el.classList.contains('scroll-zoom-in')) {
+        el.classList.add(item.anim);
+        if (index > 0 && index <= 5) el.classList.add('delay-' + index);
+      }
+    });
+  });
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.scroll-fade-up, .scroll-fade-left, .scroll-fade-right, .scroll-zoom-in').forEach(function(el) {
+    observer.observe(el);
+  });
+})();
+</script>
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox-overlay">
+  <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+  <button class="lightbox-nav lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+  <div class="lightbox-content">
+    <img id="lightboxImg" src="" alt="">
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+    <p class="lightbox-counter" id="lightboxCounter"></p>
+  </div>
+</div>
+<script>
+(function() {
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightboxImg');
+  var lightboxCaption = document.getElementById('lightboxCaption');
+  var lightboxCounter = document.getElementById('lightboxCounter');
+  var images = [];
+  var currentIndex = 0;
+
+  function collectImages() {
+    images = [];
+    var selectors = '.dest-img, .hotel-img-wrap img, .blog-img, .masonry-item img, .about-image img, .country-img';
+    document.querySelectorAll(selectors).forEach(function(img) {
+      if (img.src && img.naturalWidth > 0) {
+        images.push({ src: img.src, caption: img.alt || img.closest('[class*=card]')?.querySelector('[class*=name], [class*=title]')?.textContent || '' });
+      }
+    });
+  }
+
+  function openLightbox(index) {
+    collectImages();
+    currentIndex = index;
+    showImage();
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function showImage() {
+    if (images[currentIndex]) {
+      lightboxImg.src = images[currentIndex].src;
+      lightboxCaption.textContent = images[currentIndex].caption;
+      lightboxCounter.textContent = (currentIndex + 1) + ' / ' + images.length;
+    }
+  }
+
+  document.addEventListener('click', function(e) {
+    var img = e.target.closest('.dest-img, .hotel-img-wrap img, .blog-img, .masonry-item img, .about-image img, .country-img');
+    if (img) {
+      e.preventDefault();
+      e.stopPropagation();
+      collectImages();
+      for (var i = 0; i < images.length; i++) {
+        if (images[i].src === img.src) { currentIndex = i; break; }
+      }
+      openLightbox(currentIndex);
+    }
+  });
+
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightboxPrev').addEventListener('click', function() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage();
+  });
+  document.getElementById('lightboxNext').addEventListener('click', function() {
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage();
+  });
+
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + images.length) % images.length; showImage(); }
+    if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % images.length; showImage(); }
+  });
+})();
+</script>
+<script>
+(function() {
+  setInterval(function() {
+    if (!document.body.classList.contains('dark-mode')) return;
+    
+    document.querySelectorAll('div').forEach(function(el) {
+      var s = el.style;
+      if (s.position === 'fixed' && s.zIndex === '9999' && s.display === 'flex') {
+        // This is the blog popup overlay
+        var inner = el.querySelector('div');
+        if (inner && inner.style.background === 'white') {
+          inner.style.background = '#2D3748';
+          inner.style.color = '#E2E8F0';
+          inner.querySelectorAll('h1,h2,h3,h4,h5,h6,p,span,div,li,strong,em').forEach(function(txt) {
+            if (txt.style.color === '' || txt.style.color === 'black' || txt.style.color === '#333' || txt.style.color === 'rgb(45, 55, 72)') {
+              txt.style.color = '#E2E8F0';
+            }
+          });
+          inner.querySelectorAll('*').forEach(function(txt) {
+            if (txt.tagName !== 'IMG' && txt.tagName !== 'BUTTON') {
+              txt.style.color = '#E2E8F0';
+            }
+          });
+        }
+      }
+    });
+  }, 200);
+})();
+</script>
 </body>
 </html>

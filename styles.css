@@ -5192,16 +5192,6 @@ a, button, input, select, textarea,
     width: 100% !important;
   }
 
-  body {
-    overflow-x: hidden !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero h1, .hero-content h1 {
-    font-size: 1.4rem !important;
-  }
-
   .modal-container {
     width: 95% !important;
     padding: 20px !important;
@@ -5731,6 +5721,66 @@ body.dark-mode .driver-stat i {
 body.dark-mode .driver-stat span {
   color: #E2E8F0 !important;
 }
+
+body.dark-mode .blog-modal-img {
+  border-radius: 12px;
+}
+
+body.dark-mode .blog-modal-title {
+  color: #F7FAFC !important;
+}
+
+body.dark-mode .blog-modal-category {
+  background: var(--primary) !important;
+  color: white !important;
+}
+
+body.dark-mode .blog-modal-meta {
+  color: #A0AEC0 !important;
+}
+
+body.dark-mode .blog-modal-body,
+body.dark-mode .blog-modal-body p,
+body.dark-mode .blog-modal-body h3,
+body.dark-mode .blog-modal-body li {
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .blog-modal-share button {
+  background: #4A5568 !important;
+  border-color: #718096 !important;
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .blog-modal-share button:hover {
+  background: #2D3748 !important;
+  border-color: var(--primary) !important;
+  color: var(--primary) !important;
+}
+
+body.dark-mode .modal,
+body.dark-mode .modal-lg {
+  background: #2D3748 !important;
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .modal *:not(img):not(.btn-primary):not(.btn-accent):not(.blog-modal-category) {
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .modal .blog-modal-meta,
+body.dark-mode .modal .blog-modal-meta * {
+  color: #A0AEC0 !important;
+}
+
+body.dark-mode .modal .blog-modal-share {
+  border-color: #4A5568 !important;
+}
+
+body.dark-mode .modal .blog-modal-share button {
+  background: #4A5568 !important;
+  border-color: #718096 !important;
+}
 /* ========================================================
    LOADING SCREEN
 ======================================================== */
@@ -5817,4 +5867,85 @@ body.dark-mode .loading-bar-container {
 
 body.dark-mode .loading-bar {
   background: #0CBABA;
+}
+/* ========================================================
+   SCROLL ANIMATIONS — ENHANCED
+======================================================== */
+.scroll-fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.scroll-fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-fade-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.scroll-fade-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-fade-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.scroll-fade-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-zoom-in {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.scroll-zoom-in.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.scroll-fade-up.delay-1, .scroll-fade-left.delay-1, .scroll-fade-right.delay-1, .scroll-zoom-in.delay-1 { transition-delay: 0.1s; }
+.scroll-fade-up.delay-2, .scroll-fade-left.delay-2, .scroll-fade-right.delay-2, .scroll-zoom-in.delay-2 { transition-delay: 0.2s; }
+.scroll-fade-up.delay-3, .scroll-fade-left.delay-3, .scroll-fade-right.delay-3, .scroll-zoom-in.delay-3 { transition-delay: 0.3s; }
+.scroll-fade-up.delay-4, .scroll-fade-left.delay-4, .scroll-fade-right.delay-4, .scroll-zoom-in.delay-4 { transition-delay: 0.4s; }
+.scroll-fade-up.delay-5, .scroll-fade-left.delay-5, .scroll-fade-right.delay-5, .scroll-zoom-in.delay-5 { transition-delay: 0.5s; }
+
+/* ========================================================
+   IMAGE LIGHTBOX
+======================================================== */
+.lightbox-overlay {
+  position: fixed; inset: 0; z-index: 99998;
+  background: rgba(0,0,0,0.92); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.lightbox-overlay.active { opacity: 1; visibility: visible; pointer-events: all; }
+.lightbox-content { text-align: center; max-width: 90vw; max-height: 85vh; position: relative; }
+.lightbox-content img { max-width: 90vw; max-height: 80vh; object-fit: contain; border-radius: 8px; box-shadow: 0 8px 40px rgba(0,0,0,0.5); transform: scale(0.95); transition: transform 0.3s ease; }
+.lightbox-overlay.active .lightbox-content img { transform: scale(1); }
+.lightbox-close { position: absolute; top: 20px; right: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.15); color: white; border: none; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.2s; z-index: 10; }
+.lightbox-close:hover { background: rgba(255,255,255,0.3); transform: scale(1.1); }
+.lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.15); color: white; border: none; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.2s; z-index: 10; }
+.lightbox-nav:hover { background: rgba(255,255,255,0.3); transform: translateY(-50%) scale(1.1); }
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+.lightbox-caption { color: rgba(255,255,255,0.85); font-size: 0.95rem; font-weight: 500; margin-top: 14px; text-align: center !important; }
+.lightbox-counter { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 6px; text-align: center !important; }
+@media (max-width: 768px) {
+  .lightbox-nav { width: 40px; height: 40px; font-size: 0.85rem; }
+  .lightbox-prev { left: 10px; }
+  .lightbox-next { right: 10px; }
+  .lightbox-close { top: 12px; right: 12px; }
 }
