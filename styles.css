@@ -6854,3 +6854,312 @@ body.dark-mode .converter-swap {
     font-size: 1.6rem;
   }
 }
+
+/* ========================================================
+   EMERGENCY SOS
+======================================================== */
+.sos-hero {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.sos-button {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: none;
+  background: #EF4444;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 30px rgba(239,68,68,0.4);
+}
+
+.sos-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 40px rgba(239,68,68,0.5);
+}
+
+.sos-button:active {
+  transform: scale(0.95);
+}
+
+.sos-pulse {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 3px solid rgba(239,68,68,0.4);
+  animation: sosPulse 2s ease-out infinite;
+}
+
+@keyframes sosPulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.sos-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: white;
+}
+
+.sos-inner i {
+  font-size: 1.8rem;
+}
+
+.sos-inner span {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+}
+
+.sos-label {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0;
+  text-align: center;
+}
+
+.sos-sublabel {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 4px 0 0;
+  text-align: center;
+}
+
+.emergency-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.emergency-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.emergency-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.emergency-card.hotline {
+  border-color: #EF4444;
+  border-width: 2px;
+}
+
+.emergency-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #EF4444, #DC2626);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 12px rgba(239,68,68,0.3);
+}
+
+.emergency-icon.tourist {
+  background: linear-gradient(135deg, var(--primary), #0EA5E9);
+  box-shadow: 0 4px 12px rgba(30,111,217,0.3);
+}
+
+.emergency-icon.vimel {
+  background: linear-gradient(135deg, var(--accent), #059669);
+  box-shadow: 0 4px 12px rgba(12,186,186,0.3);
+}
+
+.emergency-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.emergency-numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.emergency-num {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.emergency-num:last-child {
+  border-bottom: none;
+}
+
+.emergency-num span {
+  font-size: 0.85rem;
+  color: var(--text-mid);
+}
+
+.emergency-num a {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.emergency-num a:hover {
+  color: var(--accent);
+}
+
+/* Safety Tips */
+.safety-tips {
+  background: var(--bg-light);
+  border-radius: 16px;
+  padding: 32px;
+  border: 1px solid var(--border);
+}
+
+.safety-tips-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.safety-tips-title i {
+  color: var(--primary);
+}
+
+.safety-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.safety-tip {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.safety-emoji {
+  font-size: 1.8rem;
+}
+
+.safety-tip h4 {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.safety-tip p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+  text-align: left;
+}
+
+/* Dark mode */
+body.dark-mode .emergency-card {
+  background: #2D3748;
+  border-color: #4A5568;
+}
+
+body.dark-mode .emergency-card.hotline {
+  border-color: #EF4444;
+}
+
+body.dark-mode .emergency-card h3 {
+  color: #F7FAFC;
+}
+
+body.dark-mode .emergency-num {
+  border-color: #4A5568;
+}
+
+body.dark-mode .emergency-num span {
+  color: #A0AEC0;
+}
+
+body.dark-mode .safety-tips {
+  background: #2D3748;
+  border-color: #4A5568;
+}
+
+body.dark-mode .safety-tips-title {
+  color: #F7FAFC;
+}
+
+body.dark-mode .safety-tip h4 {
+  color: #E2E8F0;
+}
+
+body.dark-mode .safety-tip p {
+  color: #718096;
+}
+
+body.dark-mode .sos-label {
+  color: #F7FAFC;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .emergency-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .safety-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .safety-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .safety-tips {
+    padding: 22px;
+  }
+
+  .sos-button {
+    width: 100px;
+    height: 100px;
+  }
+
+  .sos-inner i {
+    font-size: 1.4rem;
+  }
+
+  .sos-inner span {
+    font-size: 1rem;
+  }
+}

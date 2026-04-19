@@ -516,6 +516,106 @@
   </div>
 </section>
 
+<!-- Emergency SOS Section -->
+<section id="emergency" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">SAFETY FIRST</span>
+      <h2 class="section-title">Emergency & Safety</h2>
+      <p class="section-desc">Your safety is our top priority. Save these emergency contacts before your trip!</p>
+    </div>
+    <div class="sos-hero">
+      <button class="sos-button" id="sosButton">
+        <div class="sos-pulse"></div>
+        <div class="sos-inner">
+          <i class="fas fa-phone-alt"></i>
+          <span>SOS</span>
+        </div>
+      </button>
+      <p class="sos-label">Tap for Emergency Assistance</p>
+      <p class="sos-sublabel">Available 24/7 — Response within 5 minutes</p>
+    </div>
+    <div class="emergency-grid">
+      <div class="emergency-card hotline">
+        <div class="emergency-icon"><i class="fas fa-phone-alt"></i></div>
+        <h3>Worldwide Emergency</h3>
+        <div class="emergency-numbers">
+          <div class="emergency-num"><span>🌍 International Emergency</span><a href="tel:112">112</a></div>
+          <div class="emergency-num"><span>🇺🇸 USA / Canada</span><a href="tel:911">911</a></div>
+          <div class="emergency-num"><span>🇬🇧 United Kingdom</span><a href="tel:999">999</a></div>
+          <div class="emergency-num"><span>🇯🇵 Japan</span><a href="tel:110">110 / 119</a></div>
+          <div class="emergency-num"><span>🇰🇷 South Korea</span><a href="tel:112">112 / 119</a></div>
+          <div class="emergency-num"><span>🇦🇺 Australia</span><a href="tel:000">000</a></div>
+          <div class="emergency-num"><span>🇵🇭 Philippines</span><a href="tel:911">911</a></div>
+          <div class="emergency-num"><span>🇹🇭 Thailand</span><a href="tel:1669">1669</a></div>
+          <div class="emergency-num"><span>🇸🇬 Singapore</span><a href="tel:995">995</a></div>
+          <div class="emergency-num"><span>🇲🇾 Malaysia</span><a href="tel:999">999</a></div>
+          <div class="emergency-num"><span>🇮🇩 Indonesia</span><a href="tel:112">112</a></div>
+          <div class="emergency-num"><span>🇻🇳 Vietnam</span><a href="tel:115">115</a></div>
+        </div>
+      </div>
+      <div class="emergency-card">
+        <div class="emergency-icon tourist"><i class="fas fa-user-shield"></i></div>
+        <h3>Travel Assistance</h3>
+        <div class="emergency-numbers">
+          <div class="emergency-num"><span>🏛️ Embassy Locator</span><a href="https://embassy-finder.com" target="_blank">Find Embassy</a></div>
+          <div class="emergency-num"><span>🩺 Medical Assistance</span><a href="tel:112">Local Hospital</a></div>
+          <div class="emergency-num"><span>💳 Lost Card (Visa)</span><a href="tel:+18003847986">+1-800-384-7986</a></div>
+          <div class="emergency-num"><span>💳 Lost Card (Mastercard)</span><a href="tel:+16367227111">+1-636-722-7111</a></div>
+          <div class="emergency-num"><span>✈️ Flight Disruption</span><a href="#">Contact Airline</a></div>
+          <div class="emergency-num"><span>📄 Lost Passport</span><a href="#">Nearest Embassy</a></div>
+        </div>
+      </div>
+      <div class="emergency-card">
+        <div class="emergency-icon vimel"><i class="fas fa-headset"></i></div>
+        <h3>Vimel Support</h3>
+        <div class="emergency-numbers">
+          <div class="emergency-num"><span>📱 Vimel Hotline</span><a href="tel:+639171234567">0917-123-4567</a></div>
+          <div class="emergency-num"><span>📧 Email Support</span><a href="mailto:sos@vimeltravels.com">sos@vimeltravels.com</a></div>
+          <div class="emergency-num"><span>💬 Live Chat</span><a href="#" onclick="document.querySelector('.chat-fab')?.click()">Open Chat</a></div>
+          <div class="emergency-num"><span>📍 GPS Tracker</span><a href="#">Share Location</a></div>
+          <div class="emergency-num"><span>🛡️ Trip Insurance</span><a href="#">File Claim</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="safety-tips">
+      <h3 class="safety-tips-title"><i class="fas fa-shield-alt"></i> Travel Safety Tips</h3>
+      <div class="safety-grid">
+        <div class="safety-tip">
+          <span class="safety-emoji">📱</span>
+          <h4>Save Emergency Numbers</h4>
+          <p>Download local emergency numbers offline before your trip. Keep a physical copy too.</p>
+        </div>
+        <div class="safety-tip">
+          <span class="safety-emoji">📋</span>
+          <h4>Share Your Itinerary</h4>
+          <p>Always share your travel plans with family or friends back home.</p>
+        </div>
+        <div class="safety-tip">
+          <span class="safety-emoji">💊</span>
+          <h4>Pack a First Aid Kit</h4>
+          <p>Bring basic meds, band-aids, sunscreen, and insect repellent.</p>
+        </div>
+        <div class="safety-tip">
+          <span class="safety-emoji">💰</span>
+          <h4>Secure Valuables</h4>
+          <p>Use hotel safes. Don't flash expensive items in crowded areas.</p>
+        </div>
+        <div class="safety-tip">
+          <span class="safety-emoji">🌊</span>
+          <h4>Check Weather Alerts</h4>
+          <p>Always check local weather alerts and advisories before traveling to any destination.</p>
+        </div>
+        <div class="safety-tip">
+          <span class="safety-emoji">🛡️</span>
+          <h4>Get Travel Insurance</h4>
+          <p>Covers medical emergencies, trip cancellations, and lost baggage worldwide.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section section-alt" id="contact">
 <div class="container">
 <div class="section-header">
@@ -1833,6 +1933,17 @@ var vimelBot = {
   });
 
   convert();
+})();
+</script>
+<script>
+(function() {
+  var sosBtn = document.getElementById('sosButton');
+  if (!sosBtn) return;
+  sosBtn.addEventListener('click', function() {
+    if (confirm('🆘 EMERGENCY SOS\n\nThis will connect you to Vimel Emergency Support.\n\nCall Vimel Hotline: 0917-123-4567?\n\nFor life-threatening emergencies, call 911 directly.')) {
+      window.location.href = 'tel:+639171234567';
+    }
+  });
 })();
 </script>
 </body>
