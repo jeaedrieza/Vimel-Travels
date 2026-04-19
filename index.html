@@ -260,6 +260,124 @@
 </div>
 </section>
 
+<!-- Pricing Packages -->
+<section id="packages" class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">PACKAGES</span>
+      <h2 class="section-title">Choose Your Travel Experience</h2>
+      <p class="section-desc">From budget-friendly getaways to luxury escapes — we've got the perfect package for every traveler.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-header economy">
+          <span class="pricing-emoji">🎒</span>
+          <h3 class="pricing-tier">Economy</h3>
+          <p class="pricing-subtitle">Perfect for backpackers</p>
+        </div>
+        <div class="pricing-price">
+          <span class="pricing-currency">₱</span>
+          <span class="pricing-amount">2,999</span>
+          <span class="pricing-period">/person</span>
+        </div>
+        <ul class="pricing-features">
+          <li class="included"><i class="fas fa-check"></i> Budget hotel or hostel</li>
+          <li class="included"><i class="fas fa-check"></i> Shared van transfer</li>
+          <li class="included"><i class="fas fa-check"></i> Group island hopping</li>
+          <li class="included"><i class="fas fa-check"></i> Basic travel guide</li>
+          <li class="included"><i class="fas fa-check"></i> 24/7 chat support</li>
+          <li class="excluded"><i class="fas fa-times"></i> Travel insurance</li>
+          <li class="excluded"><i class="fas fa-times"></i> Airport lounge access</li>
+          <li class="excluded"><i class="fas fa-times"></i> Private tour guide</li>
+          <li class="excluded"><i class="fas fa-times"></i> Free cancellation</li>
+        </ul>
+        <button class="btn btn-ghost btn-block pricing-btn" onclick="showToast('Economy package selected! Redirecting to booking...', 'info')">Choose Economy</button>
+      </div>
+      <div class="pricing-card recommended">
+        <div class="pricing-badge">⭐ MOST POPULAR</div>
+        <div class="pricing-header business">
+          <span class="pricing-emoji">✈️</span>
+          <h3 class="pricing-tier">Business</h3>
+          <p class="pricing-subtitle">Best value for travelers</p>
+        </div>
+        <div class="pricing-price">
+          <span class="pricing-currency">₱</span>
+          <span class="pricing-amount">6,499</span>
+          <span class="pricing-period">/person</span>
+        </div>
+        <ul class="pricing-features">
+          <li class="included"><i class="fas fa-check"></i> 4-star hotel stay</li>
+          <li class="included"><i class="fas fa-check"></i> Private car transfer</li>
+          <li class="included"><i class="fas fa-check"></i> Private island hopping</li>
+          <li class="included"><i class="fas fa-check"></i> Professional tour guide</li>
+          <li class="included"><i class="fas fa-check"></i> Priority phone support</li>
+          <li class="included"><i class="fas fa-check"></i> Basic travel insurance</li>
+          <li class="included"><i class="fas fa-check"></i> Airport lounge access</li>
+          <li class="excluded"><i class="fas fa-times"></i> Private tour guide</li>
+          <li class="excluded"><i class="fas fa-times"></i> Free cancellation</li>
+        </ul>
+        <button class="btn btn-primary btn-block pricing-btn" onclick="showToast('Business package selected! Redirecting to booking...', 'success')">Choose Business</button>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-header vip">
+          <span class="pricing-emoji">👑</span>
+          <h3 class="pricing-tier">VIP</h3>
+          <p class="pricing-subtitle">Ultimate luxury experience</p>
+        </div>
+        <div class="pricing-price">
+          <span class="pricing-currency">₱</span>
+          <span class="pricing-amount">12,999</span>
+          <span class="pricing-period">/person</span>
+        </div>
+        <ul class="pricing-features">
+          <li class="included"><i class="fas fa-check"></i> 5-star luxury resort</li>
+          <li class="included"><i class="fas fa-check"></i> Luxury SUV + chauffeur</li>
+          <li class="included"><i class="fas fa-check"></i> Exclusive private tours</li>
+          <li class="included"><i class="fas fa-check"></i> Dedicated concierge</li>
+          <li class="included"><i class="fas fa-check"></i> 24/7 VIP hotline</li>
+          <li class="included"><i class="fas fa-check"></i> Full travel insurance</li>
+          <li class="included"><i class="fas fa-check"></i> VIP airport lounge</li>
+          <li class="included"><i class="fas fa-check"></i> Private tour guide</li>
+          <li class="included"><i class="fas fa-check"></i> Free cancellation anytime</li>
+        </ul>
+        <button class="btn btn-accent btn-block pricing-btn" onclick="showToast('VIP package selected! Our concierge will contact you shortly.', 'success')">Choose VIP</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Currency Converter -->
+<section id="currency" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">CONVERTER</span>
+      <h2 class="section-title">Currency Converter</h2>
+      <p class="section-desc">Convert Philippine Peso to any currency worldwide. Plan your travel budget with ease!</p>
+    </div>
+    <div class="converter-card">
+      <div class="converter-row">
+        <div class="converter-group">
+          <label>Amount</label>
+          <input type="number" id="converterAmount" class="converter-input" value="1000" min="0">
+        </div>
+        <div class="converter-group">
+          <label>From</label>
+          <select id="converterFrom" class="converter-select"></select>
+        </div>
+        <button class="converter-swap" id="converterSwap" title="Swap"><i class="fas fa-exchange-alt"></i></button>
+        <div class="converter-group">
+          <label>To</label>
+          <select id="converterTo" class="converter-select"></select>
+        </div>
+      </div>
+      <div class="converter-result" id="converterResult">
+        <span class="converter-result-amount" id="resultAmount">---</span>
+        <span class="converter-result-rate" id="resultRate"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Weather Widget -->
 <section id="weather" class="section section-alt">
   <div class="container">
@@ -1604,6 +1722,117 @@ var vimelBot = {
       '</div>';
     grid.appendChild(card);
   });
+})();
+</script>
+<script>
+(function() {
+  var currencies = [
+    {code:'PHP',name:'Philippine Peso',flag:'🇵🇭',rate:1},
+    {code:'USD',name:'US Dollar',flag:'🇺🇸',rate:0.0177},
+    {code:'EUR',name:'Euro',flag:'🇪🇺',rate:0.0163},
+    {code:'GBP',name:'British Pound',flag:'🇬🇧',rate:0.0140},
+    {code:'JPY',name:'Japanese Yen',flag:'🇯🇵',rate:2.6500},
+    {code:'KRW',name:'South Korean Won',flag:'🇰🇷',rate:24.50},
+    {code:'CNY',name:'Chinese Yuan',flag:'🇨🇳',rate:0.1280},
+    {code:'SGD',name:'Singapore Dollar',flag:'🇸🇬',rate:0.0235},
+    {code:'MYR',name:'Malaysian Ringgit',flag:'🇲🇾',rate:0.0780},
+    {code:'THB',name:'Thai Baht',flag:'🇹🇭',rate:0.6050},
+    {code:'IDR',name:'Indonesian Rupiah',flag:'🇮🇩',rate:281.00},
+    {code:'VND',name:'Vietnamese Dong',flag:'🇻🇳',rate:445.00},
+    {code:'INR',name:'Indian Rupee',flag:'🇮🇳',rate:1.4900},
+    {code:'AUD',name:'Australian Dollar',flag:'🇦🇺',rate:0.0270},
+    {code:'NZD',name:'New Zealand Dollar',flag:'🇳🇿',rate:0.0297},
+    {code:'CAD',name:'Canadian Dollar',flag:'🇨🇦',rate:0.0244},
+    {code:'CHF',name:'Swiss Franc',flag:'🇨🇭',rate:0.0154},
+    {code:'HKD',name:'Hong Kong Dollar',flag:'🇭🇰',rate:0.1380},
+    {code:'TWD',name:'Taiwan Dollar',flag:'🇹🇼',rate:0.5650},
+    {code:'AED',name:'UAE Dirham',flag:'🇦🇪',rate:0.0650},
+    {code:'SAR',name:'Saudi Riyal',flag:'🇸🇦',rate:0.0664},
+    {code:'QAR',name:'Qatari Riyal',flag:'🇶🇦',rate:0.0645},
+    {code:'KWD',name:'Kuwaiti Dinar',flag:'🇰🇼',rate:0.00543},
+    {code:'BHD',name:'Bahraini Dinar',flag:'🇧🇭',rate:0.00667},
+    {code:'OMR',name:'Omani Rial',flag:'🇴🇲',rate:0.00681},
+    {code:'MXN',name:'Mexican Peso',flag:'🇲🇽',rate:0.3030},
+    {code:'BRL',name:'Brazilian Real',flag:'🇧🇷',rate:0.1010},
+    {code:'ARS',name:'Argentine Peso',flag:'🇦🇷',rate:15.80},
+    {code:'CLP',name:'Chilean Peso',flag:'🇨🇱',rate:16.90},
+    {code:'COP',name:'Colombian Peso',flag:'🇨🇴',rate:73.50},
+    {code:'PEN',name:'Peruvian Sol',flag:'🇵🇪',rate:0.0660},
+    {code:'ZAR',name:'South African Rand',flag:'🇿🇦',rate:0.3220},
+    {code:'NGN',name:'Nigerian Naira',flag:'🇳🇬',rate:26.50},
+    {code:'EGP',name:'Egyptian Pound',flag:'🇪🇬',rate:0.8700},
+    {code:'KES',name:'Kenyan Shilling',flag:'🇰🇪',rate:2.2900},
+    {code:'GHS',name:'Ghanaian Cedi',flag:'🇬🇭',rate:0.2580},
+    {code:'MAD',name:'Moroccan Dirham',flag:'🇲🇦',rate:0.1740},
+    {code:'TRY',name:'Turkish Lira',flag:'🇹🇷',rate:0.5700},
+    {code:'RUB',name:'Russian Ruble',flag:'🇷🇺',rate:1.5200},
+    {code:'UAH',name:'Ukrainian Hryvnia',flag:'🇺🇦',rate:0.7300},
+    {code:'PLN',name:'Polish Zloty',flag:'🇵🇱',rate:0.0704},
+    {code:'CZK',name:'Czech Koruna',flag:'🇨🇿',rate:0.4100},
+    {code:'HUF',name:'Hungarian Forint',flag:'🇭🇺',rate:6.5000},
+    {code:'SEK',name:'Swedish Krona',flag:'🇸🇪',rate:0.1830},
+    {code:'NOK',name:'Norwegian Krone',flag:'🇳🇴',rate:0.1880},
+    {code:'DKK',name:'Danish Krone',flag:'🇩🇰',rate:0.1220},
+    {code:'ISK',name:'Icelandic Krona',flag:'🇮🇸',rate:2.4200},
+    {code:'RON',name:'Romanian Leu',flag:'🇷🇴',rate:0.0815},
+    {code:'BGN',name:'Bulgarian Lev',flag:'🇧🇬',rate:0.0319},
+    {code:'HRK',name:'Croatian Kuna',flag:'🇭🇷',rate:0.1230},
+    {code:'PKR',name:'Pakistani Rupee',flag:'🇵🇰',rate:4.9300},
+    {code:'BDT',name:'Bangladeshi Taka',flag:'🇧🇩',rate:1.9400},
+    {code:'LKR',name:'Sri Lankan Rupee',flag:'🇱🇰',rate:5.2800},
+    {code:'NPR',name:'Nepalese Rupee',flag:'🇳🇵',rate:2.3700},
+    {code:'MMK',name:'Myanmar Kyat',flag:'🇲🇲',rate:37.20},
+    {code:'KHR',name:'Cambodian Riel',flag:'🇰🇭',rate:71.80},
+    {code:'LAK',name:'Lao Kip',flag:'🇱🇦',rate:383.00},
+    {code:'BND',name:'Brunei Dollar',flag:'🇧🇳',rate:0.0235},
+    {code:'FJD',name:'Fijian Dollar',flag:'🇫🇯',rate:0.0398},
+    {code:'PGK',name:'Papua New Guinean Kina',flag:'🇵🇬',rate:0.0695}
+  ];
+
+  var fromSelect = document.getElementById('converterFrom');
+  var toSelect = document.getElementById('converterTo');
+  var amountInput = document.getElementById('converterAmount');
+  var swapBtn = document.getElementById('converterSwap');
+  var resultAmount = document.getElementById('resultAmount');
+  var resultRate = document.getElementById('resultRate');
+
+  if (!fromSelect) return;
+
+  currencies.forEach(function(c) {
+    var opt1 = new Option(c.flag + ' ' + c.code + ' — ' + c.name, c.code);
+    var opt2 = new Option(c.flag + ' ' + c.code + ' — ' + c.name, c.code);
+    fromSelect.appendChild(opt1);
+    toSelect.appendChild(opt2);
+  });
+
+  fromSelect.value = 'PHP';
+  toSelect.value = 'USD';
+
+  function convert() {
+    var amount = parseFloat(amountInput.value) || 0;
+    var from = currencies.find(function(c) { return c.code === fromSelect.value; });
+    var to = currencies.find(function(c) { return c.code === toSelect.value; });
+    if (!from || !to) return;
+
+    var inPHP = amount / from.rate;
+    var result = inPHP * to.rate;
+    var rate = to.rate / from.rate;
+
+    resultAmount.textContent = to.flag + ' ' + result.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' ' + to.code;
+    resultRate.textContent = '1 ' + from.code + ' = ' + rate.toFixed(6) + ' ' + to.code;
+  }
+
+  amountInput.addEventListener('input', convert);
+  fromSelect.addEventListener('change', convert);
+  toSelect.addEventListener('change', convert);
+  swapBtn.addEventListener('click', function() {
+    var temp = fromSelect.value;
+    fromSelect.value = toSelect.value;
+    toSelect.value = temp;
+    convert();
+  });
+
+  convert();
 })();
 </script>
 </body>
