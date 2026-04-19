@@ -73,6 +73,43 @@
     <button class="profile-logout-btn" onclick="handleLogout()"><span class="profile-dd-icon">🚪</span> Logout</button>
   </div>
 </div>
+
+<div class="nav-lang" id="navLang">
+  <button class="lang-btn" id="langBtn">
+    <span class="lang-flag" id="langFlag">🇺🇸</span>
+    <span class="lang-code" id="langCode">EN</span>
+    <i class="fas fa-chevron-down lang-arrow"></i>
+  </button>
+  <div class="lang-dropdown" id="langDropdown">
+    <div class="lang-dropdown-header">Select Language</div>
+    <button class="lang-option active" data-lang="en" data-flag="🇺🇸">🇺🇸 English</button>
+    <button class="lang-option" data-lang="tl" data-flag="🇵🇭">🇵🇭 Filipino</button>
+    <button class="lang-option" data-lang="ja" data-flag="🇯🇵">🇯🇵 日本語</button>
+    <button class="lang-option" data-lang="ko" data-flag="🇰🇷">🇰🇷 한국어</button>
+    <button class="lang-option" data-lang="zh-CN" data-flag="🇨🇳">🇨🇳 中文</button>
+    <button class="lang-option" data-lang="es" data-flag="🇪🇸">🇪🇸 Español</button>
+    <button class="lang-option" data-lang="fr" data-flag="🇫🇷">🇫🇷 Français</button>
+    <button class="lang-option" data-lang="ar" data-flag="🇸🇦">🇸🇦 العربية</button>
+    <button class="lang-option" data-lang="hi" data-flag="🇮🇳">🇮🇳 हिन्दी</button>
+    <button class="lang-option" data-lang="th" data-flag="🇹🇭">🇹🇭 ไทย</button>
+    <button class="lang-option" data-lang="pt" data-flag="🇧🇷">🇧🇷 Português</button>
+    <button class="lang-option" data-lang="ru" data-flag="🇷🇺">🇷🇺 Русский</button>
+    <button class="lang-option" data-lang="de" data-flag="🇩🇪">🇩🇪 Deutsch</button>
+    <button class="lang-option" data-lang="it" data-flag="🇮🇹">🇮🇹 Italiano</button>
+    <button class="lang-option" data-lang="vi" data-flag="🇻🇳">🇻🇳 Tiếng Việt</button>
+    <button class="lang-option" data-lang="ms" data-flag="🇲🇾">🇲🇾 Bahasa Melayu</button>
+    <button class="lang-option" data-lang="id" data-flag="🇮🇩">🇮🇩 Bahasa Indonesia</button>
+    <button class="lang-option" data-lang="tr" data-flag="🇹🇷">🇹🇷 Türkçe</button>
+    <button class="lang-option" data-lang="nl" data-flag="🇳🇱">🇳🇱 Nederlands</button>
+    <button class="lang-option" data-lang="sv" data-flag="🇸🇪">🇸🇪 Svenska</button>
+    <div class="lang-divider"></div>
+    <div class="lang-more-wrap">
+      <div id="google_translate_element"></div>
+      <p class="lang-more-text">130+ more languages</p>
+    </div>
+  </div>
+</div>
+
 <div class="nav-notif" id="navNotif">
   <button class="notif-bell" id="notifBell">
     <i class="fas fa-bell"></i>
@@ -715,6 +752,54 @@
   </div>
 </section>
 
+<!-- Itinerary Generator -->
+<section id="itinerary" class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">PLANNER</span>
+      <h2 class="section-title">Build Your Itinerary</h2>
+      <p class="section-desc">Plan your perfect trip and print a beautiful travel itinerary!</p>
+    </div>
+    <div class="itinerary-builder" id="itineraryBuilder">
+      <div class="itinerary-form">
+        <div class="itinerary-form-row">
+          <div class="itinerary-field">
+            <label><i class="fas fa-user"></i> Traveler Name</label>
+            <input type="text" id="itiName" placeholder="Juan Dela Cruz">
+          </div>
+          <div class="itinerary-field">
+            <label><i class="fas fa-map-marker-alt"></i> Destination</label>
+            <input type="text" id="itiDest" placeholder="Palawan, Philippines">
+          </div>
+        </div>
+        <div class="itinerary-form-row">
+          <div class="itinerary-field">
+            <label><i class="fas fa-calendar"></i> Start Date</label>
+            <input type="date" id="itiStart">
+          </div>
+          <div class="itinerary-field">
+            <label><i class="fas fa-calendar-check"></i> End Date</label>
+            <input type="date" id="itiEnd">
+          </div>
+        </div>
+        <div class="itinerary-days" id="itiDays"></div>
+        <button class="btn btn-accent btn-block" id="itiAddDay"><i class="fas fa-plus"></i> Add Day Activity</button>
+        <div class="itinerary-actions">
+          <button class="btn btn-primary" id="itiPreview"><i class="fas fa-eye"></i> Preview</button>
+          <button class="btn btn-ghost" id="itiPrint"><i class="fas fa-print"></i> Print Itinerary</button>
+        </div>
+      </div>
+    </div>
+    <div class="itinerary-preview-wrap" id="itiPreviewWrap" style="display:none;">
+      <div class="itinerary-preview" id="itiPreviewContent"></div>
+      <div class="itinerary-preview-actions">
+        <button class="btn btn-primary" id="itiPrint2"><i class="fas fa-print"></i> Print</button>
+        <button class="btn btn-ghost" id="itiEdit"><i class="fas fa-edit"></i> Edit</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section section-alt" id="contact">
 <div class="container">
 <div class="section-header">
@@ -846,7 +931,7 @@
 <select id="translateTo"><option value="tl">Filipino</option><option value="en">English</option><option value="es">Spanish</option><option value="fr">French</option><option value="ja">Japanese</option><option value="ko">Korean</option><option value="zh">Chinese</option></select>
 </div>
 <div class="chat-messages" id="chatMessages"><div class="chat-msg bot"><div class="msg-bubble"><p>Welcome to Vimel Travels! 🌊 How can I help you today?</p><span class="msg-time">Just now</span></div></div></div>
-<form class="chat-input-form" id="chatForm"><input type="text" id="chatInput" placeholder="Type a message..." autocomplete="off"><button type="submit" class="chat-send"><i class="fas fa-paper-plane"></i></button></form>
+<form class="chat-input-form" id="chatForm"><input type="text" id="chatInput" placeholder="Type a message..." autocomplete="off"><button type="button" class="chat-human-btn" id="chatHumanBtn" title="Talk to human agent"><i class="fas fa-user-headset"></i></button><button type="submit" class="chat-send"><i class="fas fa-paper-plane"></i></button></form>
 </div>
 </div>
 
@@ -1624,7 +1709,9 @@ var keywordReplies = {
 
 var vimelBot = {
   getReply: function(msg, callback) {
-    var systemPrompt = "You are Vimel, a friendly AI travel assistant for Vimel Travels, a Philippine travel website. Help with destinations, bookings, hotels, transport, prices. Keep replies short, 2-4 sentences max. Use emojis. Reply in the same language the user uses.";
+  var userLang = localStorage.getItem('vimelLang') || 'en';
+  var langNames = {en:'English',tl:'Filipino/Tagalog','zh-CN':'Chinese',ja:'Japanese',ko:'Korean',es:'Spanish',fr:'French',ar:'Arabic',hi:'Hindi',th:'Thai',pt:'Portuguese',ru:'Russian',de:'German',it:'Italian',vi:'Vietnamese',ms:'Malay',id:'Indonesian',tr:'Turkish',nl:'Dutch',sv:'Swedish'};
+  var systemPrompt = "You are Vimel, a friendly AI travel assistant for Vimel Travels. CRITICAL RULE: You MUST detect the language of the user's message and reply in THAT SAME LANGUAGE. If user writes in Korean, reply in Korean. If Tagalog, reply in Tagalog. If Japanese, reply in Japanese. If the site language is set to " + (langNames[userLang] || 'English') + ", prefer that language. Keep replies short, 2-4 sentences max. Use emojis. Help with destinations, bookings, hotels, transport, prices.";
 
     fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_KEY, {
       method: 'POST',
@@ -2316,6 +2403,311 @@ var vimelBot = {
   }
 
   renderQuestion();
+})();
+</script>
+<script>
+(function() {
+  var daysEl = document.getElementById('itiDays');
+  var addBtn = document.getElementById('itiAddDay');
+  var previewBtn = document.getElementById('itiPreview');
+  var printBtn = document.getElementById('itiPrint');
+  var printBtn2 = document.getElementById('itiPrint2');
+  var editBtn = document.getElementById('itiEdit');
+  var previewWrap = document.getElementById('itiPreviewWrap');
+  var previewContent = document.getElementById('itiPreviewContent');
+  var builder = document.getElementById('itineraryBuilder');
+  if (!daysEl) return;
+
+  var dayCount = 0;
+
+  function addDay() {
+    dayCount++;
+    var card = document.createElement('div');
+    card.className = 'iti-day-card';
+    card.setAttribute('data-day', dayCount);
+    card.innerHTML =
+      '<div class="iti-day-header">' +
+        '<span class="iti-day-label"><i class="fas fa-calendar-day"></i> Day ' + dayCount + '</span>' +
+        '<button class="iti-day-remove" title="Remove"><i class="fas fa-times"></i></button>' +
+      '</div>' +
+      '<div class="iti-day-fields">' +
+        '<input type="text" class="iti-activity" placeholder="Activity (e.g. Island Hopping Tour)">' +
+        '<input type="text" class="iti-time" placeholder="Time (e.g. 8:00 AM - 4:00 PM)">' +
+        '<textarea class="iti-notes" placeholder="Notes, hotel, transport details..." rows="2"></textarea>' +
+      '</div>';
+    card.querySelector('.iti-day-remove').addEventListener('click', function() {
+      card.remove();
+      renumberDays();
+    });
+    daysEl.appendChild(card);
+  }
+
+  function renumberDays() {
+    var cards = daysEl.querySelectorAll('.iti-day-card');
+    dayCount = cards.length;
+    cards.forEach(function(c, i) {
+      c.querySelector('.iti-day-label').innerHTML = '<i class="fas fa-calendar-day"></i> Day ' + (i + 1);
+    });
+  }
+
+  function generatePreview() {
+    var name = document.getElementById('itiName').value || 'Traveler';
+    var dest = document.getElementById('itiDest').value || 'Dream Destination';
+    var start = document.getElementById('itiStart').value;
+    var end = document.getElementById('itiEnd').value;
+    var startStr = start ? new Date(start).toLocaleDateString('en-US', {month:'long',day:'numeric',year:'numeric'}) : 'TBD';
+    var endStr = end ? new Date(end).toLocaleDateString('en-US', {month:'long',day:'numeric',year:'numeric'}) : 'TBD';
+
+    var html = '<div class="iti-print-header">';
+    html += '<div class="iti-print-logo">✈ VIMEL TRAVELS</div>';
+    html += '<div class="iti-print-dest">' + dest + '</div>';
+    html += '<div class="iti-print-dates">' + startStr + ' — ' + endStr + '</div>';
+    html += '<div class="iti-print-traveler">Prepared for: ' + name + '</div>';
+    html += '</div><div class="iti-print-body">';
+
+    var cards = daysEl.querySelectorAll('.iti-day-card');
+    if (cards.length === 0) {
+      html += '<p style="text-align:center;color:#718096;padding:20px;">No activities added yet.</p>';
+    }
+    cards.forEach(function(card, i) {
+      var activity = card.querySelector('.iti-activity').value || 'Free time';
+      var time = card.querySelector('.iti-time').value || '';
+      var notes = card.querySelector('.iti-notes').value || '';
+      html += '<div class="iti-print-day">';
+      html += '<div class="iti-print-day-title"><span>' + (i + 1) + '</span> Day ' + (i + 1) + (time ? ' · ' + time : '') + '</div>';
+      html += '<div class="iti-print-activity">' + activity + '</div>';
+      if (notes) html += '<div class="iti-print-notes">' + notes.replace(/\n/g, '<br>') + '</div>';
+      html += '</div>';
+    });
+
+    html += '</div><div class="iti-print-footer">Generated by Vimel Travels · vimeltravels.com · Safe travels! ✈️</div>';
+
+    previewContent.innerHTML = html;
+    previewWrap.style.display = 'block';
+    builder.style.display = 'none';
+    previewWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function doPrint() {
+    generatePreview();
+    setTimeout(function() { window.print(); }, 300);
+  }
+
+  addBtn.addEventListener('click', addDay);
+  previewBtn.addEventListener('click', generatePreview);
+  printBtn.addEventListener('click', doPrint);
+  printBtn2.addEventListener('click', function() { window.print(); });
+  editBtn.addEventListener('click', function() {
+    previewWrap.style.display = 'none';
+    builder.style.display = 'block';
+  });
+
+  addDay();
+  addDay();
+  addDay();
+})();
+</script>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: '',
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: '',
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+(function() {
+  var langBtn = document.getElementById('langBtn');
+  var navLang = document.getElementById('navLang');
+  var dropdown = document.getElementById('langDropdown');
+  if (!langBtn) return;
+
+  langBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    navLang.classList.toggle('open');
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav-lang')) navLang.classList.remove('open');
+  });
+
+  function setGoogleTranslate(lang) {
+    var select = document.querySelector('.goog-te-combo');
+    if (select) {
+      select.value = lang;
+      select.dispatchEvent(new Event('change'));
+    } else {
+      setTimeout(function() { setGoogleTranslate(lang); }, 500);
+    }
+  }
+
+  dropdown.querySelectorAll('.lang-option').forEach(function(opt) {
+    opt.addEventListener('click', function() {
+      var lang = this.getAttribute('data-lang');
+      var flag = this.getAttribute('data-flag');
+
+      document.getElementById('langFlag').textContent = flag;
+      document.getElementById('langCode').textContent = lang.toUpperCase().split('-')[0];
+      dropdown.querySelectorAll('.lang-option').forEach(function(o) { o.classList.remove('active'); });
+      this.classList.add('active');
+      navLang.classList.remove('open');
+
+      localStorage.setItem('vimelLang', lang);
+      localStorage.setItem('vimelFlag', flag);
+
+      if (lang === 'en') {
+        // Reset to English
+        var frame = document.querySelector('.goog-te-banner-frame');
+        if (frame) {
+          var btn = frame.contentDocument.querySelector('.goog-close-link');
+          if (btn) btn.click();
+        }
+        // Fallback: reload
+        var cookieVal = document.cookie.match(/googtrans=([^;]+)/);
+        if (cookieVal) {
+          document.cookie = 'googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+          document.cookie = 'googtrans=; path=/; domain=' + location.hostname + '; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+          location.reload();
+        }
+      } else {
+        setGoogleTranslate(lang);
+      }
+    });
+  });
+
+  // Restore saved language on load
+  var savedLang = localStorage.getItem('vimelLang');
+  var savedFlag = localStorage.getItem('vimelFlag');
+  if (savedLang && savedLang !== 'en') {
+    document.getElementById('langFlag').textContent = savedFlag || '🌐';
+    document.getElementById('langCode').textContent = savedLang.toUpperCase().split('-')[0];
+    var opt = dropdown.querySelector('[data-lang="' + savedLang + '"]');
+    if (opt) {
+      dropdown.querySelectorAll('.lang-option').forEach(function(o) { o.classList.remove('active'); });
+      opt.classList.add('active');
+    }
+    setTimeout(function() { setGoogleTranslate(savedLang); }, 1000);
+  }
+})();
+</script>
+<script>
+(function() {
+  var humanBtn = document.getElementById('chatHumanBtn');
+  var chatMessages = document.getElementById('chatMessages');
+  var chatPanel = document.getElementById('chatPanel');
+  var chatForm = document.getElementById('chatForm');
+  var isHumanMode = false;
+  if (!humanBtn) return;
+
+  function addMsg(text, type) {
+    var div = document.createElement('div');
+    div.className = 'chat-msg ' + type;
+    var now = new Date();
+    var time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+    div.innerHTML = '<div class="msg-bubble"><p>' + text + '</p><span class="msg-time">' + time + '</span></div>';
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function showTyping(name) {
+    var div = document.createElement('div');
+    div.className = 'chat-msg bot';
+    div.id = 'typingIndicator';
+    div.innerHTML = '<div class="msg-bubble"><p><em>' + name + ' is typing...</em></p></div>';
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function removeTyping() {
+    var t = document.getElementById('typingIndicator');
+    if (t) t.remove();
+  }
+
+  humanBtn.addEventListener('click', function() {
+    if (isHumanMode) return;
+
+    addMsg('I\'d like to talk to a human agent please. 👤', 'user');
+
+    showTyping('Vimel Bot');
+    setTimeout(function() {
+      removeTyping();
+      addMsg('Sure! Let me connect you with a live agent. 🙌<br><br>Please provide your details so our agent can assist you better:', 'bot');
+
+      var existingForm = document.getElementById('handoffForm');
+      if (existingForm) existingForm.remove();
+
+      var form = document.createElement('div');
+      form.className = 'chat-handoff-form';
+      form.id = 'handoffForm';
+      form.innerHTML =
+        '<input type="text" id="handoffName" placeholder="Your name">' +
+        '<input type="email" id="handoffEmail" placeholder="Your email">' +
+        '<input type="text" id="handoffIssue" placeholder="Brief description of your concern">' +
+        '<button id="handoffSubmit"><i class="fas fa-paper-plane"></i> Connect to Agent</button>';
+
+      chatForm.parentNode.insertBefore(form, chatForm);
+      chatForm.style.display = 'none';
+
+      document.getElementById('handoffSubmit').addEventListener('click', function() {
+        var name = document.getElementById('handoffName').value.trim() || 'Guest';
+        var email = document.getElementById('handoffEmail').value.trim();
+        var issue = document.getElementById('handoffIssue').value.trim() || 'General inquiry';
+
+        if (!email) {
+          showToast('Please enter your email.', 'error');
+          return;
+        }
+
+        form.remove();
+        chatForm.style.display = 'flex';
+        isHumanMode = true;
+
+        var banner = document.createElement('div');
+        banner.className = 'chat-agent-banner';
+        banner.innerHTML = '<span class="agent-dot"></span> Live Agent Mode — Connecting...';
+        var chatHeader = chatPanel.querySelector('.chat-header');
+        chatHeader.parentNode.insertBefore(banner, chatHeader.nextSibling);
+
+        addMsg('✅ Details submitted!<br>Name: ' + name + '<br>Email: ' + email + '<br>Concern: ' + issue, 'user');
+
+        showTyping('Agent');
+        setTimeout(function() {
+          removeTyping();
+          banner.innerHTML = '<span class="agent-dot"></span> 🟢 Agent Maria — Online';
+
+          addMsg('Hi ' + name + '! 👋 I\'m Maria from Vimel Support.<br><br>I\'ve received your concern: "<em>' + issue + '</em>"<br><br>Let me look into this for you. Give me a moment! 😊', 'bot');
+
+          setTimeout(function() {
+            showTyping('Agent Maria');
+            setTimeout(function() {
+              removeTyping();
+              addMsg('I\'m checking our system now. In the meantime, feel free to provide more details or ask questions.<br><br>You can also reach us at:<br>📧 vimeltravels@gmail.com<br>📱 0917-123-4567<br><br>Our response time is usually within 5 minutes! ⚡', 'bot');
+
+              var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyg1fnbgF7AsgIKSqr3FOGqh-A08W1V35aO9XU049zrrYHIVzpgCe3G4Y_9AMM1K5-V/exec';
+              var notifUrl = SCRIPT_URL + '?type=agent&name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&issue=' + encodeURIComponent(issue);
+              var w = window.open(notifUrl, '_blank', 'width=1,height=1,left=-100,top=-100');
+              setTimeout(function() { try { if (w) w.close(); } catch(e) {} }, 4000);
+
+            }, 2000);
+          }, 3000);
+        }, 2500);
+      });
+    }, 1500);
+  });
 })();
 </script>
 </body>
