@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vimel Travels — Signature Journey's, Timeless Memories</title>
 <link rel="stylesheet" href="styles.css">
+<style>
+  .nav-notif{position:relative;display:flex;align-items:center;flex-shrink:0}
+  .notif-bell{width:40px;height:40px;border-radius:50%;border:2px solid #4A5568;background:transparent;color:#E2E8F0;display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;position:relative;flex-shrink:0}
+  .notif-count{position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;background:#EF4444;color:white;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .notif-count.hidden{display:none}
+  .notif-dropdown{position:absolute!important;top:calc(100% + 10px);right:0;width:340px;background:#2D3748;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.14);border:1px solid #4A5568;z-index:9999;opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .2s,transform .2s;overflow:hidden}
+  .notif-dropdown.open{opacity:1;transform:translateY(0);pointer-events:auto}
+  .nav-container{gap:10px!important;overflow:visible!important}
+  .nav-links li a{padding:8px 7px!important;font-size:.8rem!important}
+  .nav-auth .btn{padding:8px 12px!important;font-size:.78rem!important}
+</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -41,7 +52,6 @@
     <span class="profile-avatar-circle" id="navAvatarCircle">U</span>
     <i class="fas fa-chevron-down profile-chevron" id="profileChevron"></i>
   </button>
-
   <div class="profile-dropdown" id="profileDropdown" role="menu">
     <div class="profile-dropdown-header">
       <div class="profile-dropdown-avatar" id="dropdownAvatarCircle">U</div>
@@ -63,9 +73,58 @@
     <button class="profile-logout-btn" onclick="handleLogout()"><span class="profile-dd-icon">🚪</span> Logout</button>
   </div>
 </div>
+<div class="nav-notif" id="navNotif">
+  <button class="notif-bell" id="notifBell">
+    <i class="fas fa-bell"></i>
+    <span class="notif-count" id="notifCount">4</span>
+  </button>
+  <div class="notif-dropdown" id="notifDropdown">
+    <div class="notif-header">
+      <h4>Notifications</h4>
+      <button class="notif-clear" id="notifClear">Clear All</button>
+    </div>
+    <div class="notif-list" id="notifList">
+      <div class="notif-item unread">
+        <div class="notif-dot"></div>
+        <div class="notif-icon promo"><i class="fas fa-tag"></i></div>
+        <div class="notif-content">
+          <p class="notif-text"><strong>Flash Sale!</strong> 30% OFF all Palawan packages.</p>
+          <span class="notif-time">2 minutes ago</span>
+        </div>
+      </div>
+      <div class="notif-item unread">
+        <div class="notif-dot"></div>
+        <div class="notif-icon booking"><i class="fas fa-check-circle"></i></div>
+        <div class="notif-content">
+          <p class="notif-text"><strong>Booking Confirmed!</strong> Boracay trip set for May 15.</p>
+          <span class="notif-time">1 hour ago</span>
+        </div>
+      </div>
+      <div class="notif-item unread">
+        <div class="notif-dot"></div>
+        <div class="notif-icon alert"><i class="fas fa-exclamation-circle"></i></div>
+        <div class="notif-content">
+          <p class="notif-text"><strong>Weather Alert:</strong> Light rain in Cebu this weekend.</p>
+          <span class="notif-time">3 hours ago</span>
+        </div>
+      </div>
+      <div class="notif-item unread">
+        <div class="notif-dot"></div>
+        <div class="notif-icon reward"><i class="fas fa-gift"></i></div>
+        <div class="notif-content">
+          <p class="notif-text"><strong>Welcome Reward!</strong> You earned 500 Vimel Points!</p>
+          <span class="notif-time">1 day ago</span>
+        </div>
+      </div>
+    </div>
+    <div class="notif-footer">
+      <a href="#">View All Notifications</a>
+    </div>
+  </div>
+</div>
 <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
 <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-</div>
+</div><!-- close nav-container -->
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
@@ -1944,6 +2003,59 @@ var vimelBot = {
       window.location.href = 'tel:+639171234567';
     }
   });
+})();
+</script>
+<script>
+(function() {
+  var bell = document.getElementById('notifBell');
+  var dropdown = document.getElementById('notifDropdown');
+  var count = document.getElementById('notifCount');
+  var clearBtn = document.getElementById('notifClear');
+  var list = document.getElementById('notifList');
+  if (!bell) return;
+
+  bell.addEventListener('click', function(e) {
+    e.stopPropagation();
+    dropdown.classList.toggle('open');
+    // Close profile dropdown if open
+    var profileDD = document.querySelector('.profile-dropdown.open');
+    if (profileDD) profileDD.classList.remove('open');
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav-notif')) {
+      dropdown.classList.remove('open');
+    }
+  });
+
+  // Mark as read on click
+  list.addEventListener('click', function(e) {
+    var item = e.target.closest('.notif-item');
+    if (item) {
+      item.classList.remove('unread');
+      updateCount();
+    }
+  });
+
+  // Clear all
+  clearBtn.addEventListener('click', function() {
+    list.innerHTML = '<div class="notif-empty"><i class="fas fa-bell-slash"></i><p>No new notifications</p></div>';
+    count.classList.add('hidden');
+  });
+
+  function updateCount() {
+    var unread = list.querySelectorAll('.notif-item.unread').length;
+    if (unread > 0) {
+      count.textContent = unread;
+      count.classList.remove('hidden');
+    } else {
+      count.classList.add('hidden');
+    }
+  }
+
+  // Bell shake on load
+  setTimeout(function() { bell.classList.add('has-notif'); }, 2000);
+  setTimeout(function() { bell.classList.remove('has-notif'); }, 2500);
 })();
 </script>
 </body>

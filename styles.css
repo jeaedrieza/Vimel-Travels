@@ -53,7 +53,7 @@
   --z-overlay: 1900;
 }
 
-/* ========================================================2. RESET & BASE======================================================== */
+/* ======================================================2. RESET & BASE====================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -124,7 +124,7 @@ p {
   text-align: justify;
 }
 
-/* ========================================================3. LAYOUT — CONTAINER & SECTION======================================================== */
+/* ======================================================3. LAYOUT — CONTAINER & SECTION====================================================== */
 .container {
   width: 100%;
   max-width: var(--container-w);
@@ -176,7 +176,7 @@ p {
   text-align: center;
 }
 
-/* ========================================================4. UTILITY — BUTTONS======================================================== */
+/* ======================================================4. UTILITY — BUTTONS====================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -273,7 +273,7 @@ p {
   flex-shrink: 0;
 }
 
-/* ========================================================5. NAVBAR======================================================== */
+/* ======================================================5. NAVBAR====================================================== */
 .navbar {
   position: fixed;
   top: 0;
@@ -368,7 +368,7 @@ p {
   border: none;
   cursor: pointer;
   padding: 6px;
-  margin-left: auto;  
+  margin-left: auto;
 }
 
 .nav-hamburger span {
@@ -394,7 +394,7 @@ p {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* ========================================================6. MOBILE MENU======================================================== */
+/* ======================================================6. MOBILE MENU====================================================== */
 .mobile-menu {
   position: fixed;
   top: 0;
@@ -489,7 +489,7 @@ p {
   pointer-events: all;
 }
 
-/* ========================================================7. HERO SECTION======================================================== */
+/* ======================================================7. HERO SECTION====================================================== */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -675,12 +675,12 @@ p {
   overflow-y: auto;
 }
 
-/* CHANGED from .search-suggestions.visible → .search-suggestions.open */
+/* CHANGED from .search-suggestions.visible ? .search-suggestions.open */
 .search-suggestions.open {
   display: block;
 }
 
-/* CHANGED from .search-suggestion-item → .suggestion-item */
+/* CHANGED from .search-suggestion-item ? .suggestion-item */
 .suggestion-item {
   padding: 12px 16px;
   cursor: pointer;
@@ -733,7 +733,7 @@ p {
   border-left: 1px solid rgba(255,255,255,0.25);
 }
 
-/* ========================================================8. SCROLL ROW (Recommendations)======================================================== */
+/* ======================================================8. SCROLL ROW (Recommendations)====================================================== */
 .scroll-row {
   display: flex;
   gap: 20px;
@@ -784,7 +784,7 @@ p {
   transform: translateY(-2px);
 }
 
-/* ========================================================9. CARDS — SHARED BASE======================================================== */
+/* ======================================================9. CARDS — SHARED BASE====================================================== */
 .card {
   background: var(--white);
   border-radius: var(--radius-card);
@@ -886,7 +886,7 @@ p {
   margin-top: 4px;
 }
 
-/* ========================================================FIX #3 — DESTINATION CARDS (JS-rendered into #recommendationsRow)======================================================== */
+/* ======================================================FIX #3 — DESTINATION CARDS (JS-rendered into #recommendationsRow)====================================================== */
 .dest-card {
   width: 280px;
   background: var(--white);
@@ -1015,7 +1015,7 @@ p {
 
 /* .dest-book-btn uses .btn .btn-accent .btn-sm — no extra styles needed */
 
-/* ========================================================FIX #4 — COUNTRY CARDS (JS-rendered structure)======================================================== */
+/* ======================================================FIX #4 — COUNTRY CARDS (JS-rendered structure)====================================================== */
 .country-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -1056,7 +1056,7 @@ p {
 }
 
 /* Overlay lives INSIDE img-wrap (gradient at bottom of image)
-   RENAMED from .country-card-overlay → .country-overlay to match JS */
+   RENAMED from .country-card-overlay ? .country-overlay to match JS */
 .country-overlay {
   position: absolute;
   bottom: 0;
@@ -1100,7 +1100,7 @@ p {
   margin: 0;
 }
 
-/* ========================================================FIX #5 — DRIVER CARDS (JS-rendered horizontal header layout)======================================================== */
+/* ======================================================FIX #5 — DRIVER CARDS (JS-rendered horizontal header layout)====================================================== */
 .driver-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -1263,7 +1263,7 @@ p {
   font-size: 1rem;
 }
 
-/* ========================================================FIX #6 — HOTEL CARDS (JS-rendered structure)======================================================== */
+/* ======================================================FIX #6 — HOTEL CARDS (JS-rendered structure)====================================================== */
 .hotel-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1408,7 +1408,7 @@ p {
   font-weight: 400;
 }
 
-/* ========================================================FIX #7 — BLOG CARDS (JS wraps image in .blog-img-wrap, adds .blog-read-more)======================================================== */
+/* ======================================================FIX #7 — BLOG CARDS (JS wraps image in .blog-img-wrap, adds .blog-read-more)====================================================== */
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1530,7 +1530,7 @@ p {
   transform: translateX(3px);
 }
 
-/* ========================================================10. TOGGLE TABS======================================================== */
+/* ======================================================10. TOGGLE TABS====================================================== */
 .toggle-tabs {
   display: flex;
   align-items: center;
@@ -1564,7 +1564,7 @@ p {
   box-shadow: 0 4px 16px rgba(30,111,217,0.3);
 }
 
-/* ========================================================11. FILTER BAR======================================================== */
+/* ======================================================11. FILTER BAR====================================================== */
 .filter-bar {
   display: flex;
   align-items: center;
@@ -1598,7 +1598,7 @@ p {
   box-shadow: 0 0 0 3px rgba(30,111,217,0.12);
 }
 
-/* ========================================================12. VIEW TOGGLE (Hotels Grid/Map)======================================================== */
+/* ======================================================12. VIEW TOGGLE (Hotels Grid/Map)====================================================== */
 .view-toggle {
   display: flex;
   gap: 8px;
@@ -1663,7 +1663,7 @@ p {
   text-align: center;
 }
 
-/* ========================================================13. HOW IT WORKS — STEPS======================================================== */
+/* ======================================================13. HOW IT WORKS — STEPS====================================================== */
 .steps-row {
   display: flex;
   align-items: center;
@@ -1736,7 +1736,7 @@ p {
   opacity: 0.6;
 }
 
-/* ========================================================14. ABOUT SECTION======================================================== */
+/* ======================================================14. ABOUT SECTION====================================================== */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1845,7 +1845,7 @@ p {
   font-size: 1.4rem;
 }
 
-/* ========================================================15. CONTACT SECTION======================================================== */
+/* ======================================================15. CONTACT SECTION====================================================== */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1973,7 +1973,7 @@ p {
   height: 220px;
 }
 
-/* ========================================================16. FOOTER======================================================== */
+/* ======================================================16. FOOTER====================================================== */
 .footer {
   background: var(--text-dark);
   color: rgba(255,255,255,0.75);
@@ -2136,8 +2136,8 @@ p {
   color: var(--accent-light);
 }
 
-/* ========================================================17. MODALS — OVERLAY & CARD
-   FIX #1 — .modal-overlay.active (was .open)======================================================== */
+/* ======================================================17. MODALS — OVERLAY & CARD
+   FIX #1 — .modal-overlay.active (was .open)====================================================== */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -2154,7 +2154,7 @@ p {
   transition: opacity var(--transition-base);
 }
 
-/* CHANGED from .modal-overlay.open → .modal-overlay.active */
+/* CHANGED from .modal-overlay.open ? .modal-overlay.active */
 .modal-overlay.active {
   opacity: 1;
   pointer-events: all;
@@ -2174,7 +2174,7 @@ p {
   transition: transform var(--transition-base);
 }
 
-/* CHANGED from .modal-overlay.open .modal → .modal-overlay.active .modal */
+/* CHANGED from .modal-overlay.open .modal ? .modal-overlay.active .modal */
 .modal-overlay.active .modal {
   transform: translateY(0) scale(1);
 }
@@ -2333,9 +2333,9 @@ p {
   color: var(--primary);
 }
 
-/* ========================================================FIX #9 — PASSWORD STRENGTH METER
+/* ======================================================FIX #9 — PASSWORD STRENGTH METER
    JS adds .strength-weak / .strength-medium / .strength-strong
-   and injects &nbsp;Weak======================================================== */
+   and injects &nbsp;Weak====================================================== */
 .password-strength {
   margin-top: 8px;
   background: var(--border);
@@ -2347,7 +2347,7 @@ p {
   gap: 4px;
 }
 
-/* CHANGED from .password-strength.weak → .password-strength.strength-weak etc. */
+/* CHANGED from .password-strength.weak ? .password-strength.strength-weak etc. */
 .strength-bar {
   height: 4px;
   border-radius: 4px;
@@ -2380,7 +2380,7 @@ p {
 .password-strength.strength-medium span { color: #f59e0b; }
 .password-strength.strength-strong span { color: #10b981; }
 
-/* ========================================================18. TICKET MODAL======================================================== */
+/* ======================================================18. TICKET MODAL====================================================== */
 .ticket-preview {
   padding: 10px 0 20px;
 }
@@ -2571,7 +2571,7 @@ p {
   padding-top: 8px;
 }
 
-/* ========================================================19. CHAT WIDGET======================================================== */
+/* ======================================================19. CHAT WIDGET====================================================== */
 .chat-widget {
   position: fixed;
   bottom: 28px;
@@ -2829,12 +2829,12 @@ p {
   transform: scale(1.08);
 }
 
-/* ========================================================20. TOAST NOTIFICATIONS
+/* ======================================================20. TOAST NOTIFICATIONS
    FIX #8 — .toast-success / .toast-error / .toast-info classes
             .toast-icon on &nbsp; directly (no wrapper div needed)
             .toast-msg flex:1
             .toast-close close button
-            .toast.show triggers slide-in======================================================== */
+            .toast.show triggers slide-in====================================================== */
 .toast-container {
   position: fixed;
   bottom: 28px;
@@ -2881,7 +2881,7 @@ p {
   line-height: 1;
 }
 
-/* CHANGED from .toast.success .toast-icon → .toast-success .toast-icon */
+/* CHANGED from .toast.success .toast-icon ? .toast-success .toast-icon */
 .toast-success .toast-icon { color: #059669; }
 .toast-error   .toast-icon { color: #dc2626; }
 .toast-info    .toast-icon { color: var(--primary); }
@@ -2924,8 +2924,8 @@ p {
   color: var(--text-dark);
 }
 
-/* ========================================================21. BACK TO TOP BUTTON
-   FIX #10 — .back-to-top.visible (already correct ✓)======================================================== */
+/* ======================================================21. BACK TO TOP BUTTON
+   FIX #10 — .back-to-top.visible (already correct ?)====================================================== */
 .back-to-top {
   position: fixed;
   bottom: 100px;
@@ -2960,7 +2960,7 @@ p {
   transform: translateY(-3px);
 }
 
-/* ========================================================22. SCROLL REVEAL ANIMATIONS======================================================== */
+/* ======================================================22. SCROLL REVEAL ANIMATIONS====================================================== */
 .reveal {
   opacity: 0;
   transform: translateY(32px);
@@ -2976,7 +2976,7 @@ p {
 .reveal:nth-child(3) { transition-delay: 0.2s; }
 .reveal:nth-child(4) { transition-delay: 0.3s; }
 
-/* ========================================================23. MICRO-TRANSITIONS — GLOBAL INTERACTIVE======================================================== */
+/* ======================================================23. MICRO-TRANSITIONS — GLOBAL INTERACTIVE====================================================== */
 a, button, input, select, textarea,
 .card, .country-card, .driver-card,
 .hotel-card, .blog-card, .step-card,
@@ -2985,7 +2985,7 @@ a, button, input, select, textarea,
   transition-timing-function: ease;
 }
 
-/* ========================================================24. RESPONSIVE — TABLET (max 1024px)======================================================== */
+/* ======================================================24. RESPONSIVE — TABLET (max 1024px)====================================================== */
 @media (max-width: 1024px) {
   :root {
     --section-py: 64px;
@@ -3045,7 +3045,7 @@ a, button, input, select, textarea,
   }
 }
 
-/* ========================================================25. RESPONSIVE — TABLET SMALL (max 768px)======================================================== */
+/* ======================================================25. RESPONSIVE — TABLET SMALL (max 768px)====================================================== */
 @media (max-width: 768px) {
   :root {
     --section-py: 52px;
@@ -3178,7 +3178,7 @@ a, button, input, select, textarea,
   }
 }
 
-/* ========================================================26. RESPONSIVE — MOBILE (max 480px)======================================================== */
+/* ======================================================26. RESPONSIVE — MOBILE (max 480px)====================================================== */
 @media (max-width: 480px) {
   :root {
     --section-py: 44px;
@@ -3268,7 +3268,7 @@ a, button, input, select, textarea,
   }
 }
 
-/* ========================================================27. WIDE SCREEN (min 1440px)======================================================== */
+/* ======================================================27. WIDE SCREEN (min 1440px)====================================================== */
 @media (min-width: 1440px) {
   :root {
     --section-py: 100px;
@@ -3284,7 +3284,7 @@ a, button, input, select, textarea,
   }
 }
 
-/* ========================================================28. PRINT STYLES (for ticket printing)======================================================== */
+/* ======================================================28. PRINT STYLES (for ticket printing)====================================================== */
 @media print {
   .navbar,
   .chat-widget,
@@ -3317,7 +3317,7 @@ a, button, input, select, textarea,
   }
 }
 
-/* ========================================================29. ACCESSIBILITY & FOCUS STYLES======================================================== */
+/* ======================================================29. ACCESSIBILITY & FOCUS STYLES====================================================== */
 :focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 3px;
@@ -3335,7 +3335,7 @@ a, button, input, select, textarea,
   }
 }
 
-/* ── Booking Modal Container ────────────────────────────────────────── */
+/* -- Booking Modal Container ------------------------------------------ */
 .booking-modal-container {
   max-width: 680px;
   width: 95%;
@@ -3358,7 +3358,7 @@ a, button, input, select, textarea,
   border-radius: 4px;
 }
 
-/* ── Preview Card (top of modal) ────────────────────────────────────── */
+/* -- Preview Card (top of modal) -------------------------------------- */
 .booking-preview-card {
   display: flex;
   gap: 1rem;
@@ -3460,7 +3460,7 @@ a, button, input, select, textarea,
   opacity: 0.8;
 }
 
-/* ── Form Body ──────────────────────────────────────────────────────── */
+/* -- Form Body -------------------------------------------------------- */
 .booking-form-body {
   padding: 1.5rem 1.75rem 1.75rem;
   display: flex;
@@ -3468,7 +3468,7 @@ a, button, input, select, textarea,
   gap: 0;
 }
 
-/* ── Section ────────────────────────────────────────────────────────── */
+/* -- Section ---------------------------------------------------------- */
 .booking-section {
   padding: 1.25rem 0;
   border-bottom: 1px solid var(--border, #eaeaea);
@@ -3494,7 +3494,7 @@ a, button, input, select, textarea,
   text-align: center;
 }
 
-/* ── Date Row ───────────────────────────────────────────────────────── */
+/* -- Date Row --------------------------------------------------------- */
 .custom-date-group {
   display: flex;
   flex-direction: column;
@@ -3605,7 +3605,7 @@ a, button, input, select, textarea,
   letter-spacing: 0.05em;
 }
 
-/* The select dropdowns — styled to look like scroll wheels */
+/* The select dropdowns — styled to look like scroll wheels /
 .date-select {
   padding: 10px 8px;
   border: 1.5px solid var(--border);
@@ -3620,7 +3620,7 @@ a, button, input, select, textarea,
   -webkit-appearance: none;
   text-align: center;
   transition: border-color 0.2s, background 0.2s;
-  /* Custom arrow */
+  / Custom arrow */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234A5568' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 8px center;
@@ -3677,7 +3677,7 @@ a, button, input, select, textarea,
     padding: 8px 6px;
   }
 }
-/* ── Travelers ──────────────────────────────────────────────────────── */
+/* -- Travelers -------------------------------------------------------- */
 .booking-travelers-row {
   display: flex;
   gap: 1rem;
@@ -3760,7 +3760,7 @@ a, button, input, select, textarea,
   text-align: center;
 }
 
-/* ── Special Requests ───────────────────────────────────────────────── */
+/* -- Special Requests ------------------------------------------------- */
 .booking-textarea {
   width: 100%;
   padding: 0.75rem 0.9rem;
@@ -3790,7 +3790,7 @@ a, button, input, select, textarea,
   margin-top: 0.3rem;
 }
 
-/* ── Price Summary ──────────────────────────────────────────────────── */
+/* -- Price Summary ---------------------------------------------------- */
 .booking-price-summary {
   background: var(--bg-alt, #f8faff);
   border-radius: 14px;
@@ -3837,7 +3837,7 @@ a, button, input, select, textarea,
   color: var(--accent, #0CBABA) !important;
 }
 
-/* ── Payment Method ─────────────────────────────────────────────────── */
+/* -- Payment Method --------------------------------------------------- */
 .booking-payment-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -3884,7 +3884,7 @@ a, button, input, select, textarea,
   border-color: var(--primary, #1E6FD9);
 }
 
-/* ── Footer Buttons ─────────────────────────────────────────────────── */
+/* -- Footer Buttons --------------------------------------------------- */
 .booking-footer {
   display: flex;
   gap: 0.75rem;
@@ -3912,7 +3912,7 @@ a, button, input, select, textarea,
   font-size: 1rem;
 }
 
-/* ── Responsive ─────────────────────────────────────────────────────── */
+/* -- Responsive ------------------------------------------------------- */
 @media (max-width: 600px) {
   .booking-preview-card {
     flex-direction: column;
@@ -3985,7 +3985,7 @@ a, button, input, select, textarea,
   }
 }
 
-/* ── Design System Variables (inherits from existing styles) ────────── */
+/* -- Design System Variables (inherits from existing styles) ---------- */
 :root {
   --profile-gradient: linear-gradient(135deg, #1E6FD9 0%, #0EA5E9 100%);
   --profile-accent: #1E6FD9;
@@ -4001,7 +4001,7 @@ a, button, input, select, textarea,
   --profile-radius-sm: 8px;
 }
 
-/* ── Navbar Profile Avatar Button ───────────────────────────────────── */
+/* -- Navbar Profile Avatar Button ------------------------------------- */
 .nav-profile {
   display: flex;
   align-items: center;
@@ -4051,7 +4051,7 @@ a, button, input, select, textarea,
   transform: rotate(180deg);
 }
 
-/* ── Profile Dropdown ───────────────────────────────────────────────── */
+/* -- Profile Dropdown ------------------------------------------------- */
 .profile-dropdown {
   position: absolute;
   top: calc(100% + 10px);
@@ -4183,7 +4183,7 @@ a, button, input, select, textarea,
   background: #FEF2F2;
 }
 
-/* ── Mobile Profile Section ─────────────────────────────────────────── */
+/* -- Mobile Profile Section ------------------------------------------- */
 .mobile-profile-section {
   padding: 20px 24px 0;
   border-top: 1px solid var(--profile-border);
@@ -4260,7 +4260,7 @@ a, button, input, select, textarea,
   font-weight: 600 !important;
 }
 
-/* ── Profile Modal — Large ──────────────────────────────────────────── */
+/* -- Profile Modal — Large -------------------------------------------- */
 .profile-modal-lg {
   width: min(92vw, 880px);
   max-width: min(92vw, 880px);
@@ -4279,7 +4279,7 @@ a, button, input, select, textarea,
   min-height: 0;
 }
 
-/* ── Sidebar ─────────────────────────────────────────────────────────── */
+/* -- Sidebar ----------------------------------------------------------- */
 .profile-sidebar {
   width: var(--profile-sidebar-width);
   min-width: var(--profile-sidebar-width);
@@ -4385,7 +4385,7 @@ a, button, input, select, textarea,
   border-left-color: #EF4444 !important;
 }
 
-/* ── Content Area ────────────────────────────────────────────────────── */
+/* -- Content Area ------------------------------------------------------ */
 .profile-content {
   flex: 1;
   overflow-y: auto;
@@ -4425,7 +4425,7 @@ a, button, input, select, textarea,
   margin: 0;
 }
 
-/* ── My Profile Tab ─────────────────────────────────────────────────── */
+/* -- My Profile Tab --------------------------------------------------- */
 .profile-info-card {
   display: flex;
   align-items: center;
@@ -4521,7 +4521,7 @@ a, button, input, select, textarea,
   font-weight: 500;
 }
 
-/* ── My Bookings Tab ────────────────────────────────────────────────── */
+/* -- My Bookings Tab -------------------------------------------------- */
 .profile-bookings-list {
   display: flex;
   flex-direction: column;
@@ -4631,7 +4631,7 @@ a, button, input, select, textarea,
   color: var(--profile-accent);
 }
 
-/* ── Account Settings Form ──────────────────────────────────────────── */
+/* -- Account Settings Form -------------------------------------------- */
 .profile-form {
   max-width: 520px;
 }
@@ -4642,7 +4642,7 @@ a, button, input, select, textarea,
   gap: 16px;
 }
 
-/* ── Password Settings ──────────────────────────────────────────────── */
+/* -- Password Settings ------------------------------------------------ */
 .profile-password-strength {
   height: 5px;
   border-radius: 10px;
@@ -4694,7 +4694,7 @@ a, button, input, select, textarea,
   color: #22C55E;
 }
 
-/* ── Payment Methods ────────────────────────────────────────────────── */
+/* -- Payment Methods -------------------------------------------------- */
 .profile-payment-list {
   display: flex;
   flex-direction: column;
@@ -4812,7 +4812,7 @@ a, button, input, select, textarea,
   max-width: 300px;
 }
 
-/* ── Travel Preferences ─────────────────────────────────────────────── */
+/* -- Travel Preferences ----------------------------------------------- */
 .profile-prefs-list {
   display: flex;
   flex-direction: column;
@@ -4925,7 +4925,7 @@ a, button, input, select, textarea,
   box-shadow: 0 0 0 3px rgba(30,111,217,0.12);
 }
 
-/* ── Responsive ─────────────────────────────────────────────────────── */
+/* -- Responsive ------------------------------------------------------- */
 
 /* Tablet: collapse sidebar */
 @media (max-width: 720px) {
@@ -5144,70 +5144,16 @@ a, button, input, select, textarea,
   color: var(--primary);
 }
 
-/* === MOBILE RESPONSIVENESS FIXES === */
+/* =MOBILE RESPONSIVENESS FIXES= */
 @media (max-width: 768px) {
   .contact-grid {
     grid-template-columns: 1fr !important;
   }
-  
+
   .contact-form {
     padding: 20px !important;
   }
-  
-  .contact-form div[style*="grid-template-columns: 1fr 1fr"] {
-    grid-template-columns: 1fr !important;
-  }
 
-  .hero h1, .hero-content h1 {
-    font-size: 1.8rem !important;
-  }
-
-  .section-title, .section-header h2 {
-    font-size: 1.4rem !important;
-  }
-
-  .card, .destination-card, .hotel-card, .vehicle-card, .blog-card {
-    width: 100% !important;
-    margin: 0 auto 16px !important;
-  }
-
-  .scroll-container, .cards-container {
-    flex-wrap: wrap !important;
-    overflow-x: hidden !important;
-    gap: 16px !important;
-    padding: 0 16px !important;
-  }
-
-  .footer-grid, .footer-content {
-    grid-template-columns: 1fr !important;
-    text-align: center;
-  }
-
-  .newsletter-form, .stay-updated form {
-    flex-direction: column !important;
-    gap: 8px !important;
-  }
-
-  .newsletter-form input, .stay-updated input {
-    width: 100% !important;
-  }
-
-  .modal-container {
-    width: 95% !important;
-    padding: 20px !important;
-    margin: 10px !important;
-  }
-}
-                                            /* === MOBILE RESPONSIVENESS FIXES === */
-@media (max-width: 768px) {
-  .contact-grid {
-    grid-template-columns: 1fr !important;
-  }
-  
-  .contact-form {
-    padding: 20px !important;
-  }
-  
   .contact-form div[style*="grid-template-columns: 1fr 1fr"] {
     grid-template-columns: 1fr !important;
   }
@@ -5330,9 +5276,7 @@ a, button, input, select, textarea,
     margin: 10px !important;
   }
 }
-/* ========================================================
-   DARK MODE
-======================================================== */
+/* ======================================================DARK MODE====================================================== */
 body.dark-mode {
   --white: #1A202C;
   --bg-light: #2D3748;
@@ -5781,9 +5725,7 @@ body.dark-mode .modal .blog-modal-share button {
   background: #4A5568 !important;
   border-color: #718096 !important;
 }
-/* ========================================================
-   LOADING SCREEN
-======================================================== */
+/* ======================================================LOADING SCREEN====================================================== */
 .loading-screen {
   position: fixed;
   inset: 0;
@@ -5868,9 +5810,7 @@ body.dark-mode .loading-bar-container {
 body.dark-mode .loading-bar {
   background: #0CBABA;
 }
-/* ========================================================
-   SCROLL ANIMATIONS — ENHANCED
-======================================================== */
+/* ======================================================SCROLL ANIMATIONS — ENHANCED====================================================== */
 .scroll-fade-up {
   opacity: 0;
   transform: translateY(40px);
@@ -5921,9 +5861,7 @@ body.dark-mode .loading-bar {
 .scroll-fade-up.delay-4, .scroll-fade-left.delay-4, .scroll-fade-right.delay-4, .scroll-zoom-in.delay-4 { transition-delay: 0.4s; }
 .scroll-fade-up.delay-5, .scroll-fade-left.delay-5, .scroll-fade-right.delay-5, .scroll-zoom-in.delay-5 { transition-delay: 0.5s; }
 
-/* ========================================================
-   IMAGE LIGHTBOX
-======================================================== */
+/* ======================================================IMAGE LIGHTBOX====================================================== */
 .lightbox-overlay {
   position: fixed; inset: 0; z-index: 99998;
   background: rgba(0,0,0,0.92); backdrop-filter: blur(8px);
@@ -5950,9 +5888,7 @@ body.dark-mode .loading-bar {
   .lightbox-close { top: 12px; right: 12px; }
 }
 
-/* ========================================================
-   FAQ ACCORDION
-======================================================== */
+/* ======================================================FAQ ACCORDION====================================================== */
 .faq-container {
   max-width: 740px;
   margin: 0 auto;
@@ -6057,9 +5993,7 @@ body.dark-mode .faq-answer p {
 body.dark-mode .faq-icon {
   color: #718096;
 }
-/* ========================================================
-   POSTCARD REVIEWS
-======================================================== */
+/* ======================================================POSTCARD REVIEWS====================================================== */
 .postcard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -6283,9 +6217,7 @@ body.dark-mode .postcard-postmark {
   }
 }
 
-/* ========================================================
-   WEATHER WIDGET
-======================================================== */
+/* ======================================================WEATHER WIDGET====================================================== */
 .weather-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -6436,9 +6368,7 @@ body.dark-mode .weather-detail {
   }
 }
 
-/* ========================================================
-   PRICING / UPGRADE CARDS
-======================================================== */
+/* ======================================================PRICING / UPGRADE CARDS====================================================== */
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -6685,9 +6615,7 @@ body.dark-mode .pricing-features li.excluded {
   }
 }
 
-/* ========================================================
-   CURRENCY CONVERTER
-======================================================== */
+/* ======================================================CURRENCY CONVERTER====================================================== */
 .converter-card {
   max-width: 700px;
   margin: 0 auto;
@@ -6855,9 +6783,7 @@ body.dark-mode .converter-swap {
   }
 }
 
-/* ========================================================
-   EMERGENCY SOS
-======================================================== */
+/* ======================================================EMERGENCY SOS====================================================== */
 .sos-hero {
   text-align: center;
   margin-bottom: 48px;
@@ -7162,4 +7088,374 @@ body.dark-mode .sos-label {
   .sos-inner span {
     font-size: 1rem;
   }
+}
+
+/* ======================================================NOTIFICATION BELL====================================================== */
+.nav-notif {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.notif-bell {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--white);
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.notif-bell:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.notif-bell.has-notif {
+  animation: bellShake 0.5s ease;
+}
+
+@keyframes bellShake {
+  0%, 100% { transform: rotate(0); }
+  20% { transform: rotate(12deg); }
+  40% { transform: rotate(-12deg); }
+  60% { transform: rotate(8deg); }
+  80% { transform: rotate(-8deg); }
+}
+
+.notif-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #EF4444;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--white);
+}
+
+.notif-count.hidden {
+  display: none;
+}
+
+.notif-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 340px;
+  background: var(--white);
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.14);
+  border: 1px solid var(--border);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(-8px) scale(0.97);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  overflow: hidden;
+}
+
+.notif-dropdown.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.notif-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.notif-header h4 {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.notif-clear {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  transition: color 0.2s;
+}
+
+.notif-clear:hover {
+  color: var(--accent);
+}
+
+.notif-list {
+  max-height: 320px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.notif-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+  cursor: pointer;
+  position: relative;
+}
+
+.notif-item:last-child {
+  border-bottom: none;
+}
+
+.notif-item:hover {
+  background: var(--bg-light);
+}
+
+.notif-item.unread {
+  background: rgba(30,111,217,0.04);
+}
+
+.notif-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  flex-shrink: 0;
+  margin-top: 6px;
+  display: none;
+}
+
+.notif-item.unread .notif-dot {
+  display: block;
+}
+
+.notif-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.notif-icon.promo {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.notif-icon.booking {
+  background: #D1FAE5;
+  color: #059669;
+}
+
+.notif-icon.alert {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.notif-icon.reward {
+  background: #EDE9FE;
+  color: #7C3AED;
+}
+
+.notif-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notif-text {
+  font-size: 0.83rem;
+  color: var(--text-mid);
+  line-height: 1.5;
+  margin: 0;
+  text-align: left !important;
+}
+
+.notif-text strong {
+  color: var(--text-dark);
+}
+
+.notif-time {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  display: block;
+}
+
+.notif-footer {
+  padding: 12px 16px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.notif-footer a {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.notif-footer a:hover {
+  color: var(--accent);
+}
+
+.notif-empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.notif-empty i {
+  font-size: 2rem;
+  color: var(--border);
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Dark mode */
+body.dark-mode .notif-bell {
+  background: #4A5568;
+  border-color: #718096;
+  color: #E2E8F0;
+}
+
+body.dark-mode .notif-dropdown {
+  background: #2D3748;
+  border-color: #4A5568;
+}
+
+body.dark-mode .notif-header {
+  border-color: #4A5568;
+}
+
+body.dark-mode .notif-header h4 {
+  color: #F7FAFC;
+}
+
+body.dark-mode .notif-item {
+  border-color: #4A5568;
+}
+
+body.dark-mode .notif-item:hover {
+  background: #4A5568;
+}
+
+body.dark-mode .notif-item.unread {
+  background: rgba(30,111,217,0.1);
+}
+
+body.dark-mode .notif-text {
+  color: #A0AEC0;
+}
+
+body.dark-mode .notif-text strong {
+  color: #F7FAFC;
+}
+
+body.dark-mode .notif-time {
+  color: #718096;
+}
+
+body.dark-mode .notif-footer {
+  border-color: #4A5568;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .notif-dropdown {
+    position: fixed !important;
+    top: 60px !important;
+    right: 12px !important;
+    left: 12px !important;
+    width: auto !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .notif-bell {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+
+  .notif-count {
+    width: 16px;
+    height: 16px;
+    font-size: 0.6rem;
+  }
+}
+
+/* Fix navbar overflow */
+.nav-notif,
+.dark-mode-toggle {
+  flex-shrink: 0;
+}
+
+@media (max-width: 1280px) {
+  .nav-container {
+    gap: 8px;
+  }
+
+  .nav-links {
+    gap: 0;
+  }
+
+  .nav-links li a {
+    padding: 8px 8px;
+    font-size: 0.82rem;
+  }
+}
+
+/* Navbar fit fix */
+.nav-container {
+  overflow: visible !important;
+  gap: 10px !important;
+}
+
+.nav-notif {
+  position: relative !important;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.notif-dropdown {
+  position: absolute !important;
+}
+
+.nav-links {
+  gap: 0 !important;
+}
+
+.nav-links li a {
+  padding: 8px 8px !important;
+  font-size: 0.82rem !important;
+}
+
+.nav-auth .btn {
+  padding: 8px 14px !important;
+  font-size: 0.8rem !important;
 }
