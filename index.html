@@ -534,6 +534,46 @@
   </div>
 </section>
 
+<!-- Travel Quiz -->
+<section id="quiz" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">DISCOVER</span>
+      <h2 class="section-title">What Destination Suits You?</h2>
+      <p class="section-desc">Answer 5 quick questions and we'll find your perfect getaway!</p>
+    </div>
+    <div class="quiz-card" id="quizCard">
+      <div class="quiz-progress">
+        <div class="quiz-progress-bar" id="quizBar"></div>
+      </div>
+      <div class="quiz-step-text" id="quizStep">Question 1 of 5</div>
+      <div class="quiz-content" id="quizContent"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Travel Checklist -->
+<section id="checklist" class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">PACK SMART</span>
+      <h2 class="section-title">Travel Checklist</h2>
+      <p class="section-desc">Never forget anything again! Check off items as you pack — your progress saves automatically.</p>
+    </div>
+    <div class="checklist-card">
+      <div class="checklist-toolbar">
+        <div class="checklist-progress">
+          <div class="checklist-progress-bar" id="checklistBar"></div>
+        </div>
+        <span class="checklist-progress-text" id="checklistText">0 / 0 packed</span>
+        <button class="checklist-reset" id="checklistReset" title="Reset All"><i class="fas fa-redo-alt"></i> Reset</button>
+      </div>
+      <div class="checklist-tabs" id="checklistTabs"></div>
+      <div class="checklist-items" id="checklistItems"></div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ Section -->
 <section id="faq" class="section section-alt">
   <div class="container">
@@ -2056,6 +2096,226 @@ var vimelBot = {
   // Bell shake on load
   setTimeout(function() { bell.classList.add('has-notif'); }, 2000);
   setTimeout(function() { bell.classList.remove('has-notif'); }, 2500);
+})();
+</script>
+<script>
+(function() {
+  var data = {
+    '✈️ Essentials': ['Passport','ID / Driver\'s License','Travel tickets / boarding pass','Hotel booking confirmation','Travel insurance documents','Cash + credit/debit cards','Phone + charger + power bank','House keys secured'],
+    '👕 Clothing': ['T-shirts / tops','Pants / shorts','Underwear + socks','Sleepwear','Jacket / hoodie','Swimwear','Hat / cap','Sunglasses','Comfortable walking shoes','Flip flops / sandals'],
+    '🧴 Toiletries': ['Toothbrush + toothpaste','Shampoo + conditioner','Body wash / soap','Deodorant','Sunscreen SPF 50+','Insect repellent','Face wash + moisturizer','Razor / grooming kit','Lip balm','Wet wipes + tissues'],
+    '💊 Health': ['First aid kit','Prescription medicines','Pain relievers','Motion sickness pills','Vitamins','Band-aids','Hand sanitizer','Face masks','Allergy medicine'],
+    '📱 Tech': ['Phone + charger','Power bank','Universal adapter','Earphones / earbuds','Camera + SD card','Laptop / tablet','Waterproof phone pouch','Portable WiFi / SIM card'],
+    '🎒 Extras': ['Snacks for travel','Water bottle','Neck pillow','Eye mask + earplugs','Ziplock bags','Laundry bag','Umbrella / rain jacket','Notebook + pen','Books / entertainment']
+  };
+
+  var tabs = Object.keys(data);
+  var activeTab = tabs[0];
+  var STORAGE_KEY = 'vimelChecklist';
+
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch(e) {}
+
+  var tabsEl = document.getElementById('checklistTabs');
+  var itemsEl = document.getElementById('checklistItems');
+  var barEl = document.getElementById('checklistBar');
+  var textEl = document.getElementById('checklistText');
+  var resetBtn = document.getElementById('checklistReset');
+  if (!tabsEl) return;
+
+  function renderTabs() {
+    tabsEl.innerHTML = '';
+    tabs.forEach(function(tab) {
+      var count = data[tab].filter(function(item) { return saved[tab + '::' + item]; }).length;
+      var btn = document.createElement('button');
+      btn.className = 'checklist-tab' + (tab === activeTab ? ' active' : '');
+      btn.innerHTML = tab.split(' ')[0] + ' ' + tab.split(' ').slice(1).join(' ') + ' <span class="checklist-tab-count">' + count + '/' + data[tab].length + '</span>';
+      btn.addEventListener('click', function() { activeTab = tab; renderTabs(); renderItems(); });
+      tabsEl.appendChild(btn);
+    });
+  }
+
+  function renderItems() {
+    itemsEl.innerHTML = '';
+    data[activeTab].forEach(function(item) {
+      var key = activeTab + '::' + item;
+      var isChecked = !!saved[key];
+      var div = document.createElement('div');
+      div.className = 'checklist-item' + (isChecked ? ' checked' : '');
+      div.innerHTML = '<div class="checklist-checkbox"><i class="fas fa-check"></i></div><span class="checklist-label">' + item + '</span>';
+      div.addEventListener('click', function() {
+        saved[key] = !saved[key];
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+        renderTabs();
+        renderItems();
+        updateProgress();
+      });
+      itemsEl.appendChild(div);
+    });
+  }
+
+  function updateProgress() {
+    var total = 0, checked = 0;
+    tabs.forEach(function(tab) {
+      data[tab].forEach(function(item) {
+        total++;
+        if (saved[tab + '::' + item]) checked++;
+      });
+    });
+    var pct = total > 0 ? Math.round((checked / total) * 100) : 0;
+    barEl.style.width = pct + '%';
+    textEl.textContent = checked + ' / ' + total + ' packed (' + pct + '%)';
+  }
+
+  resetBtn.addEventListener('click', function() {
+    if (confirm('Reset all checked items?')) {
+      saved = {};
+      localStorage.removeItem(STORAGE_KEY);
+      renderTabs();
+      renderItems();
+      updateProgress();
+    }
+  });
+
+  renderTabs();
+  renderItems();
+  updateProgress();
+})();
+</script>
+<script>
+(function() {
+  var questions = [
+    {
+      q: "What's your ideal vacation vibe?",
+      opts: [
+        { emoji: '🏖️', text: 'Chill on the beach with crystal-clear water', tags: ['beach','relax'] },
+        { emoji: '🏔️', text: 'Explore mountains and breathtaking landscapes', tags: ['nature','adventure'] },
+        { emoji: '🏙️', text: 'City life — food, nightlife, and culture', tags: ['city','culture'] },
+        { emoji: '🤿', text: 'Underwater adventures and island hopping', tags: ['diving','island'] }
+      ]
+    },
+    {
+      q: "How do you like to travel?",
+      opts: [
+        { emoji: '🎒', text: 'Backpacker — budget-friendly and spontaneous', tags: ['budget','adventure'] },
+        { emoji: '👫', text: 'With my partner — romantic getaway', tags: ['romantic','relax'] },
+        { emoji: '👨‍👩‍👧‍👦', text: 'Family trip — fun for all ages', tags: ['family','safe'] },
+        { emoji: '🧑‍🤝‍🧑', text: 'Squad goals — group adventure', tags: ['group','adventure'] }
+      ]
+    },
+    {
+      q: "What's most important to you?",
+      opts: [
+        { emoji: '📸', text: 'Instagram-worthy scenic views', tags: ['scenic','nature'] },
+        { emoji: '🍜', text: 'Amazing local food and street eats', tags: ['food','culture'] },
+        { emoji: '🏄', text: 'Thrilling activities and water sports', tags: ['adventure','diving'] },
+        { emoji: '🧘', text: 'Peace, quiet, and total relaxation', tags: ['relax','beach'] }
+      ]
+    },
+    {
+      q: "What's your budget style?",
+      opts: [
+        { emoji: '💵', text: 'Keep it cheap — backpacker budget', tags: ['budget','island'] },
+        { emoji: '💰', text: 'Mid-range — good value for money', tags: ['family','culture'] },
+        { emoji: '💎', text: 'Treat myself — luxury all the way', tags: ['romantic','relax'] },
+        { emoji: '🤑', text: 'Money is no object — YOLO!', tags: ['diving','adventure'] }
+      ]
+    },
+    {
+      q: "Pick your dream scenery:",
+      opts: [
+        { emoji: '🌅', text: 'Sunset over turquoise lagoons', tags: ['beach','romantic'] },
+        { emoji: '🌋', text: 'Volcanic mountains and rolling hills', tags: ['nature','adventure'] },
+        { emoji: '🏝️', text: 'Hidden islands and secret beaches', tags: ['island','diving'] },
+        { emoji: '🌃', text: 'City skyline lit up at night', tags: ['city','culture'] }
+      ]
+    }
+  ];
+
+  var destinations = [
+    { name: 'Palawan', emoji: '🏝️', match: ['beach','island','relax','scenic','romantic'], desc: 'Crystal lagoons, secret beaches, and island paradise. El Nido and Coron will take your breath away!', tags: ['Lagoons','Island Hopping','Snorkeling','Beaches'] },
+    { name: 'Boracay', emoji: '🏖️', match: ['beach','relax','romantic','group'], desc: 'World-famous White Beach, epic sunsets, parasailing, and vibrant nightlife. The ultimate beach getaway!', tags: ['White Sand','Nightlife','Sunset','Water Sports'] },
+    { name: 'Siargao', emoji: '🏄', match: ['adventure','diving','budget','island'], desc: 'Surf Cloud 9, hop between islands, ride motorbikes, and soak in the chill island life!', tags: ['Surfing','Island Hopping','Budget','Chill Vibes'] },
+    { name: 'Cebu', emoji: '🐋', match: ['adventure','diving','family','nature'], desc: 'Swim with whale sharks, go canyoneering at Kawasan Falls, and explore historical temples!', tags: ['Whale Sharks','Canyoneering','Diving','History'] },
+    { name: 'Batanes', emoji: '🏔️', match: ['nature','scenic','relax','romantic'], desc: 'Rolling hills, stone houses, dramatic cliffs, and the most peaceful sunsets in the Philippines.', tags: ['Mountains','Peaceful','Scenic','Culture'] },
+    { name: 'Bohol', emoji: '🍫', match: ['family','nature','culture','safe'], desc: 'Chocolate Hills, adorable tarsiers, river cruises, and pristine beaches — perfect for families!', tags: ['Chocolate Hills','Tarsiers','Family','River Cruise'] },
+    { name: 'Tokyo, Japan', emoji: '🗼', match: ['city','culture','food','adventure'], desc: 'Neon lights, incredible ramen, ancient temples, and the perfect blend of tradition and futurism!', tags: ['City Life','Food','Culture','Tech'] },
+    { name: 'Bali, Indonesia', emoji: '🌺', match: ['relax','culture','budget','scenic'], desc: 'Rice terraces, spiritual temples, yoga retreats, and affordable luxury with stunning views!', tags: ['Temples','Rice Terraces','Yoga','Affordable'] }
+  ];
+
+  var current = 0;
+  var scores = {};
+
+  var contentEl = document.getElementById('quizContent');
+  var barEl = document.getElementById('quizBar');
+  var stepEl = document.getElementById('quizStep');
+  if (!contentEl) return;
+
+  function renderQuestion() {
+    var q = questions[current];
+    barEl.style.width = ((current / questions.length) * 100) + '%';
+    stepEl.textContent = 'Question ' + (current + 1) + ' of ' + questions.length;
+
+    var html = '<h3 class="quiz-question">' + q.q + '</h3><div class="quiz-options">';
+    q.opts.forEach(function(opt, i) {
+      html += '<button class="quiz-option" data-index="' + i + '"><span class="quiz-option-emoji">' + opt.emoji + '</span><span class="quiz-option-text">' + opt.text + '</span></button>';
+    });
+    html += '</div>';
+    contentEl.innerHTML = html;
+
+    contentEl.querySelectorAll('.quiz-option').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var idx = parseInt(this.getAttribute('data-index'));
+        q.opts[idx].tags.forEach(function(tag) {
+          scores[tag] = (scores[tag] || 0) + 1;
+        });
+        current++;
+        if (current < questions.length) {
+          renderQuestion();
+        } else {
+          showResult();
+        }
+      });
+    });
+  }
+
+  function showResult() {
+    barEl.style.width = '100%';
+    stepEl.textContent = '✨ Your Result';
+
+    var best = null, bestScore = -1;
+    destinations.forEach(function(dest) {
+      var score = 0;
+      dest.match.forEach(function(tag) { score += (scores[tag] || 0); });
+      if (score > bestScore) { bestScore = score; best = dest; }
+    });
+
+    var maxPossible = questions.length * 2;
+    var pct = Math.min(Math.round((bestScore / maxPossible) * 100), 99);
+
+    var html = '<div class="quiz-result">';
+    html += '<span class="quiz-result-emoji">' + best.emoji + '</span>';
+    html += '<h3 class="quiz-result-title">' + best.name + '</h3>';
+    html += '<span class="quiz-result-match">' + pct + '% Match</span>';
+    html += '<p class="quiz-result-desc">' + best.desc + '</p>';
+    html += '<div class="quiz-result-tags">';
+    best.tags.forEach(function(tag) { html += '<span class="quiz-result-tag">' + tag + '</span>'; });
+    html += '</div>';
+    html += '<div class="quiz-result-btns">';
+    html += '<button class="btn btn-accent" onclick="showToast(\'Booking ' + best.name + '!\', \'success\')"><i class="fas fa-ticket-alt"></i> Book Now</button>';
+    html += '<button class="quiz-restart" id="quizRestart"><i class="fas fa-redo"></i> Retake Quiz</button>';
+    html += '</div></div>';
+
+    contentEl.innerHTML = html;
+
+    document.getElementById('quizRestart').addEventListener('click', function() {
+      current = 0;
+      scores = {};
+      renderQuestion();
+    });
+  }
+
+  renderQuestion();
 })();
 </script>
 </body>
