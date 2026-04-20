@@ -8579,3 +8579,75 @@ body.dark-mode .chat-handoff-form input {
   color: #F7FAFC;
 }
 
+/* Fix profile dropdown dark mode */
+body.dark-mode .profile-dropdown,
+body.dark-mode .profile-dropdown-header {
+  background: #2D3748 !important;
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .profile-dropdown-name,
+body.dark-mode .profile-dropdown-list li button,
+body.dark-mode .profile-logout-btn {
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .profile-dropdown-email {
+  color: #718096 !important;
+}
+
+body.dark-mode .profile-dropdown-list li button:hover {
+  background: rgba(30,111,217,0.15) !important;
+}
+
+body.dark-mode .profile-dropdown-divider {
+  background: #4A5568 !important;
+}
+
+body.dark-mode .profile-logout-btn:hover {
+  background: rgba(239,68,68,0.15) !important;
+}
+
+/* Mobile menu extras */
+.mobile-extras {
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 16px;
+}
+
+.mobile-extras-row {
+  display: flex;
+  gap: 10px;
+}
+
+.mobile-dark-toggle,
+.mobile-lang-toggle {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-light);
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.mobile-dark-toggle:hover,
+.mobile-lang-toggle:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+body.dark-mode .mobile-dark-toggle,
+body.dark-mode .mobile-lang-toggle {
+  background: #4A5568;
+  border-color: #718096;
+  color: #E2E8F0;
+}

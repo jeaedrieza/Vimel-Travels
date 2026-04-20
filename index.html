@@ -199,6 +199,12 @@
     <li class="mobile-logout-item"><button onclick="handleLogout(); closeMobileMenu();">🚪 Logout</button></li>
   </ul>
 </div>
+<div class="mobile-extras">
+  <div class="mobile-extras-row">
+    <button class="mobile-dark-toggle" onclick="document.getElementById('darkModeToggle').click(); closeMobileMenu();"><i class="fas fa-moon"></i> Dark Mode</button>
+    <button class="mobile-lang-toggle" onclick="document.getElementById('langBtn').click(); closeMobileMenu();"><span id="mobileLangFlag">🇺🇸</span> Language</button>
+  </div>
+</div>
 </div>
 <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
 
@@ -1703,6 +1709,13 @@ var keywordReplies = {
     if (msg.includes('contact') || msg.includes('email') || msg.includes('phone') || msg.includes('call')) return "📞 CONTACT:\n\n📧 vimeltravels@gmail.com\n📱 +63 917 123 4567\n💬 Chat: You're here! 😊\n🕐 24/7 support";
     if (msg.includes('thank') || msg.includes('salamat')) return "You're welcome! 😊 Safe travels! ✈️🌍";
     if (msg.includes('love') || msg.includes('joke') || msg.includes('bored')) return "😄 Why don't mountains get cold?\n...They wear snow caps! 🏔️😂\n\n7,641 islands to explore! Where to? 🌴";
+    var uLang = localStorage.getItem('vimelLang') || 'en';
+    if (uLang === 'tl' || /^(ano|saan|pano|paano|magkano|kumusta|musta|gusto|pwede|pde|book|mga)/.test(msg)) return "Gusto kitang tulungan! 😊 Magtanong tungkol sa:\n\n🏝️ Destinasyon\n💰 Presyo\n🏨 Hotel\n🚗 Sasakyan\n📋 Booking\n\nO mag-email sa vimeltravels@gmail.com! 📧";
+    if (uLang === 'ja') return "お手伝いします！😊\n\n🏝️ 目的地\n💰 料金\n🏨 ホテル\n🚗 交通\n📋 予約\n\nメール: vimeltravels@gmail.com 📧";
+    if (uLang === 'ko') return "도와드리겠습니다! 😊\n\n🏝️ 여행지\n💰 가격\n🏨 호텔\n🚗 교통\n📋 예약\n\n이메일: vimeltravels@gmail.com 📧";
+    if (uLang === 'zh-CN') return "我可以帮助你！😊\n\n🏝️ 目的地\n💰 价格\n🏨 酒店\n🚗 交通\n📋 预订\n\n邮箱: vimeltravels@gmail.com 📧";
+    if (uLang === 'es') return "¡Me encantaría ayudarte! 😊\n\n🏝️ Destinos\n💰 Precios\n🏨 Hoteles\n🚗 Transporte\n📋 Reservas\n\nEmail: vimeltravels@gmail.com 📧";
+    if (uLang === 'fr') return "Je serais ravi de vous aider ! 😊\n\n🏝️ Destinations\n💰 Prix\n🏨 Hôtels\n🚗 Transport\n📋 Réservations\n\nEmail: vimeltravels@gmail.com 📧";
     return "I'd love to help! 😊 Ask me about:\n\n🏝️ Destinations — type any island\n💰 Prices — 'how much' or 'budget'\n🏨 Hotels\n🚗 Transport\n📋 Bookings\n🌤️ Weather\n🍜 Food\n💳 Payments\n\nOr email vimeltravels@gmail.com! 📧";
   }
 };
@@ -1710,8 +1723,8 @@ var keywordReplies = {
 var vimelBot = {
   getReply: function(msg, callback) {
   var userLang = localStorage.getItem('vimelLang') || 'en';
-  var langNames = {en:'English',tl:'Filipino/Tagalog','zh-CN':'Chinese',ja:'Japanese',ko:'Korean',es:'Spanish',fr:'French',ar:'Arabic',hi:'Hindi',th:'Thai',pt:'Portuguese',ru:'Russian',de:'German',it:'Italian',vi:'Vietnamese',ms:'Malay',id:'Indonesian',tr:'Turkish',nl:'Dutch',sv:'Swedish'};
-  var systemPrompt = "You are Vimel, a friendly AI travel assistant for Vimel Travels. CRITICAL RULE: You MUST detect the language of the user's message and reply in THAT SAME LANGUAGE. If user writes in Korean, reply in Korean. If Tagalog, reply in Tagalog. If Japanese, reply in Japanese. If the site language is set to " + (langNames[userLang] || 'English') + ", prefer that language. Keep replies short, 2-4 sentences max. Use emojis. Help with destinations, bookings, hotels, transport, prices.";
+  var langNames = {en:'English',tl:'Filipino/Tagalog','zh-CN':'Chinese',ja:'Japanese',ko:'Korean',es:'Spanish',fr:'French',ar:'Arabic',hi:'Hindi',th:'Thai'};
+  var systemPrompt = "You are Vimel, the AI travel assistant for Vimel Travels. ABSOLUTE RULE: ALWAYS reply in the SAME LANGUAGE the user types in. If the user writes in Tagalog, you MUST reply in Tagalog. If Korean, reply in Korean. If Japanese, reply in Japanese. NEVER reply in English unless the user writes in English. Current site language: " + (langNames[userLang] || 'English') + ". Keep replies short 2-4 sentences. Use emojis.";
 
     fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_KEY, {
       method: 'POST',
