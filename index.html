@@ -1686,7 +1686,7 @@ function sendContactForm() {
     return;
   }
 
-  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyg1fnbgF7AsgIKSqr3FOGqh-A08W1V35aO9XU049zrrYHIVzpgCe3G4Y_9AMM1K5-V/exec';
+  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbziDD1GmfDi72bOgwWaMpgrn3LXPebKt8LJVafNmwvKpcDztHG_4THWDA7EqdthID-MeQ/exec';
   var url = SCRIPT_URL + '?type=contact&name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&subject=' + encodeURIComponent(subject) + '&message=' + encodeURIComponent(message);
 
   var w = window.open(url, '_blank', 'width=1,height=1,left=-100,top=-100');
@@ -2726,7 +2726,7 @@ function googleTranslateElementInit() {
               removeTyping();
               addMsg('I\'m checking our system now. In the meantime, feel free to provide more details or ask questions.<br><br>You can also reach us at:<br>📧 vimeltravels@gmail.com<br>📱 0917-123-4567<br><br>Our response time is usually within 5 minutes! ⚡', 'bot');
 
-              var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyg1fnbgF7AsgIKSqr3FOGqh-A08W1V35aO9XU049zrrYHIVzpgCe3G4Y_9AMM1K5-V/exec';
+              var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbziDD1GmfDi72bOgwWaMpgrn3LXPebKt8LJVafNmwvKpcDztHG_4THWDA7EqdthID-MeQ/exec';
               var notifUrl = SCRIPT_URL + '?type=agent&name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&issue=' + encodeURIComponent(issue);
               var w = window.open(notifUrl, '_blank', 'width=1,height=1,left=-100,top=-100');
               setTimeout(function() { try { if (w) w.close(); } catch(e) {} }, 4000);
