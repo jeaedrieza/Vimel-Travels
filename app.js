@@ -2038,15 +2038,37 @@ window.handleSavePreferences = function () {
 /* ── Logout ─────────────────────────────────────────────────────────── */
 window.handleLogout = function () {
   currentUser = null;
+  
+  // Clear ALL vimel data
   localStorage.removeItem('vimelUser');
-  updateNavbarState();
+  localStorage.removeItem('vimelLoggedIn');
+  localStorage.removeItem('vimelToken');
+  localStorage.removeItem('vimelBookings');
+  
+  // Clear Google sign-in
+  if (typeof google !== 'undefined' && google.accounts) {
+    try { 
+      google.accounts.id.disableAutoSelect(); 
+      google.accounts.id.revoke(localStorage.getItem('vimelEmail') || '', function() {});
+    } catch(e) {}
+  }
+  localStorage.removeItem('vimelEmail');
+  
+  // Clear session
+  sessionStorage.clear();
+  
+  // Clear cookies
+  document.cookie.split(';').forEach(function(c) {
+    document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/';
+  });
 
+  updateNavbarState();
   var dropdown = document.getElementById('profileDropdown');
   if (dropdown) dropdown.style.display = 'none';
   closeModal('profileModal');
 
   showToast("You've been logged out. Safe travels! 🚪", 'info');
-  setTimeout(function() { location.reload(); }, 1000);
+  setTimeout(function() { location.reload(); }, 500);
 };
 
 /* ── Utilities ──────────────────────────────────────────────────────── */
