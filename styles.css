@@ -18563,3 +18563,36 @@ body.dark-mode [style*="border-bottom: 1px solid #E5EAF3"] {
 #mobileProfileSection[style*="display: none"] {
   display: none !important;
 }
+
+/* Blog Modal Text Fix */
+.modal-overlay#blogModal .modal-container,
+.modal-overlay#blogModal .modal {
+  background: #fff !important;
+  color: #1a202c !important;
+}
+
+.modal-overlay#blogModal h1,
+.modal-overlay#blogModal h2,
+.modal-overlay#blogModal h3,
+.modal-overlay#blogModal h4,
+.modal-overlay#blogModal p,
+.modal-overlay#blogModal span,
+.modal-overlay#blogModal li {
+  color: #1a202c !important;
+}
+
+body.dark-mode .modal-overlay#blogModal .modal-container,
+body.dark-mode .modal-overlay#blogModal .modal {
+  background: #2D3748 !important;
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .modal-overlay#blogModal h1,
+body.dark-mode .modal-overlay#blogModal h2,
+body.dark-mode .modal-overlay#blogModal h3,
+body.dark-mode .modal-overlay#blogModal h4,
+body.dark-mode .modal-overlay#blogModal p,
+body.dark-mode .modal-overlay#blogModal span,
+body.dark-mode .modal-overlay#blogModal li {
+  color: #E2E8F0 !important;
+}
