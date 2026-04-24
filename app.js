@@ -2039,30 +2039,14 @@ window.handleSavePreferences = function () {
 /* ── Logout ─────────────────────────────────────────────────────────── */
 window.handleLogout = function () {
   currentUser = null;
-  
-  localStorage.removeItem('vimelUser');
-  localStorage.removeItem('vimelLoggedIn');
-  localStorage.removeItem('vimelToken');
-  localStorage.removeItem('vimelBookings');
-  localStorage.removeItem('vimelEmail');
-  
-  // Set flag BEFORE reload
-  sessionStorage.setItem('vimelJustLoggedOut', 'true');
-  
-  // Revoke Google
-  if (typeof google !== 'undefined' && google.accounts) {
-    try { 
-      google.accounts.id.disableAutoSelect();
-    } catch(e) {}
-  }
-  
-  // Clear cookies
+  localStorage.clear();
   document.cookie.split(';').forEach(function(c) {
     document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/';
   });
-
   showToast("Logged out! Safe travels! 🚪", 'info');
-  setTimeout(function() { location.reload(); }, 500);
+  setTimeout(function() { 
+    window.location.href = window.location.pathname + '?logged_out=true'; 
+  }, 500);
 };
 
 /* ── Utilities ──────────────────────────────────────────────────────── */
@@ -2270,10 +2254,11 @@ window.handleHeroSearch = function() {
 document.addEventListener('DOMContentLoaded', () => {
   renderAllData();
   // === LOAD USER FROM LOCALSTORAGE ===
-  if (sessionStorage.getItem('vimelJustLoggedOut')) {
-    sessionStorage.removeItem('vimelJustLoggedOut');
+  var urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('logged_out')) {
     localStorage.removeItem('vimelUser');
     currentUser = null;
+    history.replaceState(null, '', window.location.pathname);
   } else {
     var savedUser = localStorage.getItem('vimelUser');
     if (savedUser) {
@@ -2281,6 +2266,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   updateNavbarState();
+  
   // === PROFILE AVATAR DROPDOWN TOGGLE ===
   document.addEventListener('click', function(e) {
     var avatarBtn = e.target.closest('#profileAvatarBtn');
