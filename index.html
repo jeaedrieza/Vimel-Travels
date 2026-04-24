@@ -70,10 +70,10 @@ html,body{overflow-x:hidden!important;max-width:100vw!important}
   </button>
   <div class="profile-dropdown" id="profileDropdown" role="menu">
     <div class="profile-dropdown-header">
-      <div class="profile-dropdown-avatar" id="dropdownAvatarCircle">U</div>
-      <div class="profile-dropdown-info">
-        <span class="profile-dropdown-name" id="dropdownName">Traveler</span>
-        <span class="profile-dropdown-email" id="dropdownEmail">user@email.com</span>
+      <div class="profile-dropdown-avatar" id="dropdownAvatarCircle"></div>
+       <div class="profile-dropdown-info">
+       <span class="profile-dropdown-name" id="dropdownName"></span>
+       <span class="profile-dropdown-email" id="dropdownEmail"></span>
       </div>
     </div>
     <div class="profile-dropdown-divider"></div>
@@ -199,10 +199,10 @@ html,body{overflow-x:hidden!important;max-width:100vw!important}
 </div>
 <div class="mobile-profile-section" id="mobileProfileSection" style="display:none;">
   <div class="mobile-profile-header">
-    <div class="profile-avatar-circle-lg" id="mobileAvatarCircle">U</div>
+    <div class="profile-avatar-circle-lg" id="mobileAvatarCircle"></div>
     <div>
-      <p class="mobile-profile-name" id="mobileProfileName">Traveler</p>
-      <p class="mobile-profile-email" id="mobileProfileEmail">user@email.com</p>
+     <p class="mobile-profile-name" id="mobileProfileName"></p>
+     <p class="mobile-profile-email" id="mobileProfileEmail"></p>
     </div>
   </div>
   <ul class="mobile-profile-links">
@@ -1261,10 +1261,11 @@ html,body{overflow-x:hidden!important;max-width:100vw!important}
       <!-- Sidebar -->
       <aside class="profile-sidebar">
         <div class="profile-sidebar-avatar">
-          <div class="profile-avatar-xl" id="sidebarAvatarCircle">U</div>
-          <div class="profile-sidebar-user-info">
-            <p class="profile-sidebar-name" id="sidebarName">Traveler</p>
-            <p class="profile-sidebar-email" id="sidebarEmail">user@email.com</p>
+          <div class="profile-avatar-xl" id="sidebarAvatarCircle"></div>
+            <div class="profile-sidebar-user-info">
+            <p class="profile-sidebar-name" id="sidebarName"></p>
+            <p class="profile-sidebar-email" id="sidebarEmail"></p>
+           </div>
           </div>
         </div>
         <nav class="profile-sidebar-nav" aria-label="Profile navigation">
@@ -1306,9 +1307,9 @@ html,body{overflow-x:hidden!important;max-width:100vw!important}
             <div class="profile-info-avatar-wrap">
               <div class="profile-avatar-display" id="profileDisplayAvatar">U</div>
               <div>
-                <h3 id="profileDisplayName">Traveler</h3>
-                <p id="profileDisplayEmail" class="profile-text-muted">user@email.com</p>
-                <p id="profileDisplayPhone" class="profile-text-muted"><i class="fas fa-phone"></i> Not set</p>
+                <h3 id="profileDisplayName"></h3>
+                  <p id="profileDisplayEmail" class="profile-text-muted"></p>
+                  <p id="profileDisplayPhone" class="profile-text-muted"></p>
               </div>
             </div>
             <button class="btn btn-accent" onclick="switchProfileTab('accountSettings')">
@@ -1589,9 +1590,9 @@ html,body{overflow-x:hidden!important;max-width:100vw!important}
     <!-- Sidebar -->
     <div style="width:240px;background:#f8f9fa;padding:24px;border-radius:16px 0 0 16px;border-right:1px solid #eee;">
       <div style="text-align:center;margin-bottom:24px;">
-        <div id="sidebarAvatarCircle" style="width:60px;height:60px;border-radius:50%;background:#1E6FD9;color:white;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;margin:0 auto 8px;">U</div>
-        <p id="sidebarName" style="font-weight:700;font-size:1rem;">Traveler</p>
-        <p id="sidebarEmail" style="color:gray;font-size:0.8rem;">user@email.com</p>
+        <div id="sidebarAvatarCircle" style="width:60px;height:60px;border-radius:50%;background:#1E6FD9;color:white;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;margin:0 auto 8px;"></div>
+          <p id="sidebarName" style="font-weight:700;font-size:1rem;"></p>
+          <p id="sidebarEmail" style="color:gray;font-size:0.8rem;"></p>
       </div>
       <div style="display:flex;flex-direction:column;gap:4px;">
         <button class="profile-sidebar-item active" data-tab="myProfile" onclick="switchProfileTab('myProfile')" style="text-align:left;padding:10px 14px;border:none;background:none;border-radius:8px;cursor:pointer;font-size:0.9rem;">👤 My Profile</button>
@@ -1609,10 +1610,10 @@ html,body{overflow-x:hidden!important;max-width:100vw!important}
       <div class="profile-tab-panel active" id="tab-myProfile">
         <h2 style="font-size:1.4rem;font-weight:800;margin-bottom:20px;">My Profile</h2>
         <div style="text-align:center;margin-bottom:24px;">
-          <div id="profileDisplayAvatar" style="width:80px;height:80px;border-radius:50%;background:#1E6FD9;color:white;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;margin:0 auto 12px;">U</div>
-          <h3 id="profileDisplayName" style="font-weight:700;">Traveler</h3>
-          <p id="profileDisplayEmail" style="color:gray;font-size:0.85rem;">user@email.com</p>
-          <p id="profileDisplayPhone" style="color:gray;font-size:0.85rem;">📞 Not set</p>
+          <div id="profileDisplayAvatar" style="width:80px;height:80px;border-radius:50%;background:#1E6FD9;color:white;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;margin:0 auto 12px;"></div>
+            <h3 id="profileDisplayName" style="font-weight:700;"></h3>
+             <p id="profileDisplayEmail" style="color:gray;font-size:0.85rem;"></p>
+             <p id="profileDisplayPhone" style="color:gray;font-size:0.85rem;"></p>
         </div>
         <div style="display:flex;justify-content:center;gap:24px;">
           <div style="text-align:center;padding:16px 24px;background:#f0f7ff;border-radius:12px;">
