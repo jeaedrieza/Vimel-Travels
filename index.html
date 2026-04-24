@@ -2814,40 +2814,46 @@ function googleTranslateElementInit() {
 </script>
 <script>
 (function() {
-  var observer = new MutationObserver(function() {
+  function fixDarkColors() {
     if (!document.body.classList.contains('dark-mode')) return;
     
-    // Fix all white backgrounds inside profile modal
-    var profileModal = document.getElementById('profileModal');
-    if (!profileModal) return;
-    
-    profileModal.querySelectorAll('[style]').forEach(function(el) {
-      var s = el.getAttribute('style') || '';
-      if (s.includes('background:#fff') || s.includes('background: #fff') || s.includes('background:white') || s.includes('background: white') || s.includes('background:#FFFFFF') || s.includes('background:#f0f7ff') || s.includes('background: #f0f7ff') || s.includes('background:#f8f9fa') || s.includes('background: #f8f9fa') || s.includes('background:#F9FAFB') || s.includes('background: #F9FAFB') || s.includes('background:#FAFAFA') || s.includes('background: #FAFAFA')) {
-        el.style.background = '#2D3748';
-        el.style.borderColor = '#4A5568';
+    document.querySelectorAll('[style]').forEach(function(el) {
+      var bg = el.style.background || el.style.backgroundColor || '';
+      bg = bg.toLowerCase();
+      
+      if (bg.includes('#fff') || bg.includes('white') || bg.includes('#f0f7ff') || bg.includes('#f8f9fa') || bg.includes('#f9fafb') || bg.includes('#fafafa') || bg.includes('#f8faff') || bg.includes('#eff6ff') || bg.includes('#f0f9ff') || bg.includes('rgb(255') || bg.includes('rgb(240') || bg.includes('rgb(248') || bg.includes('rgb(249') || bg.includes('rgb(250')) {
+        el.style.setProperty('background', '#2D3748', 'important');
       }
-      if (s.includes('color:#111827') || s.includes('color: #111827') || s.includes('color:#1A202C') || s.includes('color: #1A202C') || s.includes('color:#2D3748') || s.includes('color: #2D3748')) {
-        el.style.color = '#E2E8F0';
+      
+      if (bg.includes('linear-gradient') && (bg.includes('#eff6ff') || bg.includes('#f0f9ff') || bg.includes('#f8faff'))) {
+        el.style.setProperty('background', 'linear-gradient(135deg, #2D3748, #1A202C)', 'important');
       }
-    });
-  });
 
-  observer.observe(document.body, { attributes: true, subtree: true, childList: true });
+      var color = el.style.color || '';
+      color = color.toLowerCase();
+      if (color.includes('#111827') || color.includes('#1a202c') || color.includes('#2d3748') || color.includes('#1e293b') || color.includes('rgb(17') || color.includes('rgb(26') || color.includes('rgb(45')) {
+        el.style.setProperty('color', '#E2E8F0', 'important');
+      }
+      if (color.includes('#4b5563') || color.includes('#6b7280') || color.includes('#9ca3af') || color.includes('rgb(75') || color.includes('rgb(107') || color.includes('rgb(156')) {
+        el.style.setProperty('color', '#A0AEC0', 'important');
+      }
 
-  // Also run on dark mode toggle
-  var dmBtn = document.getElementById('darkModeToggle');
-  if (dmBtn) {
-    dmBtn.addEventListener('click', function() {
-      setTimeout(function() {
-        observer.disconnect();
-        observer.observe(document.body, { attributes: true, subtree: true, childList: true });
-        // Trigger fix
-        var evt = new Event('click');
-        document.body.dispatchEvent(evt);
-      }, 100);
+      var border = el.style.borderColor || el.style.border || '';
+      border = border.toLowerCase();
+      if (border.includes('#e5e7eb') || border.includes('#e5eaf3') || border.includes('#eaeaea') || border.includes('#e2e8f0') || border.includes('rgb(229') || border.includes('rgb(226')) {
+        el.style.setProperty('border-color', '#4A5568', 'important');
+      }
     });
   }
+
+  // Run every 300ms
+  setInterval(fixDarkColors, 300);
+
+  // Also run on clicks
+  document.addEventListener('click', function() {
+    setTimeout(fixDarkColors, 100);
+    setTimeout(fixDarkColors, 500);
+  });
 })();
 </script>
 </body>
