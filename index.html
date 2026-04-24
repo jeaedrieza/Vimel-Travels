@@ -2803,10 +2803,9 @@ function googleTranslateElementInit() {
       var logoImg = document.querySelector('.logo-img');
       if (logoImg) logoImg.style.height = '36px';
 
-      // Profile — RESPECT hidden state!
       var profile = document.querySelector('.nav-profile');
       if (profile && !profile.classList.contains('profile-hidden')) {
-        profile.style.cssText = 'display:flex;position:relative;right:auto;top:auto;transform:none;margin:0;flex-shrink:0';
+        profile.style.cssText = 'position:relative;right:auto;top:auto;transform:none;margin:0;flex-shrink:0';
       }
 
       var chevron = document.querySelector('.profile-chevron');
@@ -2823,8 +2822,17 @@ function googleTranslateElementInit() {
 
       document.documentElement.style.overflowX = 'hidden';
       document.body.style.overflowX = 'hidden';
+      document.documentElement.style.maxWidth = '100vw';
+      document.body.style.maxWidth = '100vw';
+
     } else {
-      var els = ['.nav-links','.nav-auth','.nav-lang','.dark-mode-toggle','.nav-container','.nav-logo','.nav-notif','.notif-bell','.nav-hamburger','.profile-chevron'];
+      var show = ['.nav-links', '.nav-auth', '.nav-lang', '.dark-mode-toggle'];
+      show.forEach(function(sel) {
+        var el = document.querySelector(sel);
+        if (el) el.style.cssText = '';
+      });
+
+      var els = ['.nav-container','.nav-logo','.nav-notif','.notif-bell','.nav-hamburger','.profile-chevron'];
       els.forEach(function(sel) {
         var el = document.querySelector(sel);
         if (el) el.style.cssText = '';
@@ -2834,6 +2842,12 @@ function googleTranslateElementInit() {
       if (profile && !profile.classList.contains('profile-hidden')) {
         profile.style.cssText = '';
       }
+
+      var logoImg2 = document.querySelector('.logo-img');
+      if (logoImg2) logoImg2.style.height = '';
+
+      document.documentElement.style.overflowX = '';
+      document.body.style.overflowX = '';
     }
   }
 
