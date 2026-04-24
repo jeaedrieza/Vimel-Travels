@@ -2784,5 +2784,63 @@ function googleTranslateElementInit() {
   });
 })();
 </script>
+<script>
+(function() {
+  function fixMobile() {
+    if (window.innerWidth <= 1024) {
+      var hide = ['.nav-links', '.nav-auth', '.nav-lang', '.dark-mode-toggle'];
+      hide.forEach(function(sel) {
+        var el = document.querySelector(sel);
+        if (el) el.style.cssText = 'display:none!important';
+      });
+
+      var nav = document.querySelector('.nav-container');
+      if (nav) nav.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:0;flex-wrap:nowrap;padding:0 16px;max-width:100%;overflow:visible';
+
+      var logo = document.querySelector('.nav-logo');
+      if (logo) logo.style.cssText = 'flex:1;flex-shrink:0';
+
+      var logoImg = document.querySelector('.logo-img');
+      if (logoImg) logoImg.style.height = '36px';
+
+      // Profile — RESPECT hidden state!
+      var profile = document.querySelector('.nav-profile');
+      if (profile && !profile.classList.contains('profile-hidden')) {
+        profile.style.cssText = 'display:flex;position:relative;right:auto;top:auto;transform:none;margin:0;flex-shrink:0';
+      }
+
+      var chevron = document.querySelector('.profile-chevron');
+      if (chevron) chevron.style.display = 'none';
+
+      var notif = document.querySelector('.nav-notif');
+      if (notif) notif.style.cssText = 'display:flex;flex-shrink:0;margin:0 4px';
+
+      var bell = document.querySelector('.notif-bell');
+      if (bell) bell.style.cssText = 'width:32px;height:32px;font-size:0.8rem';
+
+      var ham = document.querySelector('.nav-hamburger');
+      if (ham) ham.style.cssText = 'display:flex;flex-shrink:0;position:relative;right:auto;top:auto;transform:none;margin-left:4px;width:34px;height:34px';
+
+      document.documentElement.style.overflowX = 'hidden';
+      document.body.style.overflowX = 'hidden';
+    } else {
+      var els = ['.nav-links','.nav-auth','.nav-lang','.dark-mode-toggle','.nav-container','.nav-logo','.nav-notif','.notif-bell','.nav-hamburger','.profile-chevron'];
+      els.forEach(function(sel) {
+        var el = document.querySelector(sel);
+        if (el) el.style.cssText = '';
+      });
+
+      var profile = document.querySelector('.nav-profile');
+      if (profile && !profile.classList.contains('profile-hidden')) {
+        profile.style.cssText = '';
+      }
+    }
+  }
+
+  fixMobile();
+  window.addEventListener('resize', fixMobile);
+  window.addEventListener('load', fixMobile);
+})();
+</script>
 </body>
 </html>
