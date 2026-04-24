@@ -18411,3 +18411,53 @@ body.dark-mode input::placeholder,
 body.dark-mode textarea::placeholder {
   color: #718096 !important;
 }
+
+/* NUCLEAR — override ALL inline white backgrounds in dark mode */
+body.dark-mode [style*="background:#fff"],
+body.dark-mode [style*="background: #fff"],
+body.dark-mode [style*="background:#FFFFFF"],
+body.dark-mode [style*="background:white"],
+body.dark-mode [style*="background: white"],
+body.dark-mode [style*="background:#f0f7ff"],
+body.dark-mode [style*="background: #f0f7ff"],
+body.dark-mode [style*="background:#F0F7FF"],
+body.dark-mode [style*="background:#f8f9fa"],
+body.dark-mode [style*="background: #f8f9fa"],
+body.dark-mode [style*="background:#F8FAFF"],
+body.dark-mode [style*="background:#F9FAFB"],
+body.dark-mode [style*="background:#FAFAFA"],
+body.dark-mode [style*="background: #FAFAFA"],
+body.dark-mode [style*="background:#f8faff"],
+body.dark-mode [style*="background: #f8faff"] {
+  background: #2D3748 !important;
+  border-color: #4A5568 !important;
+}
+
+body.dark-mode [style*="color:#111827"],
+body.dark-mode [style*="color: #111827"],
+body.dark-mode [style*="color:#1A202C"],
+body.dark-mode [style*="color: #1A202C"],
+body.dark-mode [style*="color:#2D3748"],
+body.dark-mode [style*="color: #2D3748"],
+body.dark-mode [style*="color:#1a202c"] {
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode [style*="color:#6B7280"],
+body.dark-mode [style*="color: #6B7280"],
+body.dark-mode [style*="color:#6b7280"],
+body.dark-mode [style*="color:#4b5563"],
+body.dark-mode [style*="color: #4b5563"],
+body.dark-mode [style*="color:#9ca3af"] {
+  color: #A0AEC0 !important;
+}
+
+body.dark-mode [style*="border-color:#e5e7eb"],
+body.dark-mode [style*="border-color: #e5e7eb"],
+body.dark-mode [style*="border:1px solid #e5e7eb"],
+body.dark-mode [style*="border:1.5px solid #e5e7eb"],
+body.dark-mode [style*="border: 1px solid #E5EAF3"],
+body.dark-mode [style*="border-bottom:1px solid #e5e7eb"],
+body.dark-mode [style*="border-bottom: 1px solid #E5EAF3"] {
+  border-color: #4A5568 !important;
+}
