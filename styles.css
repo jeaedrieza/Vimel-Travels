@@ -18335,3 +18335,79 @@ body {
     gap: 10px !important;
   }
 }
+
+/* Fix input brightness in dark mode profile/booking */
+body.dark-mode .profile-content input,
+body.dark-mode .profile-content textarea,
+body.dark-mode .profile-content select {
+  background: #374151 !important;
+  border-color: #4A5568 !important;
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .profile-content input:focus,
+body.dark-mode .profile-content textarea:focus,
+body.dark-mode .profile-content select:focus {
+  background: #2D3748 !important;
+  border-color: #63B3ED !important;
+}
+
+body.dark-mode .profile-content input::placeholder,
+body.dark-mode .profile-content textarea::placeholder {
+  color: #718096 !important;
+}
+
+body.dark-mode .profile-info-card {
+  background: linear-gradient(135deg, #2D3748, #1A202C) !important;
+  border-color: #4A5568 !important;
+}
+
+body.dark-mode .profile-stat-card {
+  background: #2D3748 !important;
+  border-color: #4A5568 !important;
+}
+
+body.dark-mode .profile-booking-card {
+  background: #2D3748 !important;
+  border-color: #4A5568 !important;
+}
+
+body.dark-mode .profile-tab-header h2 {
+  -webkit-text-fill-color: #63B3ED !important;
+}
+
+body.dark-mode .profile-payment-card {
+  background: #2D3748 !important;
+  border-color: #4A5568 !important;
+}
+
+body.dark-mode .profile-prefs-list {
+  border-color: #4A5568 !important;
+}
+
+body.dark-mode .profile-pref-item {
+  background: #2D3748 !important;
+  border-color: #4A5568 !important;
+}
+
+/* Global dark mode inputs — ALL forms */
+body.dark-mode input:not([type="checkbox"]):not([type="radio"]):not(.chat-input-form input),
+body.dark-mode textarea,
+body.dark-mode select {
+  background: #374151 !important;
+  border-color: #4A5568 !important;
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode input:focus,
+body.dark-mode textarea:focus,
+body.dark-mode select:focus {
+  background: #2D3748 !important;
+  border-color: #63B3ED !important;
+  box-shadow: 0 0 0 3px rgba(99,179,237,0.15) !important;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+  color: #718096 !important;
+}
