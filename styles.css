@@ -13143,6 +13143,94 @@ body.dark-mode .pricing-features li.excluded {
   opacity: 0.35;
 }
 
+/* Dark mode BOOKING MODAL fix */
+body.dark-mode .booking-traveler-item {
+  background: #2D3748 !important;
+  border-color: #4A5568 !important;
+}
+
+body.dark-mode .booking-traveler-type {
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .booking-traveler-sub {
+  color: #718096 !important;
+}
+
+body.dark-mode .booking-counter-value {
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .booking-textarea {
+  background: #374151 !important;
+  border-color: #4A5568 !important;
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .booking-char-count {
+  color: #718096 !important;
+}
+
+body.dark-mode .booking-price-summary {
+  background: #2D3748 !important;
+  border-color: #4A5568 !important;
+}
+
+body.dark-mode .booking-price-row {
+  color: #A0AEC0 !important;
+}
+
+body.dark-mode .booking-price-row span:last-child {
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .booking-price-total {
+  border-color: #4A5568 !important;
+}
+
+body.dark-mode .booking-price-total span:first-child {
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .booking-payment-card {
+  background: #2D3748 !important;
+  border-color: #4A5568 !important;
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .booking-payment-option input:checked + .booking-payment-card {
+  background: rgba(30,111,217,0.15) !important;
+  border-color: #63B3ED !important;
+  color: #63B3ED !important;
+}
+
+body.dark-mode .booking-counter-btn {
+  border-color: #63B3ED !important;
+  color: #63B3ED !important;
+  background: transparent !important;
+}
+
+body.dark-mode .booking-counter-btn:hover {
+  background: #63B3ED !important;
+  color: #fff !important;
+}
+
+body.dark-mode .date-display {
+  background: #374151 !important;
+  border-color: #4A5568 !important;
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .date-dropdown {
+  background: #2D3748 !important;
+  border-color: #63B3ED !important;
+}
+
+body.dark-mode .date-select {
+  background: #374151 !important;
+  border-color: #4A5568 !important;
+  color: #E2E8F0 !important;
+}
 
 /* Prevent horizontal scroll globally */
 html {
