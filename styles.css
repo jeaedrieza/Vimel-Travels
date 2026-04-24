@@ -18548,3 +18548,14 @@ body.dark-mode [style*="border-bottom:1px solid #e5e7eb"],
 body.dark-mode [style*="border-bottom: 1px solid #E5EAF3"] {
   border-color: #4A5568 !important;
 }
+
+/* Force hide profile when not logged in */
+.nav-profile[style*="display:none"],
+.nav-profile[style*="display: none"] {
+  display: none !important;
+}
+
+#mobileProfileSection[style*="display:none"],
+#mobileProfileSection[style*="display: none"] {
+  display: none !important;
+}
