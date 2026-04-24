@@ -1793,13 +1793,13 @@ window.handleLogin = function (event) {
   if (!/^[^\s@]+@[^\s@]+[^\s@]+$/.test(email)) { showToast('Please enter a valid email address.', 'error'); return; }
   if (password.length < 6) { showToast('Password must be at least 6 characters.', 'error'); return; }
 
-  // Derive a friendly first/last name from email for demo purposes
   const namePart  = email.split('@')[0];
   const nameParts = namePart.split(/[\.\-\_]/);
   const firstName = _capitalize(nameParts[0] || 'Traveler');
   const lastName  = _capitalize(nameParts[1] || 'Vimel');
 
   currentUser = { firstName, lastName, email, phone: '' };
+  localStorage.setItem('vimelUser', JSON.stringify(currentUser));
 
   updateNavbarState();
   showToast(`Welcome back, ${firstName}! ✈️`, 'success');
@@ -1830,6 +1830,7 @@ window.handleRegister = function (event) {
   }
 
   currentUser = { firstName, lastName, email, phone };
+  localStorage.setItem('vimelUser', JSON.stringify(currentUser));
 
   updateNavbarState();
   showToast(`Welcome to Vimel Travels, ${firstName}! 🎉`, 'success');
@@ -2273,14 +2274,13 @@ document.addEventListener('DOMContentLoaded', () => {
     sessionStorage.removeItem('vimelJustLoggedOut');
     localStorage.removeItem('vimelUser');
     currentUser = null;
-    updateNavbarState();
   } else {
     var savedUser = localStorage.getItem('vimelUser');
     if (savedUser) {
       currentUser = JSON.parse(savedUser);
-      updateNavbarState();
     }
   }
+  updateNavbarState();
   // === PROFILE AVATAR DROPDOWN TOGGLE ===
   document.addEventListener('click', function(e) {
     var avatarBtn = e.target.closest('#profileAvatarBtn');
