@@ -13232,6 +13232,10 @@ body.dark-mode .date-select {
   color: #E2E8F0 !important;
 }
 
+.profile-hidden {
+  display: none !important;
+}
+
 /* Prevent horizontal scroll globally */
 html {
   overflow-x: hidden !important;

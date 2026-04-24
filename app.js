@@ -1730,7 +1730,7 @@ window.updateNavbarState = function () {
   if (currentUser) {
     // Desktop navbar
     if (navAuth)    navAuth.style.display    = 'none';
-    if (navProfile) navProfile.style.display = 'flex';
+    navProfile.style.display = 'flex'; navProfile.classList.remove('profile-hidden')
 
     // Mobile menu
     if (mobileAuth)       mobileAuth.style.display        = 'none';
@@ -1767,7 +1767,7 @@ window.updateNavbarState = function () {
   } else {
     // Guest state
     if (navAuth)          navAuth.style.display           = '';
-    if (navProfile)       navProfile.style.display        = 'none';
+    navProfile.style.display = 'none'; navProfile.classList.add('profile-hidden')
     if (mobileAuth)       mobileAuth.style.display        = '';
     if (mobileProfSection) mobileProfSection.style.display = 'none';
   }
@@ -2266,7 +2266,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   updateNavbarState();
-  
+
   // === PROFILE AVATAR DROPDOWN TOGGLE ===
   document.addEventListener('click', function(e) {
     var avatarBtn = e.target.closest('#profileAvatarBtn');
