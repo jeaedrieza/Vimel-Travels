@@ -63,7 +63,7 @@ html,body{overflow-x:hidden!important;max-width:100vw!important}
 <button class="btn btn-ghost" onclick="openModal('loginModal')">Log In</button>
 <button class="btn btn-primary" onclick="openModal('registerModal')">Sign Up</button>
 </div>
-<div class="nav-profile profile-hidden" id="navProfile" style="display:none;"></div>
+<div class="nav-profile profile-hidden" id="navProfile" style="display:none;">
   <button class="profile-avatar-btn" id="profileAvatarBtn" onclick="toggleProfileDropdown()" aria-label="Profile menu" aria-expanded="false" aria-haspopup="true">
     <span class="profile-avatar-circle" id="navAvatarCircle"></span>
     <i class="fas fa-chevron-down profile-chevron" id="profileChevron"></i>
@@ -89,7 +89,6 @@ html,body{overflow-x:hidden!important;max-width:100vw!important}
     <button class="profile-logout-btn" onclick="handleLogout()"><span class="profile-dd-icon">🚪</span> Logout</button>
   </div>
 </div>
-
 <div class="nav-lang" id="navLang">
   <button class="lang-btn" id="langBtn">
     <span class="lang-flag" id="langFlag">🇺🇸</span>
@@ -125,7 +124,6 @@ html,body{overflow-x:hidden!important;max-width:100vw!important}
     </div>
   </div>
 </div>
-
 <div class="nav-notif" id="navNotif">
   <button class="notif-bell" id="notifBell">
     <i class="fas fa-bell"></i>
